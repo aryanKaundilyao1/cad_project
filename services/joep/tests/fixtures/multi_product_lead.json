@@ -1,0 +1,21 @@
+{
+  "client": {
+    "client_id": "00000000-0000-0000-0000-000000000001",
+    "configuration_version": "v1.0"
+  },
+  "entity": {
+    "canonical_entity_id": "00000000-0000-0000-0000-000000000002",
+    "canonical_name": "Multi Product Corp"
+  },
+  "lead_dna": {},
+  "product_matches": [
+    {
+      "product_id": "00000000-0000-0000-0000-000000000021",
+      "match_state": "CONFIRMED_PRESENT"
+    },
+    {
+      "product_id": "00000000-0000-0000-0000-000000000022",
+      "match_state": "UNKNOWN"
+    }
+  ]
+}

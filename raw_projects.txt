@@ -1,0 +1,30 @@
+      raw_projects: {
+        Row: {
+          id: string
+          job_id: string | null
+          project_name: string
+          company_name: string | null
+          location: string | null
+          estimated_value: number | null
+          project_stage: string | null
+          source_url: string | null
+          evidence: string | null
+          raw_json: Json
+          validation_status: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          job_id?: string | null
+          project_name: string
+          company_name?: string | null
+          location?: string | null
+          estimated_value?: number | null
+          project_stage?: string | null
+          source_url?: string | null
+          evidence?: string | null
+          raw_json: Json
+          validation_status?: string
+          created_at?: string
+        }
+        Update: {

@@ -1,0 +1,52 @@
+{
+  "data": [
+    {
+      "project_ref_id": "IND-2026-MH-019",
+      "project_name": "Pune Auto Ancillary Manufacturing Hub Expansion",
+      "project_type": "Industrial Expansion",
+      "industry": "Automotive",
+      "niche": "Auto Ancillary",
+      "developer": "MIDC (Maharashtra Industrial Development Corporation)",
+      "owner": "AutoTech Solutions India",
+      "consultant": "L&T Engineering",
+      "contractor": null,
+      "location": "Chakan, Pune",
+      "state": "Maharashtra",
+      "country": "India",
+      "estimated_value": 450000000,
+      "project_stage": "Tendering",
+      "announcement_date": "2026-06-15T00:00:00Z",
+      "expected_completion_date": "2028-03-31T00:00:00Z",
+      "source_url": "https://example.com/projects/IND-2026-MH-019",
+      "documents_url": "https://example.com/docs/IND-2026-MH-019.pdf",
+      "raw_description": "Expansion of the existing auto ancillary manufacturing hub by 15 acres. Includes construction of 3 new PEB factory sheds, centralized cooling systems, and a logistics warehouse. Tenders for civil works and PEB structures will be floated in Q3 2026.",
+      "latitude": 18.7500,
+      "longitude": 73.8500,
+      "tags": ["PEB", "Warehouse", "Manufacturing", "Expansion"]
+    },
+    {
+      "project_ref_id": "IND-2026-GJ-042",
+      "project_name": "Sanand Semiconductor Park Phase 1",
+      "project_type": "New Facility",
+      "industry": "Electronics",
+      "niche": "Semiconductor",
+      "developer": "Gujarat State Industrial Development",
+      "owner": "Global Silicon India",
+      "consultant": "Meinhardt Group",
+      "contractor": "Shapoorji Pallonji",
+      "location": "Sanand, Ahmedabad",
+      "state": "Gujarat",
+      "country": "India",
+      "estimated_value": 12000000000,
+      "project_stage": "Under Construction",
+      "announcement_date": "2026-02-10T00:00:00Z",
+      "expected_completion_date": "2029-12-31T00:00:00Z",
+      "source_url": "https://example.com/projects/IND-2026-GJ-042",
+      "documents_url": "https://example.com/docs/IND-2026-GJ-042.zip",
+      "raw_description": "Development of a massive semiconductor fabrication plant and ancillary electronics manufacturing park. High demand for specialized cleanroom construction, HVAC systems, and heavy-duty industrial flooring.",
+      "latitude": 22.9800,
+      "longitude": 72.3800,
+      "tags": ["Semiconductor", "Cleanroom", "Mega Project", "FDI"]
+    }
+  ]
+}

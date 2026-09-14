@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+  html, body {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  :root {
+    /* Primary Canvas: Ethereal Green background */
+    --background: 46 55% 93%;
+    
+    /* Body Text: Dark Ink / Dark Surf the Web */
+    --foreground: 222 60% 12%;
+
+    /* Accent / Buttons: Surf the Web (#203C7F) -> HSL(222, 60%, 31%) */
+    --primary: 222 60% 31%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Cards/Surface: Crisp White */
+    --card: 0 0% 100%; 
+    --card-foreground: 222 60% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 60% 12%;
+
+    /* Secondary subtle areas */
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    /* Muted elements */
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    /* Terracotta for accents */
+    --accent: 14 65% 52%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders: Subtle gray */
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222 60% 31%;
+
+    /* Standard Radii */
+    --radius: 0.5rem; 
+  }
+
+  .dark { 
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+ }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased selection:bg-primary selection:text-primary-foreground;
+  }
+  
+  /* Editorial Typography only for specific explicit font-editorial classes, not global H1-H6 */
+  .font-editorial {
+    font-family: 'Playfair Display', serif;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+}
+
+@layer components {
+  /* Minimal UI resets */
+  .border-thin {
+    @apply border border-border;
+  }
+  .border-thin-b {
+    @apply border-b border-border;
+  }
+  
+  /* Remove old SaaS effects */
+  .glow-orb, .bg-dark-grid, .bg-dot-grid, .text-gradient-blue, .text-gradient, .glow-blue, .glow-cyan, .glow-line, .text-glow {
+    @apply hidden; 
+  }
+
+  .glass-card, .flow-node, .lead-table-container {
+    @apply bg-card border border-border rounded-lg shadow-sm;
+  }
+  
+  /* Navigation Links */
+  .nav-link { 
+    @apply relative text-sm font-medium transition-all duration-300; 
+  }
+  .nav-link::after { 
+    content: ''; 
+    @apply absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300; 
+  }
+  .nav-link:hover::after, .nav-link.active::after { 
+    @apply w-full; 
+  }
+  
+  .section-heading { 
+    @apply text-4xl md:text-5xl lg:text-7xl font-sans font-semibold mb-6 text-foreground leading-tight tracking-tight; 
+  }
+  .section-subheading { 
+    @apply max-w-2xl text-lg md:text-xl leading-relaxed text-muted-foreground font-sans font-light; 
+  }
+}
+
+@layer utilities {
+  .animate-fade-up { animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  .animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
+  
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+
+  @keyframes fadeUp { 
+    from { opacity: 0; transform: translateY(20px); } 
+    to { opacity: 1; transform: translateY(0); } 
+  }
+  @keyframes fadeIn { 
+    from { opacity: 0; } 
+    to { opacity: 1; } 
+  }
+}

@@ -1,0 +1,186 @@
+=== docs/archive/scoring-v1/intelligence-engine/phase4a/Feature_Extraction_Guide.md ===
+=== docs/archive/scoring-v1/intelligence-engine/phase4a/API_Documentation.md ===
+=== docs/archive/scoring-v1/intelligence-engine/phase4a/Score_Audit_Guide.md ===
+=== docs/archive/scoring-v1/intelligence-engine/phase4a/Feature_Registry_Guide.md ===
+=== docs/archive/scoring-v1/intelligence-engine/phase4a/Phase_4A_Architecture.md ===
+=== docs/archive/scoring-v1/intelligence-engine/phase4a/Reason_Code_Guide.md ===
+=== docs/archive/scoring-v1/intelligence-engine/phase4a/Fit_Scoring_Engine.md ===
+=== docs/archive/scoring-v1/intelligence-engine/phase4a/Score_Versioning_Guide.md ===
+Formulas change over time as the business learns. 
+Every score is tagged with a `score_version` (e.g., `v1.0-fit`) that references the `score_versions` table. This ensures that if the formula is updated to `v2.0` tomorrow, we know exactly which algorithm produced historical scores, preventing analytic drift.
+=== docs/archive/scoring-v1/intelligence-engine/16_product_signal_mapping_architecture.md ===
+=== docs/archive/scoring-v1/intelligence-engine/05_tier_classification_engine.md ===
+=== docs/archive/scoring-v1/intelligence-engine/09_reason_codes_and_explainability.md ===
+11. Explainable Scoring Formulas
+11.1 Master Formula
+                    × 100 × DecayFactor(t) × NegativeMultiplier
+11.2 Sub-Formulas
+  "decay_factor": 0.92,
+=== docs/archive/scoring-v1/intelligence-engine/11_event_normalization_guide.md ===
+  confidence: number;
+=== docs/archive/scoring-v1/intelligence-engine/08_product_signal_mapping.md ===
+=== docs/archive/scoring-v1/intelligence-engine/10_intelligence_engine_architecture.md ===
+Every enterprise platform (6sense, Bombora, ZoomInfo, Apollo, Demandbase) is fundamentally computing the same equation in different clothing:
+Opportunity Propensity = Fit (will they ever buy from us) × Intent (are they actively researching) × Timing (is it happening now) × Engagement (are the right people involved) — filtered through Recency/Decay
+┌────────────────────────────────────────────────────────────────────┐ │ SIGNAL INGESTION LAYER │ │ Government portals · Customs/trade data · Job boards · Permits · │ │ Press/news APIs · Company websites · Review sites · Social · │ │ Funding databases · Credit bureaus │ └───────────────────────────────┬───────────────────────────────────┘ ▼ ┌────────────────────────────────────────────────────────────────────┐ │ ENTITY RESOLUTION & ENRICHMENT │ │ Company deduplication/matching · Firmographic enrichment · │ │ Event tagging (permit, hire, import, tender, etc.) · │ │ Timestamped, immutable signal event store │ └───────────────────────────────┬───────────────────────────────────┘ ▼ ┌────────────────────────────────────────────────────────────────────┐ │ PRODUCT SIGNAL MAPPING ENGINE (Sec. 11) │ │ Product → buyer archetypes → relevant signal set + weights │ │ (config-driven, expert-seeded + IV-refined per product) │ └───────────────────────────────┬───────────────────────────────────┘ ▼ ┌────────────────────────────────────────────────────────────────────┐ │ SCORING ENGINE │ │ Layer 1: Bayesian prior (base rate by industry/geo/product) │ │ Layer 2: Naive Bayes (WOE) + Logistic Regression + GBM ensemble │ │ Layer 3: Isotonic/Platt calibration against historical outcomes │ │ Confidence engine: Beta-Binomial credible intervals + data │ │ completeness/recency/source-reliability scoring │ └───────────────────────────────┬───────────────────────────────────┘ ▼ ┌────────────────────────────────────────────────────────────────────┐ │ EXPLAINABILITY & RANKING LAYER │ │ Top-driver attribution (per-signal contribution) · Tiering (T1/T2/ │ │ T3) · Top-1% percentile ranking · Expected-Value re-ranking │ └───────────────────────────────┬───────────────────────────────────┘ ▼ ┌────────────────────────────────────────────────────────────────────┐ │ FEEDBACK / RETRAINING LOOP │ │ Closed-won/lost outcomes logged → feed IV recalculation, logistic/ │ │ GBM retraining, and calibration curve updates (weekly/monthly job) │ └────────────────────────────────────────────────────────────────────┘
+=== docs/archive/scoring-v1/intelligence-engine/01_signal_library.md ===
+=== docs/archive/scoring-v1/intelligence-engine/19_eligibility_framework.md ===
+=== docs/archive/scoring-v1/intelligence-engine/13_matching_framework.md ===
+1. **Exact Match (100% Confidence)**: The incoming string exactly matches the primary `name` or a known `alias_name`.
+2. **Substring Match (80% Confidence)**: The incoming string is a substring of the candidate, or the candidate is a substring of the incoming string (e.g. "ABC Steel" vs "ABC Steel Pvt Ltd").
+3. **Loose Match (50% Confidence)**: Fallback for basic SQL `ILIKE` matches that don't satisfy the substring constraints.
+- **70 - 95%**: Create a temporary placeholder company (with 50% confidence status) and send the record to the `entity_review_queue`.
+=== docs/archive/scoring-v1/intelligence-engine/15_alias_management_guide.md ===
+=== docs/archive/scoring-v1/intelligence-engine/11_decision_intelligence_engine.md ===
+1. **No Black Boxes:** Every recommendation must be fully explainable and mathematically traceable back to its origin (Signals → Opportunity Score → Probability → Confidence → Recommendation).
+3. **Confidence-Gated:** High-risk actions (e.g., executive outreach) are only recommended when the underlying predictive Confidence Score is sufficiently high.
+The Decision Engine sits atop the Phase 5 Predictive Engine. It consumes the mathematical outputs (Probability, Confidence, Scores) and raw inputs (Signals, Contacts) to generate actionable directives.
+- Predictive Outputs: Purchase Probability, Confidence Score
+- **Inputs:** Active Signals, Timing Score, Confidence Score.
+- **Formula:** 
+  `ActionScore = max(Signal_Urgency_Weight) * Confidence_Multiplier`
+- **Dependencies:** Signal Registry, Confidence Engine.
+- **Reason Codes:** "Recommended [Call] because [Tender Released] signal was detected with [89%] confidence."
+- **Edge Cases:** If Confidence is <50%, the Next Best Action defaults to "Research Account" rather than direct outreach.
+- **Formula:** 
+- **Formula:**
+- **Formula:**
+  `UrgencyScore = Base_Timing_Score + (Trigger_Multiplier * Decay_Factor)`
+- **Formula:** 
+- **Formula:** Decision Matrix (e.g., IF `Intent = Tender` AND `Urgency = High` THEN `Playbook = Tender Response`).
+- **Inputs:** Days in Current Stage, Engagement Decay, Blocker Signals (e.g., "Budget Freeze").
+- **Formula:** 
+- **Backed by:** Purchase Probability 74%, Confidence 89%.
+**Purpose:** As decision matrices and formulas are refined (e.g., tweaking the ContactRank formula), the system versions the logic so historical recommendations can be understood in the context of the rules active at that time.
+## 14. Formula Definitions
+3. **UrgencyScore** = `Base_Timing_Score + (Trigger_Multiplier * Decay_Factor(Days_Since_Signal))`
+4. **ActionScore** = `max(Signal_Urgency_Weight) * Confidence_Multiplier`
+=== docs/archive/scoring-v1/intelligence-engine/phase5d/Calibration_Engine_Architecture.md ===
+The Probability Calibration Engine mathematically guarantees that predicted probabilities map directly to real-world conversion rates.
+Formula: `P_cal = 1 / (1 + exp(A * raw_prob + B))`
+=== docs/archive/scoring-v1/intelligence-engine/phase5c/Evidence_Framework_Architecture.md ===
+In earlier phases, JAS CONNECT treated all signals ("Tender Released", "Website Visit") as heuristic weights assigned by a human administrator. The Evidence Extraction framework mathematically proves *which* signals actually correlate with closed-won revenue, removing human bias.
+=== docs/archive/scoring-v1/intelligence-engine/phase5b/Cold_Start_Probability_Engine.md ===
+3. **Driver Engine**: Converts mathematical heuristics into human-readable text (e.g. "Immediate Trigger Event Detected").
+=== docs/archive/scoring-v1/intelligence-engine/phase5e/Predictive_Intelligence_Architecture.md ===
+Therefore, JAS CONNECT uses an **Ensemble Engine**. We train multiple distinct models, let them independently score the opportunity, and then mathematically blend their answers.
+*(Note: In the initial rollout, Logistic and GBM are architected as simulated mathematical wrappers. When sufficient terminal outcome data is generated by Phase 5A, Python-based ML runners can be plugged directly into these interfaces).*
+### 3. The Confidence Engine
+A probability is useless without a measure of certainty. The Confidence Engine evaluates:
+- **Model Agreement:** Do all three models predict ~70%, or does one predict 20% and another 95%? High variance lowers confidence.
+- **Output:** Returns a Confidence Score (e.g., 88%) and a Credible Interval (e.g., ±4%).
+=== docs/archive/scoring-v1/intelligence-engine/02_opportunity_scoring_engine.md ===
+8.3 Formula
+DecayFactor(t) = e^(–λ × days_since_last_signal)     // λ tuned per signal type
+OpportunityScore = RawScore × DecayFactor(t) × NegativeMultiplier
+This keeps every component auditable: a sales rep or the platform UI can always show "this score is 78 because Fit=22, Intent=25, Timing=20, Engagement=11, decayed 8% for signal age, no negative multipliers applied."
+=== docs/archive/scoring-v1/intelligence-engine/phase4b/Intent_Feature_Guide.md ===
+=== docs/archive/scoring-v1/intelligence-engine/phase4b/Intent_Scoring_Engine.md ===
+=== docs/archive/scoring-v1/intelligence-engine/phase4b/Timing_Feature_Guide.md ===
+=== docs/archive/scoring-v1/intelligence-engine/phase4b/Timing_Scoring_Engine.md ===
+   - **TriggerEventRelevanceEngine (8 pts)**: Evaluates funding, expansion, or permits with a recency decay.
+=== docs/archive/scoring-v1/intelligence-engine/07_timeline_architecture.md ===
+=== docs/archive/scoring-v1/intelligence-engine/phase4d/Opportunity_Explorer_Guide.md ===
+=== docs/archive/scoring-v1/intelligence-engine/phase4d/Vertical_Weight_Manager.md ===
+=== docs/archive/scoring-v1/intelligence-engine/opportunity_intelligence_platform.md ===
+Purpose of this document: a build-ready specification for an AI system that scores companies not on "are they a lead" but on "how likely, and how soon, will this company buy." It is written so an engineering team can implement it directly — data schema, signal taxonomy, weighting logic, formulas, and classification rules included.
+Every enterprise platform (6sense, Bombora, ZoomInfo, Apollo, Demandbase) is fundamentally computing the same equation in different clothing:
+Opportunity Propensity = Fit (will they ever buy from us) × Intent (are they actively researching) × Timing (is it happening now) × Engagement (are the right people involved) — filtered through Recency/Decay
+6. Recency/decay of signal — a surge 3 weeks old is worth far more than one 4 months old; most platforms decay intent scores on a rolling window (6sense refreshes daily, Bombora weekly).
+1. Combine fit (durable, slow-changing) with intent (volatile, fast-decaying) as separate axes, never one blended number only.
+4. Decay scores over time — freshness matters as much as magnitude.
+8.3 Formula
+DecayFactor(t) = e^(–λ × days_since_last_signal)     // λ tuned per signal type
+OpportunityScore = RawScore × DecayFactor(t) × NegativeMultiplier
+This keeps every component auditable: a sales rep or the platform UI can always show "this score is 78 because Fit=22, Intent=25, Timing=20, Engagement=11, decayed 8% for signal age, no negative multipliers applied."
+11. Explainable Scoring Formulas
+11.1 Master Formula
+                    × 100 × DecayFactor(t) × NegativeMultiplier
+11.2 Sub-Formulas
+  "decay_factor": 0.92,
+1. Data model: store every signal as an immutable, timestamped event (signal_type, source, company_id, raw_value, observed_at, confidence), never overwrite — scores are computed on read from the event stream, enabling full historical backtesting.
+2. Decay and thresholding logic (Bombora-style multi-topic gating, 6sense-style multi-dimension gating) must live in the scoring engine, not the UI, so the API and dashboard always agree.
+=== docs/archive/scoring-v1/intelligence-engine/phase4c/Opportunity_Reason_Codes.md ===
+The Master Opportunity Score Engine synthesizes reason codes generated by the 4 pillars (Fit, Intent, Timing, Engagement) and appends its own reason codes related to Decay and Negative Multipliers. This ensures the 100-point score is fully explainable.
+| `decay_factor` | Negative | Explains if the score has dropped slightly or heavily due to signal age. |
+=== docs/archive/scoring-v1/intelligence-engine/phase4c/Negative_Signal_Guide.md ===
+The Negative Signal Engine applies a cascading penalty multiplier when adverse events are detected for an account. Unlike standard decay (which drops smoothly over time), negative signals cause sharp, immediate drops in the final Opportunity Score.
+=== docs/archive/scoring-v1/intelligence-engine/phase4c/Vertical_Weighting_Guide.md ===
+=== docs/archive/scoring-v1/intelligence-engine/phase4c/Master_Opportunity_Score_Engine.md ===
+The Master Opportunity Score Engine is the final orchestrator. It aggregates the 4 pillar scores (Fit, Intent, Timing, Engagement), applies vertical industry weights, and then scales the output by a Decay Factor and Negative Multipliers.
+2. **Decay Engine**: Reduces the final score as signals age over time.
+## Master Formula
+`OpportunityScore = [ (Fit_raw/25)×W_fit + (Intent_raw/30)×W_intent + (Timing_raw/25)×W_timing + (Engagement_raw/20)×W_engage ] × 100 × DecayFactor × NegativeMultiplier`
+The base sum computes to a raw score out of 100 before decay and negative multipliers are applied.
+=== docs/archive/scoring-v1/intelligence-engine/phase4c/Engagement_Scoring_Engine.md ===
+## Scoring Formula (Max 20 pts)
+=== docs/archive/scoring-v1/intelligence-engine/phase4c/Decay_Engine_Guide.md ===
+# Decay Engine Guide
+The Decay Engine ensures that the Opportunity Score remains relevant by penalizing accounts where signals have aged and no new activity has been recorded. This prevents a "high intent" account from remaining high indefinitely without fresh engagement.
+## Formula
+`DecayFactor(t) = max(0.1, e^(–λ × days_since_last_signal))`
+- **λ (Lambda)** is the decay rate. We default to `0.01` for general master scoring, which equates to a half-life of approximately 70 days.
+- **Floor**: The multiplier floors at `0.10` so that previously high-scoring accounts do not decay completely to 0, ensuring they are still ranked appropriately amongst "cold" accounts.
+=== docs/archive/scoring-v1/intelligence-engine/05_internal_signal_engine_architecture.md ===
+   Contains the business logic mapping fields to predefined signals. For example, if `website` exists on a company record, it yields a "Website Present" signal with a 100% confidence score.
+## Confidence & Reliability
+Instead of utilizing a dynamic Probability Engine, the Phase 3A.5 framework assigns static `confidence` scores (e.g. 100 for explicit data, 70 for inferred) and `reliability` flags (high/medium/low based on the data source origin). These are stored immutably alongside the event payload in the `signal_event_store`.
+=== docs/archive/scoring-v1/intelligence-engine/04_confidence_engine.md ===
+4.3 Beta-Binomial Model for Confidence Intervals
+The width of this interval is the natural confidence metric (Section "Confidence Calculations" below) — few signals observed → wide interval → low confidence; many corroborating signals → narrow interval → high confidence, independent of whether the point estimate is high or low.
+14.2 Confidence Calculation (explicit formula)
+Confidence should answer: "How much do I trust this probability, independent of whether it's high or low?"
+Confidence = DataCompleteness × SourceReliability × RecencyFactor × (1 – IntervalWidthPenalty)
+A company with a high point-probability but only 1–2 stale signals should show high probability, low confidence — this distinction is essential and is missing from most simplistic scoring tools.
+=== docs/archive/scoring-v1/intelligence-engine/08_signal_rebuild_guide.md ===
+=== docs/archive/scoring-v1/intelligence-engine/09_provider_architecture.md ===
+=== docs/archive/scoring-v1/intelligence-engine/18_signal_mapping_framework.md ===
+=== docs/archive/scoring-v1/intelligence-engine/07_vertical_weighting_profiles.md ===
+=== docs/archive/scoring-v1/intelligence-engine/06_signal_generation_guide.md ===
+- `website` -> "Website Present" (Confidence: 100)
+- `phone` -> "Phone Present" (Confidence: 100)
+- `industry` -> "Industry Assigned" (Confidence: 100)
+- A generic "Requirement Posted" signal is fired (Confidence: 100).
+- If the requirement string contains keywords like 'PEB' or 'Infrastructure', an inferred signal like "PEB Requirement" is fired (Confidence: 70).
+=== docs/archive/scoring-v1/intelligence-engine/06_ranking_engine.md ===
+=== docs/archive/scoring-v1/intelligence-engine/14_enrichment_architecture.md ===
+=== docs/archive/scoring-v1/intelligence-engine/10_connector_development_guide.md ===
+=== docs/archive/scoring-v1/intelligence-engine/12_entity_resolution_architecture.md ===
+4. **`EntityReviewQueue`**: Stores records that scored between 70-95% confidence for manual human review.
+=== docs/archive/scoring-v1/intelligence-engine/03_purchase_probability_engine.md ===
+1. Mathematical Framework for Purchase Likelihood Prediction
+This three-layer structure is exactly how modern credit-risk and marketing-propensity systems are built (the same mathematical family as FICO-style scorecards), and it is far more defensible than a single black-box score because each layer is independently auditable.
+1.3 Master Equation
+This is a generalized additive log-odds model. It is mathematically equivalent to logistic regression when fᵢ are linear transforms, and equivalent to a Naive Bayes classifier when fᵢ are Weight-of-Evidence transforms — both are special cases of the same equation, which is why we can run them in parallel and ensemble them (Section 4.4).
+Probabilities don't add linearly (0.6 + 0.6 ≠ 1.2, and doesn't mean anything). Log-odds do add linearly, which is the mathematical reason every serious scoring system (credit scoring, spam filtering, ad click-through prediction, 6sense-style intent scoring) works in log-odds space internally and only converts to probability at the very last step.
+4.1 Naive Bayes Formulation
+STEP 6 — Confidence:
+  Confidence = f(NumberOfCorroboratingSignals, SourceReliability, SignalRecency,
+    "confidence": 0.82,
+Confidence: 5 of 7 signals observed and fresh (<60 days), 2 unknown/missing DataCompleteness ≈ 0.78, SourceReliability ≈ 0.85, RecencyFactor ≈ 0.9 Confidence ≈ 0.78 × 0.85 × 0.9 ≈ 0.60 (moderate confidence)
+Output: 21% purchase probability, 90-day window, moderate confidence, driven primarily by machinery import activity and capex guidance.
+=== docs/archive/scoring-v1/intelligence-engine/17_buyer_archetype_guide.md ===
+=== docs/archive/scoring-v1/intelligence-engine/phase5a/Outcome_Tracking_Architecture.md ===
+To build a mathematically defensible Machine Learning model, you need two things:
+=== docs/archive/scoring-v1/purchase_likelihood_prediction_engine.md ===
+Mathematical & Statistical Blueprint (Product-Agnostic)
+Objective: given any product/service category as input (PEB Buildings, Homeopathy Products, Industrial Machinery, or anything else), output a calibrated Likelihood-to-Buy score (0–100%) per company, with a confidence interval, fully explainable, and capable of isolating the top 1% of companies in a target universe.
+1. Mathematical Framework for Purchase Likelihood Prediction
+This three-layer structure is exactly how modern credit-risk and marketing-propensity systems are built (the same mathematical family as FICO-style scorecards), and it is far more defensible than a single black-box score because each layer is independently auditable.
+1.3 Master Equation
+This is a generalized additive log-odds model. It is mathematically equivalent to logistic regression when fᵢ are linear transforms, and equivalent to a Naive Bayes classifier when fᵢ are Weight-of-Evidence transforms — both are special cases of the same equation, which is why we can run them in parallel and ensemble them (Section 4.4).
+Probabilities don't add linearly (0.6 + 0.6 ≠ 1.2, and doesn't mean anything). Log-odds do add linearly, which is the mathematical reason every serious scoring system (credit scoring, spam filtering, ad click-through prediction, 6sense-style intent scoring) works in log-odds space internally and only converts to probability at the very last step.
+4.1 Naive Bayes Formulation
+4.3 Beta-Binomial Model for Confidence Intervals
+The width of this interval is the natural confidence metric (Section "Confidence Calculations" below) — few signals observed → wide interval → low confidence; many corroborating signals → narrow interval → high confidence, independent of whether the point estimate is high or low.
+STEP 6 — Confidence:
+  Confidence = f(NumberOfCorroboratingSignals, SourceReliability, SignalRecency,
+    "confidence": 0.82,
+14.2 Confidence Calculation (explicit formula)
+Confidence should answer: "How much do I trust this probability, independent of whether it's high or low?"
+Confidence = DataCompleteness × SourceReliability × RecencyFactor × (1 – IntervalWidthPenalty)
+A company with a high point-probability but only 1–2 stale signals should show high probability, low confidence — this distinction is essential and is missing from most simplistic scoring tools.
+Confidence: 5 of 7 signals observed and fresh (<60 days), 2 unknown/missing DataCompleteness ≈ 0.78, SourceReliability ≈ 0.85, RecencyFactor ≈ 0.9 Confidence ≈ 0.78 × 0.85 × 0.9 ≈ 0.60 (moderate confidence)
+Output: 21% purchase probability, 90-day window, moderate confidence, driven primarily by machinery import activity and capex guidance.
+┌────────────────────────────────────────────────────────────────────┐ │ SIGNAL INGESTION LAYER │ │ Government portals · Customs/trade data · Job boards · Permits · │ │ Press/news APIs · Company websites · Review sites · Social · │ │ Funding databases · Credit bureaus │ └───────────────────────────────┬───────────────────────────────────┘ ▼ ┌────────────────────────────────────────────────────────────────────┐ │ ENTITY RESOLUTION & ENRICHMENT │ │ Company deduplication/matching · Firmographic enrichment · │ │ Event tagging (permit, hire, import, tender, etc.) · │ │ Timestamped, immutable signal event store │ └───────────────────────────────┬───────────────────────────────────┘ ▼ ┌────────────────────────────────────────────────────────────────────┐ │ PRODUCT SIGNAL MAPPING ENGINE (Sec. 11) │ │ Product → buyer archetypes → relevant signal set + weights │ │ (config-driven, expert-seeded + IV-refined per product) │ └───────────────────────────────┬───────────────────────────────────┘ ▼ ┌────────────────────────────────────────────────────────────────────┐ │ SCORING ENGINE │ │ Layer 1: Bayesian prior (base rate by industry/geo/product) │ │ Layer 2: Naive Bayes (WOE) + Logistic Regression + GBM ensemble │ │ Layer 3: Isotonic/Platt calibration against historical outcomes │ │ Confidence engine: Beta-Binomial credible intervals + data │ │ completeness/recency/source-reliability scoring │ └───────────────────────────────┬───────────────────────────────────┘ ▼ ┌────────────────────────────────────────────────────────────────────┐ │ EXPLAINABILITY & RANKING LAYER │ │ Top-driver attribution (per-signal contribution) · Tiering (T1/T2/ │ │ T3) · Top-1% percentile ranking · Expected-Value re-ranking │ └───────────────────────────────┬───────────────────────────────────┘ ▼ ┌────────────────────────────────────────────────────────────────────┐ │ FEEDBACK / RETRAINING LOOP │ │ Closed-won/lost outcomes logged → feed IV recalculation, logistic/ │ │ GBM retraining, and calibration curve updates (weekly/monthly job) │ └────────────────────────────────────────────────────────────────────┘
+3. **Every probability ships with a confidence score and a driver list** — no bare number is ever returned by the API.

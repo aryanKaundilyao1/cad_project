@@ -1,0 +1,30 @@
+      raw_tenders: {
+        Row: {
+          id: string
+          job_id: string | null
+          tender_title: string
+          authority: string | null
+          category: string | null
+          location: string | null
+          tender_value: number | null
+          submission_date: string | null
+          source_url: string | null
+          raw_json: Json
+          validation_status: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          job_id?: string | null
+          tender_title: string
+          authority?: string | null
+          category?: string | null
+          location?: string | null
+          tender_value?: number | null
+          submission_date?: string | null
+          source_url?: string | null
+          raw_json: Json
+          validation_status?: string
+          created_at?: string
+        }
+        Update: {

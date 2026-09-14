@@ -1,0 +1,21 @@
+{
+  "client": {
+    "client_id": "00000000-0000-0000-0000-000000000001",
+    "configuration_version": "v1.0"
+  },
+  "entity": {
+    "canonical_entity_id": "00000000-0000-0000-0000-000000000002",
+    "canonical_name": "Failed Corp"
+  },
+  "lead_dna": {},
+  "gate_results": [
+    {
+      "gate_code": "G1",
+      "gate_version": "v1",
+      "state": "FAIL",
+      "evaluated_at": "2026-09-13T10:00:00Z",
+      "rule_version": "1.0",
+      "configuration_version": "1.0"
+    }
+  ]
+}

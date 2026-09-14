@@ -1,0 +1,17 @@
+{
+  "client": {
+    "client_id": "00000000-0000-0000-0000-000000000001",
+    "configuration_version": "v1.0"
+  },
+  "entity": {
+    "canonical_entity_id": "00000000-0000-0000-0000-000000000002",
+    "canonical_name": "Sparse Test Corp"
+  },
+  "lead_dna": {
+    "missing_states": {
+      "demand": "NOT_OBSERVED",
+      "procurement": "UNKNOWN",
+      "timing": "UNKNOWN"
+    }
+  }
+}

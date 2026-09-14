@@ -1,0 +1,11 @@
+ALTER TABLE public.opportunities 
+ADD COLUMN IF NOT EXISTS company_name TEXT,
+ADD COLUMN IF NOT EXISTS contact_name TEXT,
+ADD COLUMN IF NOT EXISTS contact_phone TEXT,
+ADD COLUMN IF NOT EXISTS contact_email TEXT;
+
+ALTER TABLE public.crm_leads 
+ADD COLUMN IF NOT EXISTS company_name TEXT,
+ADD COLUMN IF NOT EXISTS contact_name TEXT,
+ADD COLUMN IF NOT EXISTS contact_phone TEXT,
+ADD COLUMN IF NOT EXISTS contact_email TEXT;

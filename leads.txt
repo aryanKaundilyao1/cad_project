@@ -1,0 +1,199 @@
+      leads: {
+        Row: {
+          allow_bidding: boolean | null
+          bid_deadline: string | null
+          budget_max: number | null
+          budget_min: number | null
+          category: string | null
+          crane_required: boolean | null
+          created_at: string | null
+          deposit_amount: number | null
+          deposit_status: string | null
+          description: string | null
+          fire_compliance: string | null
+          height: number | null
+          id: string
+          insulation: boolean | null
+          is_premium: boolean | null
+          is_tender: boolean | null
+          is_verified: boolean | null
+          land_ownership: string | null
+          location: string
+          max_bidders: number | null
+          mezzanine: boolean | null
+          plan_type: string | null
+          premium_price: number | null
+          project_type: string
+          seller_id: string
+          soil_condition: string | null
+          span_width: number | null
+          status: string | null
+          technical_notes: string | null
+          tender_end_date: string | null
+          timeline: string | null
+          title: string
+          total_area: number | null
+          updated_at: string | null
+          urgency: string | null
+          views: number | null
+          source_type: string | null
+          external_company_name: string | null
+          external_contact_name: string | null
+          external_phone: string | null
+          external_email: string | null
+          external_website: string | null
+          industry_id: string | null
+          company_size: string | null
+          lead_source: string | null
+          website: string | null
+          decision_maker_name: string | null
+          decision_maker_title: string | null
+          // B2B directory columns (added by lead_import migration)
+          company_name: string | null
+          contact_name: string | null
+          designation: string | null
+          email: string | null
+          phone: string | null
+          whatsapp: string | null
+          linkedin_url: string | null
+          industry: string | null
+          niche: string | null
+          sub_niche: string | null
+          business_type: string | null
+          employee_count: string | null
+          revenue_range: string | null
+          funding_stage: string | null
+          technologies: string | null
+          country: string | null
+          state: string | null
+          city: string | null
+          address: string | null
+          tags: string[] | null
+          source: string | null
+          source_file: string | null
+          verification_status: string | null
+          intent_score: number | null
+          ai_relevance_score: number | null
+          uploaded_by: string | null
+          upload_batch_id: string | null
+          lead_status: string | null
+          // Scoring columns (added by lead_quality migration)
+          quality_score: number | null
+          lead_score: number | null
+          view_count: number | null
+          unlock_count: number | null
+          intent_level: string | null
+          intent_type: string | null
+          intent_reasons: any | null
+          company_summary: string | null
+          last_ai_analysis: string | null
+          trust_score: number | null
+          risk_score: number | null
+          duplicate_status: string | null
+          spam_flag: boolean | null
+          ai_analysis: string | null
+          reviewed_by: string | null
+          reviewed_at: string | null
+          admin_notes: string | null
+          // Lead number for display
+          lead_number: number | null
+          subcategory_id: string | null
+          metadata: Json | null
+        }
+        Insert: {
+          allow_bidding?: boolean | null
+          bid_deadline?: string | null
+          budget_max?: number | null
+          budget_min?: number | null
+          category?: string | null
+          crane_required?: boolean | null
+          created_at?: string | null
+          deposit_amount?: number | null
+          deposit_status?: string | null
+          description?: string | null
+          fire_compliance?: string | null
+          height?: number | null
+          id?: string
+          insulation?: boolean | null
+          is_premium?: boolean | null
+          is_tender?: boolean | null
+          is_verified?: boolean | null
+          land_ownership?: string | null
+          location: string
+          max_bidders?: number | null
+          mezzanine?: boolean | null
+          plan_type?: string | null
+          premium_price?: number | null
+          project_type: string
+          seller_id: string
+          soil_condition?: string | null
+          span_width?: number | null
+          status?: string | null
+          technical_notes?: string | null
+          tender_end_date?: string | null
+          timeline?: string | null
+          title: string
+          total_area?: number | null
+          updated_at?: string | null
+          urgency?: string | null
+          views?: number | null
+          source_type?: string | null
+          external_company_name?: string | null
+          external_contact_name?: string | null
+          external_phone?: string | null
+          external_email?: string | null
+          external_website?: string | null
+          industry_id?: string | null
+          company_size?: string | null
+          lead_source?: string | null
+          website?: string | null
+          decision_maker_name?: string | null
+          decision_maker_title?: string | null
+          company_name?: string | null
+          contact_name?: string | null
+          designation?: string | null
+          email?: string | null
+          phone?: string | null
+          whatsapp?: string | null
+          linkedin_url?: string | null
+          industry?: string | null
+          niche?: string | null
+          sub_niche?: string | null
+          business_type?: string | null
+          employee_count?: string | null
+          revenue_range?: string | null
+          funding_stage?: string | null
+          technologies?: string | null
+          country?: string | null
+          state?: string | null
+          city?: string | null
+          address?: string | null
+          tags?: string[] | null
+          source?: string | null
+          source_file?: string | null
+          verification_status?: string | null
+          intent_score?: number | null
+          ai_relevance_score?: number | null
+          uploaded_by?: string | null
+          upload_batch_id?: string | null
+          lead_status?: string | null
+          quality_score?: number | null
+          lead_score?: number | null
+          intent_level?: string | null
+          intent_type?: string | null
+          intent_reasons?: any | null
+          company_summary?: string | null
+          last_ai_analysis?: string | null
+          trust_score?: number | null
+          risk_score?: number | null
+          duplicate_status?: string | null
+          spam_flag?: boolean | null
+          ai_analysis?: string | null
+          reviewed_by?: string | null
+          reviewed_at?: string | null
+          admin_notes?: string | null
+          lead_number?: number | null
+          subcategory_id?: string | null
+          metadata?: Json | null
+        }
+        Update: {

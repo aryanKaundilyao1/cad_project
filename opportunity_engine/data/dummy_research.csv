@@ -1,0 +1,301 @@
+company_id,industry,products_handled,certifications,explicit_sourcing,topic_surge,pricing_visits,review_visits,job_postings,import_gaps,trigger_events,active_contract,hiring_freeze,financial_distress,days_since_last_signal,distinct_stakeholders,stakeholder_seniority
+98811462-cfde-42be-8e9d-a1e84f750962,Retail,Electronics|Carpets|Ashwagandha,,,3,7,0,,Yes,,No,No,No,15,1,0.82
+8f615aad-cb81-48b4-83e4-963682d5aeab,Healthcare,Rice,,,0,0,0,,No,,No,No,No,175,1,0.75
+70e71ca8-738f-4e72-9e8e-68aea3216d13,E-commerce,Textiles|Turmeric,,,0,0,0,,No,,No,No,No,165,3,0.75
+331be5e5-95ac-4608-8c7c-67908355a73e,Wholesale,Rice,,,0,0,0,,No,,No,No,No,111,1,0.92
+046fa1f1-7446-4a0e-a9af-98fb3515fb33,Healthcare,Spices|Ashwagandha|Carpets,,,0,12,0,,No,,Yes,No,No,69,1,0.61
+f733f314-77e4-4ae1-a5d3-81a482c598b1,Retail,Spices|Quilts|Rice,FDA Approved,,1,8,0,Procurement Manager,Yes,,No,No,No,59,5,0.68
+bc28cd10-8571-48d7-a00d-9fae0008fb4a,Construction,Quilts,Organic Certified|Fair Trade,,0,0,9,,Yes,Funding round,No,No,No,21,5,0.48
+a69d0a63-b388-4c70-b8ae-5845628de53f,E-commerce,Electronics|Quilts|Turmeric,,,4,20,0,,No,Funding round,No,No,No,52,1,0.58
+5db07c19-71e0-46f8-9c0e-98ea63cb9838,Manufacturing,Quilts|Turmeric,,,2,3,0,,Yes,,No,No,No,33,5,0.79
+50fed773-f08f-417e-8fe2-0d5cf0687980,Construction,Textiles|Rice,WHO-GMP,,5,0,1,,No,,No,No,No,164,1,0.6
+9f004b86-0ed8-4a23-8b98-8fcb182e86f7,E-commerce,Textiles|Rice,,,0,0,0,,No,,No,No,No,82,2,0.86
+8f556913-cb80-47ec-b371-469804108ce3,E-commerce,Textiles|Spices,,RFP published,3,6,0,,No,,No,No,No,9,2,0.6
+8f44a040-79a8-4759-8cad-6752e232a372,Wholesale,Rice,,,0,0,5,Procurement Manager,No,,No,Yes,No,175,1,0.92
+f5b80feb-3fd1-4f7e-92c4-658f2d39933c,Healthcare,Ashwagandha,,Quote requested,2,0,0,,No,New facility,No,No,No,173,1,0.49
+b9676e7b-cfa8-49ef-8c29-c88135ba2deb,Wholesale,Blankets|Turmeric|Textiles,WHO-GMP,,2,20,2,Logistics Head,No,M&A,Yes,No,No,69,1,0.95
+4e1270c0-6a9e-4930-a727-9957baba5897,Manufacturing,Spices|Turmeric,,,2,0,5,,No,M&A,No,No,No,125,5,0.76
+e7771f76-08ab-4bbb-9e18-683eda29295e,Construction,Ashwagandha|Textiles,WHO-GMP,,5,7,0,,No,New facility,No,No,No,30,1,0.81
+bd68a4a0-bec4-4f80-a897-7202f3b9393f,Construction,Quilts,,,0,0,0,,No,,No,No,No,53,1,0.84
+06d52a15-5413-4759-ba02-7ba85c7c415c,Healthcare,Ashwagandha,,,0,0,7,,No,,No,No,No,32,1,0.44
+b8aa2b58-da02-48cf-8b32-3f7d683f7e7a,Construction,Quilts|Carpets|Blankets,,,0,0,0,Procurement Manager,No,,No,No,No,197,1,0.46
+8c76a9ab-43e2-476a-86f5-28afb18ae024,Retail,Blankets|Ashwagandha,Organic Certified|ISO 9001,,0,0,3,,No,M&A,No,No,No,26,2,0.99
+84e9f6ff-227a-45fc-8303-10154c7adeb1,Retail,Quilts|Rice|Turmeric,Organic Certified|FDA Approved,RFP published,3,3,2,Procurement Manager,Yes,New facility,No,No,No,14,4,0.42
+63483fe2-5a9c-4cd9-9685-a6861e14bb28,Construction,Quilts,,,0,0,0,,No,Funding round,Yes,Yes,No,109,1,0.49
+28e06a13-2074-4d46-88fa-3148df446423,E-commerce,Blankets,,,0,0,0,,No,,No,No,No,92,2,0.5
+286a126f-d0cc-425d-94cd-02f4d5b2ecff,Healthcare,Spices,WHO-GMP|FDA Approved,,0,20,1,,No,,No,No,No,18,1,0.89
+a96cf2ff-3914-4f71-88bf-49838797d5e1,Healthcare,Turmeric|Spices|Quilts,,,3,0,10,,Yes,,No,No,No,87,1,0.59
+4797e0d5-502b-4338-b500-14fc49416de5,E-commerce,Ashwagandha,FDA Approved,,0,0,0,,No,M&A,Yes,No,No,133,1,0.44
+f6d47881-146d-4963-a41f-1e199e8296f1,Retail,Electronics,,,0,8,0,,No,M&A,No,No,No,171,4,0.92
+05043608-3ae5-4362-8a48-34eaee4e64f0,Healthcare,Rice|Spices,ISO 9001,,0,0,0,,No,,No,Yes,No,74,1,0.53
+79ece75a-c189-4b55-bbf0-efca5b2ec5c3,Retail,Textiles,,,0,0,0,,No,Funding round,No,No,No,18,1,0.92
+9ac5c714-b523-4d54-bbf1-af4b2cff7fd9,Distribution,Blankets|Turmeric,,,3,0,0,,No,,No,No,No,152,1,0.41
+0f6fe599-6921-43bf-b164-477b34e80698,Manufacturing,Turmeric,,,0,0,0,,No,,No,No,No,138,1,0.57
+903133c1-faf7-468a-8e0d-13be1b9f10f0,Retail,Rice|Carpets,Fair Trade,,0,17,0,,Yes,Funding round,No,No,No,6,4,0.77
+9b4aa2bc-dd9e-40d9-9c62-b946a85552e9,Construction,Electronics|Spices|Carpets,,,0,0,0,,No,,No,No,No,119,1,0.82
+16480772-4b4e-4ab7-a268-1e45a3b03c2e,Construction,Electronics,WHO-GMP,,0,0,0,,No,,No,No,No,8,1,0.55
+538b2063-1d2f-4552-8aae-216a93f89b8d,E-commerce,Ashwagandha|Blankets|Quilts,,,1,7,9,Procurement Manager,No,New facility,No,No,No,29,1,0.64
+31467035-efe7-4c57-a507-491500b87755,Healthcare,Textiles,Fair Trade,,0,0,9,,No,New facility,No,No,No,41,1,0.64
+85f5d43c-8111-4e95-87a1-8f15abb66564,Manufacturing,Turmeric|Ashwagandha,,,1,0,0,Procurement Manager,No,Funding round,No,No,No,99,1,0.68
+449a540d-0f76-4e10-b1c5-205dc839e010,Wholesale,Carpets|Blankets|Turmeric,ISO 9001,,0,14,0,,No,,No,No,No,24,1,0.94
+29c11d10-d04a-40a4-9dae-d1399965d6ea,Healthcare,Carpets|Ashwagandha|Turmeric,WHO-GMP,,2,3,0,,No,New facility,No,No,No,24,1,0.58
+4001cae2-3bc9-46fd-a8c0-92557cb46df9,Wholesale,Rice,,,0,17,0,,No,New facility,No,No,No,152,4,0.79
+db2135ff-7824-40ed-ba02-60605017f724,Wholesale,Turmeric,,RFP published,2,18,0,Procurement Manager,No,,No,No,No,141,2,0.95
+aa103524-f80c-4ab7-ae7d-d4ea1aa5f696,Healthcare,Carpets|Spices|Textiles,,,2,14,1,,Yes,,Yes,No,No,30,3,0.77
+8d66f589-faa5-40c8-8e6f-c81fcca72015,Healthcare,Electronics|Spices|Textiles,,RFP published,0,18,6,Procurement Manager,Yes,New facility,No,No,No,79,1,0.98
+88537dfc-15d3-42b4-94b0-89bdfe7e2da8,Wholesale,Textiles,,Quote requested,5,0,10,,No,New facility,No,No,No,25,3,0.96
+186d8c79-4c6e-4d1e-ab22-c00640056da1,Wholesale,Electronics|Turmeric,FDA Approved,,0,0,0,,No,,No,No,No,111,1,0.84
+80f553d6-a75b-4c7f-85bd-f1184ec48ce6,Retail,Turmeric|Rice|Ashwagandha,,,0,0,0,,Yes,,No,No,No,197,1,0.83
+5ea8f403-dc53-4422-ac2c-e7cce96b0414,E-commerce,Rice|Electronics,,,0,0,0,,No,,No,No,No,88,1,0.56
+1f6d9e0e-a3e2-4043-90f0-2455cd190a25,E-commerce,Spices,,,0,0,0,Logistics Head,No,,No,No,No,20,3,0.65
+4637b2c2-5050-48e4-89f6-c451d4096220,Wholesale,Rice|Textiles,,,1,0,8,Procurement Manager,No,Funding round,No,Yes,No,1,1,0.56
+3f91f021-6fed-48bd-8ae0-e3a166491b21,Manufacturing,Carpets,FDA Approved|Fair Trade,,2,0,0,,No,,No,No,No,121,1,0.83
+f511c94e-385b-42ad-b159-a5850e1fc7cb,Distribution,Ashwagandha|Electronics,FDA Approved,,1,19,0,,No,,No,No,No,19,1,0.99
+e9e21878-528a-4894-a4ef-dc4d2cae82c5,Manufacturing,Electronics|Spices|Ashwagandha,,,4,11,0,Procurement Manager,No,,No,No,No,156,1,0.92
+b49d0dd6-4d0e-4cb8-a48c-4824f6f4cc68,Retail,Electronics|Carpets|Spices,,,0,0,0,,No,M&A,No,No,No,133,1,0.85
+832adb47-a276-4deb-8146-0f4321063fd9,Wholesale,Blankets|Turmeric,,,0,11,0,,Yes,,No,No,No,4,1,0.71
+10550f9b-09be-4375-b7a7-37c4605a28e8,E-commerce,Quilts|Ashwagandha|Carpets,,Quote requested,0,0,0,,No,,No,No,No,9,1,0.95
+7f33e88e-b81d-40fa-82fc-d15e3a9148ae,Manufacturing,Turmeric,,,0,0,0,,No,New facility,No,No,No,129,5,0.94
+6e67ff21-ecea-4057-9f4f-352e036ad64c,Healthcare,Turmeric|Blankets|Ashwagandha,,,0,5,0,,No,,No,No,No,11,1,0.5
+e95f1f08-96fb-4184-9929-8f120ee32fbf,Retail,Electronics,Fair Trade,,1,0,9,,Yes,,No,No,No,194,4,0.87
+acf98746-a09c-46c4-97b2-9e6208cc5b8c,Construction,Carpets,,Quote requested,0,0,1,Procurement Manager,No,,No,No,No,14,3,0.47
+2509e6b2-2556-4c2e-8a03-f403609b8bce,Wholesale,Spices,,,0,10,0,,No,Funding round,No,No,No,2,1,0.55
+afd71b8c-39c8-4149-ae20-ba697008bff0,E-commerce,Electronics|Ashwagandha|Quilts,,,0,14,0,Logistics Head,No,,No,No,Yes,3,1,0.92
+79851dad-de02-4df4-90a9-dd6b257971d6,Healthcare,Electronics,,,0,0,0,,No,,No,No,No,26,1,0.43
+af28bef6-258f-4e8c-8f00-f13d5804077f,Retail,Spices|Rice|Blankets,,,0,0,8,,No,M&A,No,No,No,166,3,0.45
+f51c0bc7-7c8a-4623-a684-ffca62984c68,Wholesale,Carpets|Ashwagandha,,,0,0,0,,No,M&A,No,No,No,53,1,0.46
+3561082c-cbb9-422f-aaa6-97013594b01e,Healthcare,Ashwagandha|Rice|Turmeric,FDA Approved|Organic Certified,Quote requested,3,0,8,Procurement Manager,No,New facility,No,No,No,28,1,0.78
+47dc5ae8-d9a5-4a83-ad06-4ca67c4dcf30,Wholesale,Rice|Spices,,,0,18,0,Procurement Manager,No,,No,No,No,180,1,0.45
+8a487596-ed71-45dd-aafb-bf7500602543,Distribution,Textiles|Blankets|Turmeric,,,0,10,0,,No,,Yes,No,No,89,1,0.44
+ebf96dc0-f4ee-4112-be66-a5704f635605,E-commerce,Textiles|Turmeric,,Quote requested,0,7,7,,No,,No,No,No,68,1,0.42
+2c90d956-a203-4500-8b6e-0990101224f4,E-commerce,Turmeric|Blankets,,,0,0,0,,No,,No,No,No,155,1,0.62
+d78d7675-228d-4646-a416-e1c29b7c0d6b,Manufacturing,Turmeric|Rice,,,0,0,7,Logistics Head,No,,No,No,No,195,1,0.85
+2ca378a4-a9d3-4ea2-ac0f-486867ebf467,Retail,Turmeric|Quilts|Spices,,,0,16,0,,Yes,,No,No,No,23,1,0.6
+b556b760-cdef-431a-aaa6-6efb3a81d0ec,Construction,Carpets|Quilts,,,5,9,6,,Yes,,No,No,No,14,1,0.73
+3e5c45f2-d18e-4428-bd56-f88b6437faa8,Retail,Blankets|Ashwagandha|Rice,,,0,0,0,,No,,No,No,No,66,1,0.85
+f8f0a48d-09eb-4f68-85ea-917e73f17310,Retail,Quilts|Ashwagandha|Carpets,FDA Approved|WHO-GMP,,0,0,0,Procurement Manager,Yes,New facility,No,No,No,29,1,0.53
+5b3b684e-8ae8-424f-a8a2-233192d61376,Wholesale,Blankets|Carpets,,,2,0,3,Procurement Manager,No,,No,No,No,88,2,0.48
+1b45b8e8-189f-439e-9bd0-cff68d0717ec,Wholesale,Carpets|Textiles,,,5,0,9,,No,,No,No,No,66,1,0.45
+7e2d8c94-507f-4b9c-9103-141ff7702903,E-commerce,Spices|Ashwagandha|Carpets,WHO-GMP|Organic Certified,,0,0,0,,Yes,,No,No,No,29,4,0.42
+76b9791e-022d-4913-8228-b0bf7f799169,Manufacturing,Ashwagandha,,,4,12,2,Procurement Manager,No,M&A,No,No,No,119,1,0.6
+05291f90-0bd4-4d51-a5a9-9b66b5b559c7,E-commerce,Turmeric|Blankets,,,5,9,0,,No,,No,No,No,28,1,0.48
+7090b450-134c-4b13-b4c5-d0e88972db45,Healthcare,Rice|Turmeric|Textiles,,,4,0,0,,No,,No,No,No,130,5,0.85
+1312d563-539b-4c14-867d-1c6d5a2948a5,Healthcare,Turmeric|Blankets,,,3,13,0,,No,,No,No,No,129,1,0.99
+0cfd56ac-0338-46b6-890b-6953b9672da5,Retail,Quilts|Turmeric,,,1,4,1,Procurement Manager,Yes,,No,No,No,52,4,0.62
+2af2ddc6-ac73-4d9f-b099-db913c74b891,Healthcare,Turmeric,,,0,0,0,,No,,No,No,No,2,1,0.98
+127a6182-ec55-48ba-8526-c1c50b510ca0,Healthcare,Ashwagandha,,,0,0,0,,No,,No,No,No,64,1,0.59
+3439de5a-8543-4f0f-a13a-fcbb6943d18a,Retail,Blankets,,,0,0,0,,No,M&A,No,No,No,1,1,0.59
+40ac7033-01fe-44ef-b686-21b88a62b316,Healthcare,Turmeric|Quilts,,,2,0,10,Logistics Head,No,,No,No,Yes,12,2,0.81
+c32011ee-b251-40a7-9853-8a412ec3ef61,E-commerce,Carpets|Textiles|Ashwagandha,Fair Trade|Organic Certified,,4,0,0,,No,,No,No,No,24,1,0.47
+830ff479-9233-400c-8494-d358aed8541f,Healthcare,Turmeric,,,0,0,0,,No,,No,No,No,24,1,0.46
+eefa0946-d399-4f4b-8c07-48f8bd32e8fe,Manufacturing,Ashwagandha|Electronics,,,0,0,9,Logistics Head,No,,Yes,No,No,173,1,0.55
+fb2ba8ed-186e-460c-ab06-b16f52ca1308,E-commerce,Rice|Carpets,FDA Approved|Organic Certified,,0,0,6,Procurement Manager,No,M&A,No,No,No,3,1,0.69
+d288c640-da9a-461d-a247-124276475c99,E-commerce,Carpets|Rice|Turmeric,,,4,7,0,,No,,Yes,No,No,125,4,0.58
+88f07ce8-ed1c-433e-9e70-911c7ef9f018,Construction,Carpets,,,0,0,0,,No,,Yes,No,No,62,1,0.65
+139c2596-f2cf-4157-b750-d9add56c49e3,Distribution,Rice|Electronics,,,0,0,0,,No,New facility,No,No,No,52,1,0.51
+ccf21483-f08b-47df-a1cb-a6cd420a945e,Wholesale,Rice|Blankets|Textiles,,,0,0,0,,No,,Yes,No,No,197,1,0.57
+4e22ae8a-6ba1-4602-b6f1-00fbe0a33c23,E-commerce,Quilts|Carpets|Electronics,,,0,0,10,,No,,No,No,No,172,1,0.44
+efd3b582-644d-4bee-97a2-07da1d4a3ff0,Healthcare,Blankets,FDA Approved|Organic Certified,Quote requested,4,7,4,,No,,No,No,No,33,1,0.57
+a93d32b5-76c2-45c3-8129-c236706e69a0,Construction,Spices,,,4,8,0,Logistics Head,No,M&A,No,No,No,35,5,0.6
+5097982b-3973-4ea6-acc6-cce29324f2f0,E-commerce,Blankets|Spices,FDA Approved|Fair Trade,Quote requested,0,0,7,Procurement Manager,No,,No,No,No,197,1,0.73
+c13e8807-7adb-41e4-9222-0c72add2eb4e,Distribution,Spices|Textiles|Rice,,,0,0,0,,No,,No,No,No,54,1,0.41
+82cb67ff-c3d7-4887-afc7-2b269a7c8850,Distribution,Blankets|Textiles|Carpets,,,0,0,0,Procurement Manager,No,,No,No,No,32,1,0.44
+671037ee-3bfa-4982-9424-112f94769d17,E-commerce,Turmeric,Fair Trade,Quote requested,1,0,7,Logistics Head,Yes,,No,No,No,164,3,0.61
+ab8429bd-8ec8-4356-aec9-e7f9cd4031fc,Healthcare,Quilts,,,2,0,8,Procurement Manager,No,,No,No,No,16,1,0.42
+07b693b9-1196-474e-9a2b-c9ab838beffc,Wholesale,Spices,,,5,8,0,,No,,No,No,No,30,1,0.75
+37876a33-cd41-4242-8701-ad1142e2ed69,Healthcare,Textiles,,,0,0,0,,Yes,,No,No,No,72,2,0.46
+a158f0d2-f442-4961-9428-84a745fb8961,Construction,Ashwagandha|Turmeric|Rice,,,0,0,0,,No,,No,No,No,86,1,0.81
+07f056a9-4bac-458c-b544-d91ebfad5de3,Healthcare,Blankets|Electronics,,,0,8,4,Procurement Manager,No,,No,No,No,14,1,0.97
+15897403-6bb4-4480-bafa-594125bc5ecf,Wholesale,Electronics|Spices|Turmeric,,RFP published,4,16,6,,No,,No,No,No,9,1,0.51
+4588a6c6-c733-42b7-8d9a-7c0755e64f6f,E-commerce,Blankets,,,0,20,10,,No,,No,No,Yes,23,1,0.46
+6ea2c2bc-772c-4341-8f45-ff70cd739b66,Construction,Turmeric,,,0,0,0,,No,,Yes,No,No,69,1,0.67
+dd427b00-fb6f-413f-8188-9214140887de,Wholesale,Blankets|Quilts|Electronics,,,2,10,5,,No,,No,No,No,4,1,0.63
+47093470-35ff-46bc-8b4e-7803cfd09b7a,E-commerce,Ashwagandha,ISO 9001,Quote requested,0,0,10,Logistics Head,No,,No,No,No,16,3,0.83
+78dc257a-1d90-4bd6-b108-bb4b8427fd94,Construction,Spices,,,0,0,0,,No,,No,No,No,44,5,0.7
+f23e8935-06bd-412a-93b7-e0943749912e,Distribution,Spices|Turmeric,,,0,0,0,,No,,Yes,No,No,139,1,0.86
+8a466268-80ac-4373-a3d4-797d5345957c,Wholesale,Electronics|Carpets|Textiles,Organic Certified,,0,4,6,,No,Funding round,Yes,No,No,25,1,0.4
+a0d816dc-f46d-4134-9474-c3b0d4cf03d7,Retail,Turmeric,,,0,0,9,,No,,No,No,No,87,1,0.62
+1476d5a7-6b47-4145-bdaf-855c862952c0,Retail,Spices,Organic Certified|WHO-GMP,Quote requested,0,8,0,Procurement Manager,No,Funding round,No,No,No,19,5,0.5
+d8f206b5-a029-4a72-9fd0-a444a7fa97ba,Wholesale,Ashwagandha|Carpets|Electronics,,,4,1,0,,No,,No,No,No,89,1,0.73
+49035b3d-2d73-4806-b025-b4fff29d24e0,Manufacturing,Spices|Turmeric,,,4,9,9,Logistics Head,Yes,Funding round,No,No,No,25,2,0.43
+ab83f617-e5ae-4c12-a066-e418e8496822,Manufacturing,Carpets,Fair Trade|FDA Approved,,0,0,0,,No,,No,No,Yes,37,1,0.87
+002c3a6a-9ee3-4421-90f8-819fc3a4a181,Healthcare,Ashwagandha|Quilts,,,0,0,0,,No,,No,No,No,143,1,0.51
+98522e17-2f0c-4454-b5c6-17ef5cbd4748,E-commerce,Turmeric|Carpets|Blankets,Organic Certified|WHO-GMP,,0,0,2,Logistics Head,Yes,Funding round,Yes,No,No,16,1,0.85
+f5fece84-1d23-45ab-bf4b-31890c3761d6,Distribution,Rice|Spices,Organic Certified,Quote requested,0,0,1,,Yes,,No,No,No,7,3,0.86
+3063268c-e94a-4bc9-8bac-092ef2200cc3,Retail,Ashwagandha|Spices,,,0,2,0,Procurement Manager,Yes,,Yes,Yes,No,23,4,0.79
+35468439-419a-49d4-b07f-59b6a3317077,Healthcare,Rice|Quilts|Carpets,,,0,0,7,Logistics Head,No,M&A,Yes,No,No,3,2,0.8
+b276e9d1-e552-4ab8-964e-0c13ee3fe7c3,E-commerce,Rice|Carpets,FDA Approved,,0,0,0,,No,New facility,No,No,No,4,1,0.79
+645c35f2-f7ed-4ba4-b7e0-443b5356ff68,Wholesale,Quilts,,,0,0,0,,No,,No,No,No,118,1,0.92
+de959794-addb-438f-84a6-40d1579fd1db,Construction,Quilts,FDA Approved,,0,0,0,Logistics Head,No,,Yes,No,No,139,4,0.62
+24db352f-25ec-402f-8bbb-3f0d8352bee8,Manufacturing,Carpets|Quilts|Spices,,,0,0,0,Logistics Head,No,,No,No,No,168,1,0.77
+1783cda7-53ea-4343-8d87-fb14a7a28056,E-commerce,Textiles|Turmeric,,,0,0,0,,No,,Yes,No,No,87,1,0.84
+b7cd777f-51b8-4766-8b8c-079833dffb69,Distribution,Turmeric|Blankets,,,0,0,6,Logistics Head,No,New facility,No,No,No,27,3,0.5
+1a50f822-7e29-44a1-b523-cb74b4329dd1,Retail,Spices|Rice|Turmeric,,,0,15,0,,No,,No,No,No,63,1,0.62
+dab2ec28-6cea-410e-b6b1-6e69967c3eda,Healthcare,Textiles,,,0,0,0,,No,,Yes,No,No,46,1,0.47
+4319bcc2-4718-484c-9a25-4fda7f280eb6,Healthcare,Spices,ISO 9001,,1,5,0,Logistics Head,No,M&A,No,No,No,17,1,0.76
+b2cec8c3-468c-4609-8392-857554588f96,Retail,Blankets|Turmeric,,,0,19,0,Logistics Head,No,New facility,No,No,No,4,3,0.63
+813325ad-0e0c-4a83-b5ab-5c1d000d1978,Manufacturing,Blankets|Electronics,,,4,14,0,Procurement Manager,No,,No,No,No,4,4,0.94
+0ed168d0-3045-481b-ab1f-c336dee5d1f2,Healthcare,Spices|Electronics,,,0,0,0,,No,,No,No,No,15,2,0.46
+f9d7a4dd-6c87-46ab-a301-1e1f5c740424,Retail,Electronics|Blankets|Rice,,,0,0,1,,Yes,,No,No,No,3,1,0.49
+87fce71d-d385-4ee6-86f8-39b8ceca592a,Wholesale,Electronics,ISO 9001|WHO-GMP,,2,6,0,Procurement Manager,No,,No,No,Yes,23,1,0.86
+010b7bf2-5d0f-44c5-b6f0-be484ee79359,Wholesale,Quilts|Spices|Turmeric,,,0,0,0,,No,,Yes,No,No,177,1,0.93
+3cffc7a6-75d3-46ed-a5e7-d5972bfdde2a,Manufacturing,Carpets|Blankets|Electronics,,,0,0,0,,No,,No,No,No,28,1,0.67
+b334e313-f32d-4041-80ce-92bd5014448c,Retail,Turmeric|Carpets,,,2,16,5,,No,,No,Yes,No,10,2,0.73
+4a5f5e81-679f-4ef0-8f9e-784b86c18e1c,Construction,Textiles|Rice|Ashwagandha,FDA Approved|ISO 9001,,0,0,0,,No,,No,Yes,No,55,1,0.67
+a2b954dd-84ac-48f7-93e1-82daa2d99ac0,Healthcare,Rice,FDA Approved,Quote requested,0,13,6,,No,,No,No,Yes,6,1,0.95
+f5932f28-b58e-4d9a-98e8-ce72b37d1ad7,Manufacturing,Spices|Textiles,ISO 9001|Fair Trade,,3,13,0,,Yes,,No,No,No,15,1,0.78
+56ee6529-4489-4b08-9d3f-d1eadeb7af19,E-commerce,Ashwagandha|Blankets|Electronics,WHO-GMP|ISO 9001,,0,0,0,,No,New facility,No,No,No,23,1,0.91
+19b58343-6bee-4433-9410-9937631e74a1,Distribution,Ashwagandha,,,0,14,0,,No,,No,No,No,115,1,0.64
+4f68d58f-3929-48a9-86f4-179118f56dc6,Wholesale,Textiles|Electronics,ISO 9001,Quote requested,4,0,7,Procurement Manager,No,,Yes,No,No,26,1,0.52
+f82e6452-b00a-4fed-8a24-5da5584463d5,Construction,Blankets,Organic Certified,,2,0,2,Logistics Head,No,Funding round,No,No,No,8,4,0.41
+4018d707-4692-4922-a5e7-a509f5ec3e38,E-commerce,Rice,,,3,11,0,,No,,No,No,No,149,1,0.7
+6244cfc1-785b-4946-a204-5c3cc50c526a,Retail,Textiles|Electronics,,,2,0,0,Procurement Manager,No,,No,Yes,No,28,2,0.9
+f519796e-4b63-4450-ba3c-3c54a847c11d,Manufacturing,Quilts,,,0,0,0,,No,,No,No,No,39,1,0.46
+e3c555fe-64c0-4f49-8a93-236e1e879176,Retail,Carpets,,,0,19,0,,No,New facility,No,No,No,97,1,0.42
+31f2ee42-febd-4193-8dd8-7d0c54b53cb9,Distribution,Blankets,,,0,0,0,,No,,No,No,No,131,1,0.69
+97276662-9170-4be2-b4de-58d518d80c30,Distribution,Rice|Textiles|Electronics,,,0,0,0,,No,,Yes,Yes,No,149,1,0.41
+869dd2fe-3ed8-458e-ab09-07f13c073f72,Retail,Rice|Blankets,Organic Certified|ISO 9001,,0,0,0,Procurement Manager,No,M&A,No,No,No,5,1,0.79
+50581185-c57b-45dc-9600-5b510a26338e,Wholesale,Turmeric,,,0,0,0,,No,,No,No,No,60,1,0.46
+7e7deedf-7c11-4e38-92db-b2a997ffa917,Wholesale,Ashwagandha,,,0,0,2,Procurement Manager,Yes,,No,No,No,104,1,0.95
+9a68293e-4446-4785-8a41-a83fc200543d,Manufacturing,Ashwagandha|Quilts|Electronics,,,5,7,0,Logistics Head,No,,No,No,No,111,4,0.43
+c3a588d9-001c-4e47-9f63-c41c1860ebc3,E-commerce,Blankets|Textiles,,,1,0,6,,Yes,Funding round,Yes,No,No,25,5,0.69
+6ef22694-6538-420b-83bb-4d678d70d164,Construction,Spices|Textiles|Quilts,,,0,0,5,,No,Funding round,No,No,No,152,1,0.75
+cfe895fd-0a81-4d15-aa43-9ab055d22841,Construction,Spices|Rice|Electronics,,Quote requested,0,0,0,,Yes,,No,No,No,125,1,0.88
+29871d92-0c55-4c81-9d23-49b42db8c46c,Distribution,Turmeric,,,0,19,0,Logistics Head,No,,No,No,No,178,1,0.94
+602c84e5-e519-4642-821c-b309cdc90d16,Manufacturing,Textiles,,,0,7,0,,No,,No,No,No,56,1,0.56
+d9c88e41-dfb7-4d7a-812a-1a431fa16612,Healthcare,Ashwagandha|Electronics|Rice,FDA Approved,Quote requested,0,0,0,,No,Funding round,No,No,No,180,1,0.99
+24993767-5f84-450f-b1a9-7063bd10fb9e,Construction,Textiles,,,3,15,9,,No,M&A,No,No,No,4,4,0.81
+15c71b28-0fd8-41ff-b812-d96e7d5f34b9,Manufacturing,Spices,,,0,0,0,,No,,No,No,No,20,1,0.77
+fa869b2c-e592-4d53-baff-ecc5a0e7398d,E-commerce,Blankets|Textiles,,,0,0,0,,No,,No,No,No,143,1,0.82
+910f5fbc-612c-4927-b2c9-e927b5692b6c,E-commerce,Carpets|Rice|Electronics,,,1,2,4,Logistics Head,No,M&A,No,No,No,68,1,0.97
+6f962633-4a69-4b6a-a7b3-c85fbed0baba,Construction,Spices|Quilts,FDA Approved,,0,0,4,,No,,No,No,No,23,1,0.87
+292adc4c-6e1b-44e5-821b-8e502fd25bf1,Wholesale,Electronics,,,1,8,0,Procurement Manager,No,,No,No,No,162,1,0.64
+159ec164-b41c-47c4-a128-5c743b292cb1,Wholesale,Rice|Carpets,,,0,0,0,,No,New facility,No,No,No,110,1,0.69
+328f98a3-802c-4fcf-8fa0-8fd5ad4b472b,Retail,Turmeric|Blankets,,,0,0,10,Logistics Head,No,,No,Yes,No,6,1,0.51
+cbeb9810-4c3b-490d-bb3c-77ec7a4ddc84,Manufacturing,Rice|Electronics,,,0,0,8,,No,,No,No,No,187,4,0.62
+60afbd41-2c9f-4444-bdb8-0401ba34b4ce,E-commerce,Spices,,,0,5,0,,Yes,,No,No,No,97,1,0.68
+cb2e6472-b551-4e08-95c0-6206f096408e,Manufacturing,Quilts|Carpets,Organic Certified|ISO 9001,,0,3,0,,Yes,,No,No,No,106,1,0.76
+9e924984-1197-4b6c-b5c8-d5c705cd7e7d,Healthcare,Spices,,,0,10,0,Procurement Manager,No,M&A,No,No,No,172,4,0.7
+b169e134-4ac1-48a0-b8be-b84fb0f33627,Retail,Turmeric|Textiles,,,1,9,0,,No,,No,No,No,16,1,0.91
+77125294-d782-4900-b961-008517326e1f,Manufacturing,Rice|Textiles,WHO-GMP,,5,0,0,,No,,No,No,No,151,1,0.42
+94b149c2-58e0-43fd-9051-03e2549950f4,Construction,Carpets|Turmeric,,Quote requested,0,0,0,,Yes,Funding round,No,No,Yes,145,1,0.95
+397861c7-a77c-49d6-ab6e-60a16de927ca,E-commerce,Ashwagandha|Blankets,Organic Certified|FDA Approved,,0,15,6,Logistics Head,No,M&A,No,No,No,5,2,0.42
+cf9740d1-c851-4bf8-ad6a-0913acdb3d29,Healthcare,Blankets|Spices|Electronics,,,0,5,3,,Yes,M&A,No,No,No,8,5,0.51
+436a261b-794a-492a-870b-e1e7dd964d87,Distribution,Quilts,,,0,15,0,,No,,No,Yes,No,90,1,0.94
+b4fed3b7-6cab-4d2c-a197-17f1adceebf5,Wholesale,Quilts|Ashwagandha|Electronics,FDA Approved|ISO 9001,,0,0,0,,No,M&A,No,No,No,30,1,0.44
+471235ac-07fb-4f35-a4f8-2b812866c27f,Wholesale,Quilts|Carpets,,,1,3,0,,No,,No,No,No,181,4,0.84
+0123bedd-bc47-4ef5-8de8-0d3b0b813101,Manufacturing,Turmeric|Textiles|Spices,,,0,0,0,Logistics Head,Yes,,No,No,No,99,1,0.99
+6940207b-d66a-4b83-a129-6a20cebfec3b,Distribution,Quilts|Textiles,,,0,0,0,,No,New facility,No,No,No,197,3,0.77
+14ca2dfa-5616-44e6-97f9-a928bb9a0daa,Healthcare,Rice|Quilts,,,0,0,0,,Yes,,No,No,No,173,1,0.51
+13835679-6230-4f4d-be4f-ebd62e722bcb,Retail,Textiles|Carpets|Rice,,,5,19,0,,No,Funding round,No,No,No,13,1,0.7
+ea6d94af-828a-4c1f-b0ce-5ee6556fdcb2,Retail,Blankets,,,0,6,0,,No,,No,No,No,64,1,0.55
+c80ba5ac-ae2d-477e-9afa-4143c2811503,Retail,Spices|Rice|Textiles,,RFP published,0,0,0,,No,,No,No,No,6,1,0.73
+4c74f6f3-bc20-4d05-ab96-7343949a6394,E-commerce,Ashwagandha,,,0,0,0,,No,,No,No,No,22,1,0.91
+614d9632-c088-46bf-a9d4-d14be38e62f5,Retail,Ashwagandha|Turmeric,,,0,0,0,,No,,No,No,No,90,4,0.73
+4439cf3b-9bd3-4b2e-864c-6307fcb3959b,Manufacturing,Spices|Ashwagandha,,,0,20,0,,No,M&A,No,Yes,No,151,1,0.41
+3ffed88d-da3d-44e4-a644-f29f65d0b8d5,Retail,Ashwagandha,,,0,0,0,,No,,No,No,No,77,4,0.69
+2dd1a857-2fe2-4fd6-9c55-22f92e620ce6,Construction,Textiles,,,0,0,4,,No,Funding round,No,No,No,18,3,0.43
+adc1309f-80fa-4fa0-b63c-27a0d44eeaf7,Manufacturing,Electronics,,,0,0,0,,Yes,,No,No,No,21,1,0.63
+141336e6-3eea-4574-a084-4ec990882432,Manufacturing,Electronics|Quilts|Textiles,,,5,18,0,,Yes,,No,No,No,3,3,0.91
+d8a975a0-e643-453a-8a3e-5f9e7ca2f3ed,Healthcare,Spices|Textiles,,,5,0,0,,No,,No,Yes,No,58,1,0.42
+0b21c064-862e-4ddb-8f72-45c8174c4d57,Construction,Textiles|Blankets,,,0,0,8,Logistics Head,No,,No,No,No,40,1,0.96
+ad450214-55ea-487b-9afa-07202cb1094d,Distribution,Electronics,,RFP published,0,3,0,,Yes,,No,No,No,23,5,0.76
+c7299644-7c2a-41c4-a545-bcf664e472fc,Healthcare,Textiles|Spices|Ashwagandha,,,0,15,0,,No,,No,No,No,64,1,0.44
+0b09365b-cf44-4640-983a-ecf5eb00b007,E-commerce,Blankets,Fair Trade,Quote requested,2,20,0,Logistics Head,Yes,,No,No,No,7,2,0.53
+0ce8ab72-f842-4872-900a-a44c46365c89,Healthcare,Rice|Turmeric|Textiles,,,0,0,0,,No,,No,No,No,153,1,0.66
+a9a3ce45-188f-4f43-805f-4d615e6cc114,Construction,Rice|Electronics,FDA Approved|WHO-GMP,,0,8,1,Procurement Manager,Yes,,No,No,No,62,1,1.0
+927edc8c-f95e-49d0-9e10-bb29f3cc9b95,Healthcare,Rice|Ashwagandha|Spices,,Quote requested,0,0,0,,No,,No,No,No,134,5,0.82
+6cfd73e6-b157-42b7-a703-943df9947bab,Retail,Blankets|Textiles|Carpets,,,0,0,3,Logistics Head,No,,No,No,No,17,1,0.87
+33c5757c-a586-4092-b816-db189248ac9e,Wholesale,Textiles|Spices,,,0,5,9,Procurement Manager,Yes,Funding round,No,No,No,1,1,0.46
+0a7eef2d-bb15-4171-8e3c-8ffb672ab019,Healthcare,Rice|Blankets|Textiles,,,0,10,3,,No,,No,Yes,No,183,1,0.8
+2ed91bf5-13d2-4634-8423-3c18ae754477,Construction,Rice|Spices|Turmeric,WHO-GMP,RFP published,5,0,0,Procurement Manager,No,New facility,No,No,No,23,3,0.56
+5c794296-63c7-4da4-9f36-6a1af88ee8db,Construction,Quilts|Blankets,,,0,0,0,,No,,No,No,No,79,4,0.47
+2fb8f2a7-e1eb-4db4-86c3-c85359c72fca,Healthcare,Ashwagandha|Electronics,FDA Approved|Fair Trade,,0,0,2,,No,,Yes,No,No,2,1,0.83
+eb5b9ac4-a23b-4836-9bbe-46abfa6fa884,Construction,Spices|Rice|Textiles,,,0,0,0,,No,,No,No,No,168,1,0.58
+07ac3752-f764-4b99-a0d8-5474da8900b0,Retail,Rice|Spices|Textiles,,,3,4,6,,No,Funding round,No,No,No,18,1,0.72
+3aff00a0-d98c-469c-9693-55ac714b13e6,Construction,Turmeric|Ashwagandha|Quilts,,,2,1,0,Procurement Manager,Yes,,No,No,No,17,1,0.53
+fbd73d10-e578-4e87-b0df-fc9879b26cd9,Distribution,Carpets,Organic Certified|FDA Approved,,2,10,4,,Yes,,No,No,No,4,1,0.53
+697c3c26-ebd8-42c3-adbb-8d894a9adb5e,Retail,Quilts|Ashwagandha,,,0,0,0,,Yes,,No,No,No,155,1,0.6
+1ecf9848-0bae-401b-8248-9f60c2a4b8c6,Distribution,Turmeric|Carpets|Rice,,,5,2,0,,No,,No,No,No,55,5,0.61
+c5d462e7-6789-4f1b-85c9-cb49c147cd1f,E-commerce,Quilts|Carpets,FDA Approved,,0,6,5,,No,,Yes,No,No,5,5,0.4
+fda355e4-2243-40d7-b260-78299ab8ba3d,E-commerce,Blankets,,,0,0,10,Procurement Manager,No,M&A,No,No,No,194,1,0.93
+cd09b6d1-82c9-42f0-924d-548154f5ee0e,E-commerce,Quilts|Blankets,,,0,12,0,,No,,No,No,No,20,1,0.95
+6930b77b-f4d5-4ede-8c6f-9e0987909b88,Construction,Spices|Electronics,,,0,0,0,,No,,No,Yes,No,111,2,0.69
+e87ea3af-bfab-4183-9de0-a9cd1e571abe,Healthcare,Turmeric,,,0,0,7,,No,,No,No,No,19,1,0.92
+fcf881cc-edcc-4a4e-8390-3aa97ca8e4f1,Retail,Turmeric|Rice|Ashwagandha,,,0,0,0,,No,,No,No,No,30,1,0.62
+5cb955eb-0543-4a05-af1e-909c741bc04a,Construction,Carpets,Organic Certified|ISO 9001,,0,9,0,Logistics Head,Yes,New facility,Yes,No,No,70,4,0.95
+a4d6e247-2935-4966-b59a-d6e84d0aba0f,Retail,Rice|Ashwagandha|Turmeric,,,4,0,0,Logistics Head,No,M&A,No,Yes,Yes,30,1,0.98
+780d17ea-bb18-4ccf-9a52-beacb53c7059,Distribution,Rice|Electronics,,,2,0,0,,No,Funding round,No,No,No,170,1,0.65
+f81f3453-91bc-491e-bb7b-8f326e9e349c,Healthcare,Quilts,,,0,0,0,,No,,Yes,No,No,17,1,0.78
+ca7b2d82-421d-464f-855b-19c5d65a34ce,Distribution,Ashwagandha|Electronics,FDA Approved,,5,0,0,,No,,No,No,Yes,97,5,0.6
+a541552b-cccd-4d22-aa24-e87d3e3a16cd,Construction,Blankets,WHO-GMP|ISO 9001,Quote requested,0,20,0,,No,,No,No,No,49,3,0.62
+f1e53fad-2587-4b58-a7f0-0de8922f5c6a,Manufacturing,Quilts|Electronics|Textiles,,,0,0,0,,No,,No,No,No,59,1,0.58
+3c6d59bc-3117-4fa1-a9ab-ec6f3c432af3,E-commerce,Carpets,,,0,13,2,,No,,No,No,No,27,5,0.92
+fd98526e-5247-40d2-98b8-9925e30e2b24,Construction,Carpets|Spices,,,0,0,0,,No,,No,No,No,13,1,0.71
+bbcb2510-4a56-4cf0-95ae-bcd1f12cec83,Retail,Spices,,,0,0,0,,Yes,,No,No,No,137,1,0.9
+27f28422-1082-4c6b-a4c4-2852bf07dfc0,Construction,Blankets,ISO 9001,,1,16,0,,Yes,M&A,No,No,No,81,1,0.97
+3c2983a8-7e7d-43a4-9934-109cf26c4210,Distribution,Quilts,,,0,0,0,,Yes,,No,No,No,87,3,0.55
+6e516696-078c-49cd-a1a2-a1ebc7138540,Distribution,Electronics|Rice,,,0,0,0,,No,,Yes,No,No,107,1,0.61
+4e54384f-2f59-4362-91af-de4440805458,Distribution,Electronics|Textiles,,,0,0,0,Logistics Head,No,,No,No,No,149,1,0.69
+ace3ef73-3e01-44fd-a76e-87447c55f599,E-commerce,Turmeric|Quilts,,,0,0,0,,No,,No,No,No,63,1,0.87
+50fbe216-b064-46cf-980e-d2036e7b3cc4,Manufacturing,Ashwagandha|Quilts,,,0,17,7,Logistics Head,No,Funding round,Yes,No,No,106,1,0.95
+73235e04-fc84-4e27-b149-6d92cd3727a7,Healthcare,Carpets|Quilts|Rice,,,0,19,0,,No,,No,No,No,27,1,0.58
+27daed62-c37d-494e-a455-4b24adb777f4,Wholesale,Ashwagandha|Turmeric,,,2,0,0,,No,New facility,No,No,No,130,1,0.85
+02c3cdab-3a4e-4ca7-8e1c-4afed7275778,E-commerce,Ashwagandha,,,0,0,0,,No,,No,No,No,51,1,0.75
+1319dcf9-f8e2-4f77-a7b0-f06fd5a1718e,Construction,Textiles|Electronics,FDA Approved,,0,0,0,,No,,No,No,No,19,1,0.49
+5599b017-25b8-4caf-b4bf-d6b560fad8ed,Healthcare,Ashwagandha,,,3,0,0,,Yes,Funding round,No,No,No,62,1,0.59
+6ce81bae-8a5d-4c10-8df9-b5f78487ad35,Manufacturing,Electronics,,,3,0,8,Procurement Manager,Yes,Funding round,No,No,No,2,1,0.44
+b6a4bfe0-214b-4120-9947-b0c5ce496431,Construction,Quilts,,,3,0,1,,No,,No,No,No,183,5,0.61
+8eb807b9-b4ae-403a-809d-b38f2f207f73,Construction,Rice|Turmeric,,,1,13,7,Procurement Manager,No,M&A,No,No,No,149,2,0.84
+13dea57c-4fbe-4be7-842b-043af0ffa204,Wholesale,Electronics|Spices|Rice,,,0,0,0,,No,,No,No,No,22,1,0.47
+a158c003-7cc0-4401-8402-1b0dfca8f918,Distribution,Quilts,,RFP published,0,6,0,,No,,No,No,No,115,1,0.53
+6fd4156d-0496-4063-b101-72bf9f8b3831,Construction,Spices|Blankets|Textiles,Fair Trade|WHO-GMP,,0,0,0,,No,,No,No,No,79,2,0.92
+120467df-4360-46ce-bf4b-ed897486a588,Construction,Turmeric|Carpets|Spices,,,0,0,0,Procurement Manager,No,Funding round,No,No,No,85,2,0.81
+bc3ac2fd-be8c-42bb-9d03-f1c214d01bbf,E-commerce,Textiles|Electronics,,RFP published,0,0,0,Logistics Head,No,,No,No,No,2,1,0.67
+e31dbaa8-3ae6-430a-86f7-a8ca5311b2f6,Wholesale,Carpets|Ashwagandha,ISO 9001|WHO-GMP,,4,0,0,Logistics Head,Yes,,Yes,No,No,1,3,0.43
+cad6b4ee-fb86-4137-be04-6e9ddec943d8,Retail,Spices,,,4,14,0,,No,New facility,No,No,No,26,2,0.43
+9c008c3e-d792-4dea-ac9d-eb8fcd6e3aa1,Wholesale,Turmeric,,,0,0,0,,No,,No,No,No,170,1,0.86
+5166566a-1ea6-4106-acad-abe4f5bd5f22,E-commerce,Blankets|Textiles,,,0,0,0,,No,,No,No,No,17,1,0.63
+378d886b-7858-4319-95ff-b4fc9a10ab97,Manufacturing,Ashwagandha|Electronics,,,4,11,5,Logistics Head,No,Funding round,No,No,No,74,3,1.0
+6d466524-8e21-4d7c-80ab-e7293c27b301,E-commerce,Electronics|Blankets|Carpets,,,0,13,3,,Yes,M&A,No,No,No,18,4,0.7
+b79e9fbe-f9b3-4f63-823d-12b564bf3176,Retail,Ashwagandha|Carpets,,,3,17,3,Logistics Head,No,,No,No,No,20,1,0.77
+35931a47-fc03-452b-904d-0638f566f8be,E-commerce,Blankets|Turmeric|Carpets,,,0,0,0,,No,,No,No,No,6,1,0.55
+2f6e23cd-47c9-4f52-8786-7f0093f40dfb,Healthcare,Blankets|Textiles|Ashwagandha,,,0,10,10,Procurement Manager,Yes,,No,No,No,1,4,0.72
+718274f0-d66b-440a-9f45-582bc3ec751e,Healthcare,Quilts,ISO 9001|Organic Certified,Quote requested,0,0,0,,No,,No,No,No,48,3,0.74
+cc9774c5-a0dc-4337-893a-0f48b2aad771,Distribution,Rice|Blankets|Carpets,,,0,0,0,,No,,No,No,No,117,1,0.9
+ab3a4dd5-3c92-4c63-a9e1-f43f347cd553,Wholesale,Carpets,,,0,0,0,,No,,Yes,No,No,83,1,0.46
+5695a005-45a3-4be8-a243-f2165e88a396,Healthcare,Rice,,,1,0,0,,No,,No,No,No,21,4,0.79
+d1ad235c-8bb4-44d7-91b6-333d25a3d290,Distribution,Spices,,,0,0,0,,Yes,,No,No,No,120,1,0.55
+6a836937-a79b-4120-be17-bde3c6d5415c,Distribution,Carpets,,Quote requested,4,9,3,Procurement Manager,No,Funding round,No,No,No,1,5,0.91
+cb9bd4db-c9a5-4c86-85a0-490e53d1a99f,Construction,Blankets,,,0,13,0,,No,M&A,No,No,No,51,1,0.94
+5a89ef14-48a0-4966-9bf0-ab6b6c92450f,Manufacturing,Turmeric|Quilts,,,0,0,0,,No,,No,Yes,No,156,2,0.52
+b4db6d77-e4b6-46ff-a916-50b07f4388e8,Construction,Blankets|Textiles,,Quote requested,0,19,0,Procurement Manager,No,New facility,No,No,No,116,4,0.97
+783a99f7-ebd1-4713-83aa-cb68a6171a71,Wholesale,Carpets|Blankets,WHO-GMP,,0,0,8,,No,,No,No,No,7,1,0.5
+3e5b5ef0-a887-4192-b18d-ac3e1dfd42a9,Wholesale,Quilts,Fair Trade|ISO 9001,,1,9,1,,Yes,Funding round,No,No,No,10,1,0.96
+1a122f66-53ee-4a3a-a147-5843f85be367,Construction,Quilts|Blankets|Carpets,,,4,0,10,Procurement Manager,No,,No,No,No,30,1,0.76
+b58e62f0-2efd-441c-92b3-36b41e69bd8f,Wholesale,Quilts|Blankets,Fair Trade,,0,0,0,,No,New facility,No,No,No,94,5,0.44
+1650f7f1-8226-472b-be98-a2f60c3b7c34,Healthcare,Carpets,Fair Trade,Quote requested,5,4,10,,Yes,,No,No,No,11,3,0.53
+0f6121b5-8dc0-4216-b0c5-682fc29dd7b5,E-commerce,Quilts|Spices,,,4,0,7,Logistics Head,Yes,,Yes,No,No,19,1,0.53
+6a5aa31d-932d-4156-b190-6caf9cd9f527,Retail,Turmeric,,,2,0,6,,No,,No,No,No,7,3,0.83
+7edb248a-a5f8-46de-9723-d62f31969fda,E-commerce,Spices|Turmeric|Blankets,WHO-GMP,,0,7,0,Procurement Manager,No,,No,No,No,174,1,0.47
+67e972ee-150c-49b6-b36f-c9d6cc0f7f59,Healthcare,Turmeric|Electronics|Ashwagandha,,,0,0,0,,No,,No,No,No,153,1,0.62
+fed8665d-fb44-4438-8fbf-a9d6fc544de9,Distribution,Turmeric|Electronics,,RFP published,0,0,1,Logistics Head,No,,No,No,Yes,17,1,0.92
+c9962058-69f5-44e7-837b-7658b8a83385,Distribution,Rice,,,0,0,0,,No,M&A,No,No,No,18,1,0.66
+3b34b767-3526-4da8-91bb-f5af4a58b4ca,Distribution,Textiles,,,0,0,0,,Yes,,No,No,No,139,2,0.67
+2fe23733-ddd0-4e4d-a465-644623833a66,Distribution,Turmeric|Blankets|Electronics,Organic Certified,,0,5,1,Logistics Head,Yes,Funding round,No,No,No,8,1,0.91
+5df31275-8c8f-495c-ab94-aa888e28d892,Retail,Spices|Quilts,WHO-GMP|FDA Approved,RFP published,0,11,3,,No,New facility,No,No,No,17,1,0.43
+6c07aab0-4db7-4b46-ad93-a4273a6a03cc,E-commerce,Spices,WHO-GMP|FDA Approved,,3,14,0,Logistics Head,No,,No,No,No,25,2,0.49
+642ad5bb-3e50-4d2b-bec3-69b270ed4721,E-commerce,Spices|Rice,Fair Trade|Organic Certified,,0,6,9,,No,New facility,No,No,No,19,1,0.75
+1d53fe32-61bd-4859-a78a-de35d61c23be,Construction,Textiles|Rice,Fair Trade,,1,14,0,Procurement Manager,Yes,New facility,Yes,No,No,22,5,0.85
+de11ea20-dd0a-4faf-8c9e-11e12c679676,Manufacturing,Textiles,,,0,5,7,Logistics Head,Yes,Funding round,No,No,No,8,3,0.52
+60704b3a-e897-4248-86b7-f823d621cfec,Retail,Textiles|Ashwagandha,WHO-GMP|ISO 9001,,4,13,0,,Yes,,No,No,No,169,1,0.71
+38b6d788-874e-4d8e-81a1-c2acf8b9ce42,Wholesale,Carpets|Quilts|Spices,,,5,0,2,,No,,No,No,No,23,4,0.77
+11725e53-53bd-4fe2-b8e1-7efa98dbd370,Wholesale,Spices|Textiles,,,0,0,0,,No,,No,No,No,78,4,0.52
+d7ee2348-51d3-4049-a795-e3ef7918e563,E-commerce,Rice|Blankets|Textiles,Organic Certified|WHO-GMP,,1,1,6,,No,Funding round,No,Yes,No,95,2,0.45
+e30b9e0c-4b8d-45a8-8aad-32cd87d9f4fd,Healthcare,Rice|Turmeric|Electronics,,Quote requested,0,0,0,,No,,Yes,No,No,78,1,0.76
+5f29ce57-028e-4f4b-b7a8-7e885e6fccf8,Wholesale,Turmeric,,,0,16,0,,No,,No,No,No,21,1,0.86
+382cc958-c186-449a-a2af-7fc2848c89c8,Distribution,Turmeric|Quilts|Ashwagandha,Fair Trade,,1,0,0,Procurement Manager,Yes,,No,No,No,197,1,0.77
+f8f852b8-2042-4c2e-a9c4-146487f7f318,Healthcare,Electronics|Spices|Rice,,,2,20,0,,No,M&A,No,No,No,11,5,0.51
+8fe0b6e7-ca1e-44d6-9ab5-71ad4f7a7701,Construction,Turmeric|Quilts,,,5,14,0,,Yes,,No,No,No,30,5,0.68
+06b91a46-8a86-4104-b3e5-bb1b8a5d9566,Manufacturing,Ashwagandha|Quilts|Electronics,,,3,15,4,Procurement Manager,Yes,,No,Yes,No,12,1,0.62
+1b9201e2-cf29-4425-89fb-b31052315eb6,Construction,Turmeric,,,1,0,0,,No,,No,No,No,26,1,0.56

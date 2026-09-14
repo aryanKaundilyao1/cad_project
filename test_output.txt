@@ -1,0 +1,994 @@
+
+════════════════════════════════════════════════════════════════════════
+  JAS CONNECT — Opportunity Intelligence Engine v1.1
+  Terminal Testing Pipeline (Synthetic Leads)
+════════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────────
+  Rank #1  Lead 24 - Complete vs Missing Fields (Rich vs Sparse)
+  Source: manual  (key: manual_research)
+────────────────────────────────────────────────────────────────────────
+  ✅ QUALIFIED: Qualified: Industry "manufacturing" matches ICP; Geography "maharashtra" matches ICP; Company size "enterprise" meets ICP minimum
+
+  PROC  [█████████░░░░░░░░░░░]  46%
+  CONT  [████████████████████] 100%
+  CONF  [████████████████░░░░]  80%
+  FIT   [────────────────────] N/A
+  RISK  [░░░░░░░░░░░░░░░░░░░░]   0%  
+  OPP   [█████░░░░░░░░░░░░░░░]  27%  (Low)
+
+  ┌─ Lead Score ─────────────────────────────────────────┐
+  │  [██████████████████████░░░░░░░░] 72  │
+  └─────────────────────────────────────────────────────┘
+
+  Explanation: Moderate Procurement · Verified Contact · High Confidence · Low Risk · manual
+
+  Top Positive Signals:
+    ✅ QUAL: Passed — Qualified: Industry "manufacturing" matches ICP; Geography "maharashtra" matches ICP; Company size "enterprise" meets ICP minimum
+    📋 PROC: 46% — Low-moderate procurement likelihood — limited evidence
+    📞 CONT: 100% — High contactability — verified contact with decision-maker access
+    🔍 CONF: 80% — Medium-high confidence — source is moderately reliable
+    🎯 FIT: 0% — FIT not computable — this source type does not produce requirement tags (neutral)
+    🟢 RISK: 0% — Low risk — no flags raised
+    💡 OPP: Low (27%) — Opportunity strength: Low (27%) — Procurement likelihood: 46%; Tender value ₹200L (normalised: 2%)
+
+  Missing Evidence:
+    • last_tender_date (no recent tender record)
+    • avg_tender_value
+    • procurement_role_hiring_flag
+    • expansion_announcement_flag / project_type
+    • import_shipment_count_trailing_12mo
+    • procurement_stage
+    • ...and 13 more
+
+────────────────────────────────────────────────────────────────────────
+  Rank #2  Lead 30 - Mixed Contact Channels
+  Source: linkedin  (key: social_media)
+────────────────────────────────────────────────────────────────────────
+  ✅ QUALIFIED: Qualified: Industry "infrastructure" matches ICP; Geography "india" matches ICP; Company size "medium" meets ICP minimum
+
+  PROC  [█░░░░░░░░░░░░░░░░░░░]   4%
+  CONT  [████████████████████] 100%
+  CONF  [█████████████░░░░░░░]  64%
+  FIT   [────────────────────] N/A
+  RISK  [░░░░░░░░░░░░░░░░░░░░]   0%  
+  OPP   [█░░░░░░░░░░░░░░░░░░░]   4%  (Low)
+
+  ┌─ Lead Score ─────────────────────────────────────────┐
+  │  [█████████░░░░░░░░░░░░░░░░░░░░░] 29  │
+  └─────────────────────────────────────────────────────┘
+
+  Explanation: Verified Contact · Low Risk · linkedin
+
+  Top Positive Signals:
+    ✅ QUAL: Passed — Qualified: Industry "infrastructure" matches ICP; Geography "india" matches ICP; Company size "medium" meets ICP minimum
+    📋 PROC: 4% — Weak procurement signal — insufficient evidence to assess
+    📞 CONT: 100% — High contactability — verified contact with decision-maker access
+    🔍 CONF: 64% — Medium-high confidence — source is moderately reliable
+    🎯 FIT: 0% — FIT not computable — this source type does not produce requirement tags (neutral)
+    🟢 RISK: 0% — Low risk — no flags raised
+    💡 OPP: Low (4%) — Opportunity strength: Low (4%) — Procurement likelihood: 4%
+
+  Missing Evidence:
+    • last_tender_date (no recent tender record)
+    • tender_count_trailing_12mo
+    • avg_tender_value
+    • procurement_role_hiring_flag
+    • expansion_announcement_flag / project_type
+    • import_shipment_count_trailing_12mo
+    • ...and 16 more
+
+────────────────────────────────────────────────────────────────────────
+  Rank #3  Lead 17 - Dead Website
+  Source: google_maps  (key: unknown)
+────────────────────────────────────────────────────────────────────────
+  ✅ QUALIFIED: Qualified: Industry "construction" matches ICP; Geography "india" matches ICP; Company size "small" meets ICP minimum
+
+  PROC  [█░░░░░░░░░░░░░░░░░░░]   4%
+  CONT  [████████████████████] 100%
+  CONF  [████████████░░░░░░░░]  62%
+  FIT   [────────────────────] N/A
+  RISK  [█████░░░░░░░░░░░░░░░]  25%  
+  OPP   [█░░░░░░░░░░░░░░░░░░░]   4%  (Low)
+
+  ┌─ Lead Score ─────────────────────────────────────────┐
+  │  [█████████░░░░░░░░░░░░░░░░░░░░░] 29  │
+  └─────────────────────────────────────────────────────┘
+
+  Explanation: Verified Contact · google_maps
+
+  Top Positive Signals:
+    ✅ QUAL: Passed — Qualified: Industry "construction" matches ICP; Geography "india" matches ICP; Company size "small" meets ICP minimum
+    📋 PROC: 4% — Weak procurement signal — insufficient evidence to assess
+    📞 CONT: 100% — High contactability — verified contact with decision-maker access
+    🔍 CONF: 62% — Medium-high confidence — source is moderately reliable
+    🎯 FIT: 0% — FIT not computable — this source type does not produce requirement tags (neutral)
+    🟡 RISK: 25% — Moderate risk — 1 flag(s): website_dead
+    💡 OPP: Low (4%) — Opportunity strength: Low (4%) — Procurement likelihood: 4%
+
+  Missing Evidence:
+    • last_tender_date (no recent tender record)
+    • tender_count_trailing_12mo
+    • avg_tender_value
+    • procurement_role_hiring_flag
+    • expansion_announcement_flag / project_type
+    • import_shipment_count_trailing_12mo
+    • ...and 19 more
+
+────────────────────────────────────────────────────────────────────────
+  Rank #4  Lead 5 - Generic Email Only
+  Source: business_directory  (key: business_directory)
+────────────────────────────────────────────────────────────────────────
+  ✅ QUALIFIED: Qualified: Industry "logistics" matches ICP; Geography "gujarat" matches ICP; Company size "small" meets ICP minimum
+
+  PROC  [█░░░░░░░░░░░░░░░░░░░]   3%
+  CONT  [████████████████████] 100%
+  CONF  [█████████████░░░░░░░]  64%
+  FIT   [────────────────────] N/A
+  RISK  [░░░░░░░░░░░░░░░░░░░░]   0%  
+  OPP   [█░░░░░░░░░░░░░░░░░░░]   3%  (Low)
+
+  ┌─ Lead Score ─────────────────────────────────────────┐
+  │  [████████░░░░░░░░░░░░░░░░░░░░░░] 27  │
+  └─────────────────────────────────────────────────────┘
+
+  Explanation: Verified Contact · Low Risk · business_directory
+
+  Top Positive Signals:
+    ✅ QUAL: Passed — Qualified: Industry "logistics" matches ICP; Geography "gujarat" matches ICP; Company size "small" meets ICP minimum
+    📋 PROC: 3% — Weak procurement signal — insufficient evidence to assess
+    📞 CONT: 100% — High contactability — verified contact with decision-maker access
+    🔍 CONF: 64% — Medium-high confidence — source is moderately reliable
+    🎯 FIT: 0% — FIT not computable — this source type does not produce requirement tags (neutral)
+    🟢 RISK: 0% — Low risk — no flags raised
+    💡 OPP: Low (3%) — Opportunity strength: Low (3%) — Procurement likelihood: 3%
+
+  Missing Evidence:
+    • last_tender_date (no recent tender record)
+    • tender_count_trailing_12mo
+    • avg_tender_value
+    • procurement_role_hiring_flag
+    • expansion_announcement_flag / project_type
+    • import_shipment_count_trailing_12mo
+    • ...and 19 more
+
+────────────────────────────────────────────────────────────────────────
+  Rank #5  Lead 1 - Perfect Lead (Fresh Tender, Planning, DM Email)
+  Source: government_tender  (key: unknown)
+────────────────────────────────────────────────────────────────────────
+  ✅ QUALIFIED: Qualified: Industry "construction" matches ICP; Geography "india" matches ICP; Company size "large" meets ICP minimum
+
+  PROC  [█░░░░░░░░░░░░░░░░░░░]   4%
+  CONT  [████████████████████] 100%
+  CONF  [████████████████████] 100%
+  FIT   [███░░░░░░░░░░░░░░░░░]  17%
+  RISK  [░░░░░░░░░░░░░░░░░░░░]   0%  
+  OPP   [█████░░░░░░░░░░░░░░░]  24%  (Low)
+
+  ┌─ Lead Score ─────────────────────────────────────────┐
+  │  [██░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 6  │
+  └─────────────────────────────────────────────────────┘
+
+  Explanation: Verified Contact · High Confidence · Low Risk · government_tender
+
+  Top Positive Signals:
+    ✅ QUAL: Passed — Qualified: Industry "construction" matches ICP; Geography "india" matches ICP; Company size "large" meets ICP minimum
+    📋 PROC: 4% — Weak procurement signal — insufficient evidence to assess
+    📞 CONT: 100% — High contactability — verified contact with decision-maker access
+    🔍 CONF: 100% — High confidence — reliable source with 3 corroborating signal(s)
+    🎯 FIT: 17% — Partial commercial fit — limited tag overlap
+    🟢 RISK: 0% — Low risk — no flags raised
+    💡 OPP: Low (24%) — Opportunity strength: Low (24%) — Procurement likelihood: 4%; Tender value ₹5000L (normalised: 50%)
+
+  Missing Evidence:
+    • tender_count_trailing_12mo
+    • avg_tender_value
+    • procurement_role_hiring_flag
+    • import_shipment_count_trailing_12mo
+    • prior_successful_contact_flag (CRM history unavailable)
+    • company_legal_status (MCA data unavailable — risk not evaluated on this dimension)
+    • ...and 6 more
+
+────────────────────────────────────────────────────────────────────────
+  Rank #6  Lead 13 - Multiple Independent Sources
+  Source: mixed  (key: unknown)
+────────────────────────────────────────────────────────────────────────
+  ✅ QUALIFIED: Qualified: Industry "construction" matches ICP; Geography "india" matches ICP; Company size "medium" meets ICP minimum
+
+  PROC  [█░░░░░░░░░░░░░░░░░░░]   4%
+  CONT  [░░░░░░░░░░░░░░░░░░░░]   0%
+  CONF  [███████████████░░░░░]  76%
+  FIT   [────────────────────] N/A
+  RISK  [░░░░░░░░░░░░░░░░░░░░]   0%  
+  OPP   [█░░░░░░░░░░░░░░░░░░░]   4%  (Low)
+
+  ┌─ Lead Score ─────────────────────────────────────────┐
+  │  [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 0  │
+  └─────────────────────────────────────────────────────┘
+
+  Explanation: Weak Contact · High Confidence · Low Risk · mixed
+
+  Top Positive Signals:
+    ✅ QUAL: Passed — Qualified: Industry "construction" matches ICP; Geography "india" matches ICP; Company size "medium" meets ICP minimum
+    📋 PROC: 4% — Weak procurement signal — insufficient evidence to assess
+    📞 CONT: 0% — Very low contactability — minimal contact evidence
+    🔍 CONF: 76% — Medium-high confidence — source is moderately reliable
+    🎯 FIT: 0% — FIT not computable — this source type does not produce requirement tags (neutral)
+    🟢 RISK: 0% — Low risk — no flags raised
+    💡 OPP: Low (4%) — Opportunity strength: Low (4%) — Procurement likelihood: 4%
+
+  Missing Evidence:
+    • last_tender_date (no recent tender record)
+    • tender_count_trailing_12mo
+    • avg_tender_value
+    • procurement_role_hiring_flag
+    • expansion_announcement_flag / project_type
+    • import_shipment_count_trailing_12mo
+    • ...and 19 more
+
+────────────────────────────────────────────────────────────────────────
+  Rank #7  Lead 20 - Roof Sheet Requirement
+  Source: rfq  (key: rfq_private)
+────────────────────────────────────────────────────────────────────────
+  ✅ QUALIFIED: Qualified: Industry "construction" matches ICP; Geography "india" matches ICP; Company size "medium" meets ICP minimum
+
+  PROC  [███████████████░░░░░]  73%
+  CONT  [░░░░░░░░░░░░░░░░░░░░]   0%
+  CONF  [███████████████░░░░░]  73%
+  FIT   [██░░░░░░░░░░░░░░░░░░]   8%
+  RISK  [░░░░░░░░░░░░░░░░░░░░]   0%  
+  OPP   [███████████████░░░░░]  73%  (High)
+
+  ┌─ Lead Score ─────────────────────────────────────────┐
+  │  [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 0  │
+  └─────────────────────────────────────────────────────┘
+
+  Explanation: High Procurement · Weak Contact · High Confidence · High Opportunity · Low Risk · rfq
+
+  Top Positive Signals:
+    ✅ QUAL: Passed — Qualified: Industry "construction" matches ICP; Geography "india" matches ICP; Company size "medium" meets ICP minimum
+    📋 PROC: 73% — Moderate procurement likelihood — some signals present
+    📞 CONT: 0% — Very low contactability — minimal contact evidence
+    🔍 CONF: 73% — Medium-high confidence — source is moderately reliable
+    🎯 FIT: 8% — Weak commercial fit — minimal tag overlap
+    🟢 RISK: 0% — Low risk — no flags raised
+    💡 OPP: High (73%) — Opportunity strength: High (73%) — Procurement likelihood: 73%
+
+  Missing Evidence:
+    • last_tender_date (no recent tender record)
+    • tender_count_trailing_12mo
+    • avg_tender_value
+    • procurement_role_hiring_flag
+    • expansion_announcement_flag / project_type
+    • import_shipment_count_trailing_12mo
+    • ...and 19 more
+
+────────────────────────────────────────────────────────────────────────
+  Rank #8  Lead 4 - Factory Expansion
+  Source: company_website  (key: website_update)
+────────────────────────────────────────────────────────────────────────
+  ✅ QUALIFIED: Qualified: Industry "manufacturing" matches ICP; Geography "maharashtra" matches ICP; Company size "enterprise" meets ICP minimum
+
+  PROC  [██░░░░░░░░░░░░░░░░░░]  12%
+  CONT  [░░░░░░░░░░░░░░░░░░░░]   0%
+  CONF  [█████████████░░░░░░░]  65%
+  FIT   [────────────────────] N/A
+  RISK  [░░░░░░░░░░░░░░░░░░░░]   0%  
+  OPP   [██░░░░░░░░░░░░░░░░░░]  12%  (Low)
+
+  ┌─ Lead Score ─────────────────────────────────────────┐
+  │  [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 0  │
+  └─────────────────────────────────────────────────────┘
+
+  Explanation: Weak Contact · Low Risk · company_website
+
+  Top Positive Signals:
+    ✅ QUAL: Passed — Qualified: Industry "manufacturing" matches ICP; Geography "maharashtra" matches ICP; Company size "enterprise" meets ICP minimum
+    📋 PROC: 12% — Weak procurement signal — insufficient evidence to assess
+    📞 CONT: 0% — Very low contactability — minimal contact evidence
+    🔍 CONF: 65% — Medium-high confidence — source is moderately reliable
+    🎯 FIT: 0% — FIT not computable — this source type does not produce requirement tags (neutral)
+    🟢 RISK: 0% — Low risk — no flags raised
+    💡 OPP: Low (12%) — Opportunity strength: Low (12%) — Procurement likelihood: 12%
+
+  Missing Evidence:
+    • last_tender_date (no recent tender record)
+    • tender_count_trailing_12mo
+    • avg_tender_value
+    • procurement_role_hiring_flag
+    • import_shipment_count_trailing_12mo
+    • procurement_stage
+    • ...and 18 more
+
+────────────────────────────────────────────────────────────────────────
+  Rank #9  Lead 11 - Warehouse Expansion
+  Source: news  (key: general_news)
+────────────────────────────────────────────────────────────────────────
+  ✅ QUALIFIED: Qualified: Industry "logistics" matches ICP; Geography "ncr" matches ICP; Company size "medium" meets ICP minimum
+
+  PROC  [██░░░░░░░░░░░░░░░░░░]  12%
+  CONT  [░░░░░░░░░░░░░░░░░░░░]   0%
+  CONF  [█████████████░░░░░░░]  65%
+  FIT   [────────────────────] N/A
+  RISK  [░░░░░░░░░░░░░░░░░░░░]   0%  
+  OPP   [██░░░░░░░░░░░░░░░░░░]  12%  (Low)
+
+  ┌─ Lead Score ─────────────────────────────────────────┐
+  │  [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 0  │
+  └─────────────────────────────────────────────────────┘
+
+  Explanation: Weak Contact · Low Risk · news
+
+  Top Positive Signals:
+    ✅ QUAL: Passed — Qualified: Industry "logistics" matches ICP; Geography "ncr" matches ICP; Company size "medium" meets ICP minimum
+    📋 PROC: 12% — Weak procurement signal — insufficient evidence to assess
+    📞 CONT: 0% — Very low contactability — minimal contact evidence
+    🔍 CONF: 65% — Medium-high confidence — source is moderately reliable
+    🎯 FIT: 0% — FIT not computable — this source type does not produce requirement tags (neutral)
+    🟢 RISK: 0% — Low risk — no flags raised
+    💡 OPP: Low (12%) — Opportunity strength: Low (12%) — Procurement likelihood: 12%
+
+  Missing Evidence:
+    • last_tender_date (no recent tender record)
+    • tender_count_trailing_12mo
+    • avg_tender_value
+    • procurement_role_hiring_flag
+    • import_shipment_count_trailing_12mo
+    • procurement_stage
+    • ...and 18 more
+
+────────────────────────────────────────────────────────────────────────
+  Rank #10  Lead 8 - Funding Announcement
+  Source: news  (key: general_news)
+────────────────────────────────────────────────────────────────────────
+  ✅ QUALIFIED: Qualified: Industry "industrial" matches ICP; Geography "karnataka" matches ICP; Company size "medium" meets ICP minimum
+
+  PROC  [█░░░░░░░░░░░░░░░░░░░]   6%
+  CONT  [░░░░░░░░░░░░░░░░░░░░]   0%
+  CONF  [█████████████░░░░░░░]  64%
+  FIT   [────────────────────] N/A
+  RISK  [░░░░░░░░░░░░░░░░░░░░]   0%  
+  OPP   [██████░░░░░░░░░░░░░░]  32%  (Low)
+
+  ┌─ Lead Score ─────────────────────────────────────────┐
+  │  [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 0  │
+  └─────────────────────────────────────────────────────┘
+
+  Explanation: Weak Contact · Low Risk · news
+
+  Top Positive Signals:
+    ✅ QUAL: Passed — Qualified: Industry "industrial" matches ICP; Geography "karnataka" matches ICP; Company size "medium" meets ICP minimum
+    📋 PROC: 6% — Weak procurement signal — insufficient evidence to assess
+    📞 CONT: 0% — Very low contactability — minimal contact evidence
+    🔍 CONF: 64% — Medium-high confidence — source is moderately reliable
+    🎯 FIT: 0% — FIT not computable — this source type does not produce requirement tags (neutral)
+    🟢 RISK: 0% — Low risk — no flags raised
+    💡 OPP: Low (32%) — Opportunity strength: Low (32%) — Procurement likelihood: 6%; Recent funding announcement detected
+
+  Missing Evidence:
+    • last_tender_date (no recent tender record)
+    • tender_count_trailing_12mo
+    • avg_tender_value
+    • procurement_role_hiring_flag
+    • expansion_announcement_flag / project_type
+    • import_shipment_count_trailing_12mo
+    • ...and 19 more
+
+────────────────────────────────────────────────────────────────────────
+  Rank #11  Lead 22 - PEB Company
+  Source: company_website  (key: website_update)
+────────────────────────────────────────────────────────────────────────
+  ✅ QUALIFIED: Qualified: Industry "peb" matches ICP; Geography "india" matches ICP; Company size "medium" meets ICP minimum
+
+  PROC  [█░░░░░░░░░░░░░░░░░░░]   6%
+  CONT  [░░░░░░░░░░░░░░░░░░░░]   0%
+  CONF  [█████████████░░░░░░░]  63%
+  FIT   [░░░░░░░░░░░░░░░░░░░░]   0%
+  RISK  [░░░░░░░░░░░░░░░░░░░░]   0%  
+  OPP   [█░░░░░░░░░░░░░░░░░░░]   6%  (Low)
+
+  ┌─ Lead Score ─────────────────────────────────────────┐
+  │  [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 0  │
+  └─────────────────────────────────────────────────────┘
+
+  Explanation: Weak Contact · Low Risk · company_website
+
+  Top Positive Signals:
+    ✅ QUAL: Passed — Qualified: Industry "peb" matches ICP; Geography "india" matches ICP; Company size "medium" meets ICP minimum
+    📋 PROC: 6% — Weak procurement signal — insufficient evidence to assess
+    📞 CONT: 0% — Very low contactability — minimal contact evidence
+    🔍 CONF: 63% — Medium-high confidence — source is moderately reliable
+    🎯 FIT: 0% — No commercial fit — no tag overlap with client capabilities
+    🟢 RISK: 0% — Low risk — no flags raised
+    💡 OPP: Low (6%) — Opportunity strength: Low (6%) — Procurement likelihood: 6%
+
+  Missing Evidence:
+    • last_tender_date (no recent tender record)
+    • tender_count_trailing_12mo
+    • avg_tender_value
+    • procurement_role_hiring_flag
+    • expansion_announcement_flag / project_type
+    • import_shipment_count_trailing_12mo
+    • ...and 22 more
+
+────────────────────────────────────────────────────────────────────────
+  Rank #12  Lead 14 - Single Low-Confidence Source
+  Source: scraped  (key: unknown)
+────────────────────────────────────────────────────────────────────────
+  ✅ QUALIFIED: Qualified: Industry "construction" matches ICP; Geography "india" matches ICP; Company size "medium" meets ICP minimum
+
+  PROC  [█░░░░░░░░░░░░░░░░░░░]   4%
+  CONT  [░░░░░░░░░░░░░░░░░░░░]   0%
+  CONF  [█████████████░░░░░░░]  63%
+  FIT   [────────────────────] N/A
+  RISK  [░░░░░░░░░░░░░░░░░░░░]   0%  
+  OPP   [█░░░░░░░░░░░░░░░░░░░]   4%  (Low)
+
+  ┌─ Lead Score ─────────────────────────────────────────┐
+  │  [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 0  │
+  └─────────────────────────────────────────────────────┘
+
+  Explanation: Weak Contact · Low Risk · scraped
+
+  Top Positive Signals:
+    ✅ QUAL: Passed — Qualified: Industry "construction" matches ICP; Geography "india" matches ICP; Company size "medium" meets ICP minimum
+    📋 PROC: 4% — Weak procurement signal — insufficient evidence to assess
+    📞 CONT: 0% — Very low contactability — minimal contact evidence
+    🔍 CONF: 63% — Medium-high confidence — source is moderately reliable
+    🎯 FIT: 0% — FIT not computable — this source type does not produce requirement tags (neutral)
+    🟢 RISK: 0% — Low risk — no flags raised
+    💡 OPP: Low (4%) — Opportunity strength: Low (4%) — Procurement likelihood: 4%
+
+  Missing Evidence:
+    • last_tender_date (no recent tender record)
+    • tender_count_trailing_12mo
+    • avg_tender_value
+    • procurement_role_hiring_flag
+    • expansion_announcement_flag / project_type
+    • import_shipment_count_trailing_12mo
+    • ...and 20 more
+
+────────────────────────────────────────────────────────────────────────
+  Rank #13  Lead 10 - Low Budget Project
+  Source: government_tender  (key: unknown)
+────────────────────────────────────────────────────────────────────────
+  ✅ QUALIFIED: Qualified: Industry "infrastructure" matches ICP; Geography "tamil_nadu" matches ICP; Company size "small" meets ICP minimum
+
+  PROC  [█░░░░░░░░░░░░░░░░░░░]   5%
+  CONT  [░░░░░░░░░░░░░░░░░░░░]   0%
+  CONF  [█████████████░░░░░░░]  63%
+  FIT   [────────────────────] N/A
+  RISK  [░░░░░░░░░░░░░░░░░░░░]   0%  
+  OPP   [█░░░░░░░░░░░░░░░░░░░]   3%  (Low)
+
+  ┌─ Lead Score ─────────────────────────────────────────┐
+  │  [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 0  │
+  └─────────────────────────────────────────────────────┘
+
+  Explanation: Weak Contact · Low Risk · government_tender
+
+  Top Positive Signals:
+    ✅ QUAL: Passed — Qualified: Industry "infrastructure" matches ICP; Geography "tamil_nadu" matches ICP; Company size "small" meets ICP minimum
+    📋 PROC: 5% — Weak procurement signal — insufficient evidence to assess
+    📞 CONT: 0% — Very low contactability — minimal contact evidence
+    🔍 CONF: 63% — Medium-high confidence — source is moderately reliable
+    🎯 FIT: 0% — FIT not computable — this source type does not produce requirement tags (neutral)
+    🟢 RISK: 0% — Low risk — no flags raised
+    💡 OPP: Low (3%) — Opportunity strength: Low (3%) — Procurement likelihood: 5%; Tender value ₹5L (normalised: 0%)
+
+  Missing Evidence:
+    • last_tender_date (no recent tender record)
+    • tender_count_trailing_12mo
+    • avg_tender_value
+    • procurement_role_hiring_flag
+    • expansion_announcement_flag / project_type
+    • import_shipment_count_trailing_12mo
+    • ...and 17 more
+
+────────────────────────────────────────────────────────────────────────
+  Rank #14  Lead 28 - Urgent Deadline
+  Source: government_tender  (key: unknown)
+────────────────────────────────────────────────────────────────────────
+  ✅ QUALIFIED: Qualified: Industry "infrastructure" matches ICP; Geography "india" matches ICP; Company size "large" meets ICP minimum
+
+  PROC  [█░░░░░░░░░░░░░░░░░░░]   5%
+  CONT  [░░░░░░░░░░░░░░░░░░░░]   0%
+  CONF  [█████████████░░░░░░░]  63%
+  FIT   [────────────────────] N/A
+  RISK  [░░░░░░░░░░░░░░░░░░░░]   0%  
+  OPP   [██████░░░░░░░░░░░░░░]  31%  (Low)
+
+  ┌─ Lead Score ─────────────────────────────────────────┐
+  │  [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 0  │
+  └─────────────────────────────────────────────────────┘
+
+  Explanation: Weak Contact · Low Risk · government_tender
+
+  Top Positive Signals:
+    ✅ QUAL: Passed — Qualified: Industry "infrastructure" matches ICP; Geography "india" matches ICP; Company size "large" meets ICP minimum
+    📋 PROC: 5% — Weak procurement signal — insufficient evidence to assess
+    📞 CONT: 0% — Very low contactability — minimal contact evidence
+    🔍 CONF: 63% — Medium-high confidence — source is moderately reliable
+    🎯 FIT: 0% — FIT not computable — this source type does not produce requirement tags (neutral)
+    🟢 RISK: 0% — Low risk — no flags raised
+    💡 OPP: Low (31%) — Opportunity strength: Low (31%) — Procurement likelihood: 5%; Deadline in 2 day(s) — Critical urgency (score: 100%)
+
+  Missing Evidence:
+    • last_tender_date (no recent tender record)
+    • tender_count_trailing_12mo
+    • avg_tender_value
+    • procurement_role_hiring_flag
+    • expansion_announcement_flag / project_type
+    • import_shipment_count_trailing_12mo
+    • ...and 17 more
+
+────────────────────────────────────────────────────────────────────────
+  Rank #15  Lead 29 - Far Deadline
+  Source: government_tender  (key: unknown)
+────────────────────────────────────────────────────────────────────────
+  ✅ QUALIFIED: Qualified: Industry "infrastructure" matches ICP; Geography "india" matches ICP; Company size "large" meets ICP minimum
+
+  PROC  [█░░░░░░░░░░░░░░░░░░░]   3%
+  CONT  [░░░░░░░░░░░░░░░░░░░░]   0%
+  CONF  [█████████████░░░░░░░]  63%
+  FIT   [────────────────────] N/A
+  RISK  [░░░░░░░░░░░░░░░░░░░░]   0%  
+  OPP   [█░░░░░░░░░░░░░░░░░░░]   3%  (Low)
+
+  ┌─ Lead Score ─────────────────────────────────────────┐
+  │  [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 0  │
+  └─────────────────────────────────────────────────────┘
+
+  Explanation: Weak Contact · Low Risk · government_tender
+
+  Top Positive Signals:
+    ✅ QUAL: Passed — Qualified: Industry "infrastructure" matches ICP; Geography "india" matches ICP; Company size "large" meets ICP minimum
+    📋 PROC: 3% — Weak procurement signal — insufficient evidence to assess
+    📞 CONT: 0% — Very low contactability — minimal contact evidence
+    🔍 CONF: 63% — Medium-high confidence — source is moderately reliable
+    🎯 FIT: 0% — FIT not computable — this source type does not produce requirement tags (neutral)
+    🟢 RISK: 0% — Low risk — no flags raised
+    💡 OPP: Low (3%) — Opportunity strength: Low (3%) — Procurement likelihood: 3%; Deadline in 299 day(s) — No urgency (score: 0%)
+
+  Missing Evidence:
+    • last_tender_date (no recent tender record)
+    • tender_count_trailing_12mo
+    • avg_tender_value
+    • procurement_role_hiring_flag
+    • expansion_announcement_flag / project_type
+    • import_shipment_count_trailing_12mo
+    • ...and 17 more
+
+────────────────────────────────────────────────────────────────────────
+  Rank #16  Lead 9 - High Budget Project
+  Source: government_tender  (key: unknown)
+────────────────────────────────────────────────────────────────────────
+  ✅ QUALIFIED: Qualified: Industry "infrastructure" matches ICP; Geography "tamil_nadu" matches ICP; Company size "enterprise" meets ICP minimum
+
+  PROC  [█░░░░░░░░░░░░░░░░░░░]   5%
+  CONT  [░░░░░░░░░░░░░░░░░░░░]   0%
+  CONF  [█████████████░░░░░░░]  63%
+  FIT   [────────────────────] N/A
+  RISK  [░░░░░░░░░░░░░░░░░░░░]   0%  
+  OPP   [█████████░░░░░░░░░░░]  46%  (Medium)
+
+  ┌─ Lead Score ─────────────────────────────────────────┐
+  │  [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 0  │
+  └─────────────────────────────────────────────────────┘
+
+  Explanation: Weak Contact · Medium Opportunity · Low Risk · government_tender
+
+  Top Positive Signals:
+    ✅ QUAL: Passed — Qualified: Industry "infrastructure" matches ICP; Geography "tamil_nadu" matches ICP; Company size "enterprise" meets ICP minimum
+    📋 PROC: 5% — Weak procurement signal — insufficient evidence to assess
+    📞 CONT: 0% — Very low contactability — minimal contact evidence
+    🔍 CONF: 63% — Medium-high confidence — source is moderately reliable
+    🎯 FIT: 0% — FIT not computable — this source type does not produce requirement tags (neutral)
+    🟢 RISK: 0% — Low risk — no flags raised
+    💡 OPP: Medium (46%) — Opportunity strength: Medium (46%) — Procurement likelihood: 5%; Tender value ₹15000L (normalised: 100%)
+
+  Missing Evidence:
+    • last_tender_date (no recent tender record)
+    • tender_count_trailing_12mo
+    • avg_tender_value
+    • procurement_role_hiring_flag
+    • expansion_announcement_flag / project_type
+    • import_shipment_count_trailing_12mo
+    • ...and 17 more
+
+────────────────────────────────────────────────────────────────────────
+  Rank #17  Lead 15 - Recent Hiring Signal
+  Source: linkedin  (key: social_media)
+────────────────────────────────────────────────────────────────────────
+  ✅ QUALIFIED: Qualified: Industry "manufacturing" matches ICP; Geography "india" matches ICP; Company size "medium" meets ICP minimum
+
+  PROC  [█░░░░░░░░░░░░░░░░░░░]   4%
+  CONT  [░░░░░░░░░░░░░░░░░░░░]   0%
+  CONF  [████████████░░░░░░░░]  62%
+  FIT   [────────────────────] N/A
+  RISK  [░░░░░░░░░░░░░░░░░░░░]   0%  
+  OPP   [█░░░░░░░░░░░░░░░░░░░]   4%  (Low)
+
+  ┌─ Lead Score ─────────────────────────────────────────┐
+  │  [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 0  │
+  └─────────────────────────────────────────────────────┘
+
+  Explanation: Weak Contact · Low Risk · linkedin
+
+  Top Positive Signals:
+    ✅ QUAL: Passed — Qualified: Industry "manufacturing" matches ICP; Geography "india" matches ICP; Company size "medium" meets ICP minimum
+    📋 PROC: 4% — Weak procurement signal — insufficient evidence to assess
+    📞 CONT: 0% — Very low contactability — minimal contact evidence
+    🔍 CONF: 62% — Medium-high confidence — source is moderately reliable
+    🎯 FIT: 0% — FIT not computable — this source type does not produce requirement tags (neutral)
+    🟢 RISK: 0% — Low risk — no flags raised
+    💡 OPP: Low (4%) — Opportunity strength: Low (4%) — Procurement likelihood: 4%
+
+  Missing Evidence:
+    • last_tender_date (no recent tender record)
+    • tender_count_trailing_12mo
+    • avg_tender_value
+    • expansion_announcement_flag / project_type
+    • import_shipment_count_trailing_12mo
+    • project_status
+    • ...and 19 more
+
+────────────────────────────────────────────────────────────────────────
+  Rank #18  Lead 16 - Import/Export Company
+  Source: trade_data  (key: unknown)
+────────────────────────────────────────────────────────────────────────
+  ✅ QUALIFIED: Qualified: Industry "export" matches ICP; Geography "gujarat" matches ICP; Company size "small" meets ICP minimum
+
+  PROC  [█░░░░░░░░░░░░░░░░░░░]   4%
+  CONT  [░░░░░░░░░░░░░░░░░░░░]   0%
+  CONF  [████████████░░░░░░░░]  62%
+  FIT   [────────────────────] N/A
+  RISK  [░░░░░░░░░░░░░░░░░░░░]   0%  
+  OPP   [█░░░░░░░░░░░░░░░░░░░]   4%  (Low)
+
+  ┌─ Lead Score ─────────────────────────────────────────┐
+  │  [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 0  │
+  └─────────────────────────────────────────────────────┘
+
+  Explanation: Weak Contact · Low Risk · trade_data
+
+  Top Positive Signals:
+    ✅ QUAL: Passed — Qualified: Industry "export" matches ICP; Geography "gujarat" matches ICP; Company size "small" meets ICP minimum
+    📋 PROC: 4% — Weak procurement signal — insufficient evidence to assess
+    📞 CONT: 0% — Very low contactability — minimal contact evidence
+    🔍 CONF: 62% — Medium-high confidence — source is moderately reliable
+    🎯 FIT: 0% — FIT not computable — this source type does not produce requirement tags (neutral)
+    🟢 RISK: 0% — Low risk — no flags raised
+    💡 OPP: Low (4%) — Opportunity strength: Low (4%) — Procurement likelihood: 4%
+
+  Missing Evidence:
+    • last_tender_date (no recent tender record)
+    • tender_count_trailing_12mo
+    • avg_tender_value
+    • procurement_role_hiring_flag
+    • expansion_announcement_flag / project_type
+    • project_status
+    • ...and 19 more
+
+────────────────────────────────────────────────────────────────────────
+  Rank #19  Lead 26 - High Spam Rate Source
+  Source: scraped  (key: unknown)
+────────────────────────────────────────────────────────────────────────
+  ✅ QUALIFIED: Qualified: Industry "construction" matches ICP; Geography "india" matches ICP; Company size "small" meets ICP minimum
+
+  PROC  [█░░░░░░░░░░░░░░░░░░░]   4%
+  CONT  [░░░░░░░░░░░░░░░░░░░░]   0%
+  CONF  [████████████░░░░░░░░]  61%
+  FIT   [────────────────────] N/A
+  RISK  [██████████░░░░░░░░░░]  50%  
+  OPP   [█░░░░░░░░░░░░░░░░░░░]   4%  (Low)
+
+  ┌─ Lead Score ─────────────────────────────────────────┐
+  │  [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 0  │
+  └─────────────────────────────────────────────────────┘
+
+  Explanation: Weak Contact · High Risk · scraped
+
+  Top Positive Signals:
+    ✅ QUAL: Passed — Qualified: Industry "construction" matches ICP; Geography "india" matches ICP; Company size "small" meets ICP minimum
+    📋 PROC: 4% — Weak procurement signal — insufficient evidence to assess
+    📞 CONT: 0% — Very low contactability — minimal contact evidence
+    🔍 CONF: 61% — Medium-high confidence — source is moderately reliable
+    🎯 FIT: 0% — FIT not computable — this source type does not produce requirement tags (neutral)
+    🔴 RISK: 50% — High risk — 1 severe flag(s): source_spam
+    💡 OPP: Low (4%) — Opportunity strength: Low (4%) — Procurement likelihood: 4%
+
+  Missing Evidence:
+    • last_tender_date (no recent tender record)
+    • tender_count_trailing_12mo
+    • avg_tender_value
+    • procurement_role_hiring_flag
+    • expansion_announcement_flag / project_type
+    • import_shipment_count_trailing_12mo
+    • ...and 19 more
+
+────────────────────────────────────────────────────────────────────────
+  Rank #20  Lead 27 - Internal Complaints
+  Source: crm  (key: unknown)
+────────────────────────────────────────────────────────────────────────
+  ✅ QUALIFIED: Qualified: Industry "construction" matches ICP; Geography "india" matches ICP; Company size "small" meets ICP minimum
+
+  PROC  [█░░░░░░░░░░░░░░░░░░░]   4%
+  CONT  [░░░░░░░░░░░░░░░░░░░░]   0%
+  CONF  [████████████░░░░░░░░]  61%
+  FIT   [────────────────────] N/A
+  RISK  [██████████░░░░░░░░░░]  50%  
+  OPP   [█░░░░░░░░░░░░░░░░░░░]   4%  (Low)
+
+  ┌─ Lead Score ─────────────────────────────────────────┐
+  │  [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 0  │
+  └─────────────────────────────────────────────────────┘
+
+  Explanation: Weak Contact · High Risk · crm
+
+  Top Positive Signals:
+    ✅ QUAL: Passed — Qualified: Industry "construction" matches ICP; Geography "india" matches ICP; Company size "small" meets ICP minimum
+    📋 PROC: 4% — Weak procurement signal — insufficient evidence to assess
+    📞 CONT: 0% — Very low contactability — minimal contact evidence
+    🔍 CONF: 61% — Medium-high confidence — source is moderately reliable
+    🎯 FIT: 0% — FIT not computable — this source type does not produce requirement tags (neutral)
+    🔴 RISK: 50% — High risk — 1 severe flag(s): complaints
+    💡 OPP: Low (4%) — Opportunity strength: Low (4%) — Procurement likelihood: 4%
+
+  Missing Evidence:
+    • last_tender_date (no recent tender record)
+    • tender_count_trailing_12mo
+    • avg_tender_value
+    • procurement_role_hiring_flag
+    • expansion_announcement_flag / project_type
+    • import_shipment_count_trailing_12mo
+    • ...and 19 more
+
+────────────────────────────────────────────────────────────────────────
+  Rank #21  Lead 25 - Sparse Lead (No fields, unknown)
+  Source: unknown  (key: unknown)
+────────────────────────────────────────────────────────────────────────
+  ✅ QUALIFIED: Qualified: Industry "construction" matches ICP; Geography "india" matches ICP; Company size "small" meets ICP minimum
+
+  PROC  [█░░░░░░░░░░░░░░░░░░░]   4%
+  CONT  [░░░░░░░░░░░░░░░░░░░░]   0%
+  CONF  [████████████░░░░░░░░]  61%
+  FIT   [────────────────────] N/A
+  RISK  [░░░░░░░░░░░░░░░░░░░░]   0%  
+  OPP   [█░░░░░░░░░░░░░░░░░░░]   4%  (Low)
+
+  ┌─ Lead Score ─────────────────────────────────────────┐
+  │  [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 0  │
+  └─────────────────────────────────────────────────────┘
+
+  Explanation: Weak Contact · Low Risk · unknown
+
+  Top Positive Signals:
+    ✅ QUAL: Passed — Qualified: Industry "construction" matches ICP; Geography "india" matches ICP; Company size "small" meets ICP minimum
+    📋 PROC: 4% — Weak procurement signal — insufficient evidence to assess
+    📞 CONT: 0% — Very low contactability — minimal contact evidence
+    🔍 CONF: 61% — Medium-high confidence — source is moderately reliable
+    🎯 FIT: 0% — FIT not computable — this source type does not produce requirement tags (neutral)
+    🟢 RISK: 0% — Low risk — no flags raised
+    💡 OPP: Low (4%) — Opportunity strength: Low (4%) — Procurement likelihood: 4%
+
+  Missing Evidence:
+    • last_tender_date (no recent tender record)
+    • tender_count_trailing_12mo
+    • avg_tender_value
+    • procurement_role_hiring_flag
+    • expansion_announcement_flag / project_type
+    • import_shipment_count_trailing_12mo
+    • ...and 20 more
+
+────────────────────────────────────────────────────────────────────────
+  Rank #22  Lead 3 - Completed Project (Should be high risk)
+  Source: news  (key: general_news)
+────────────────────────────────────────────────────────────────────────
+  ✅ QUALIFIED: Qualified: Industry "manufacturing" matches ICP; Geography "india" matches ICP; Company size "medium" meets ICP minimum
+
+  PROC  [░░░░░░░░░░░░░░░░░░░░]   2%
+  CONT  [░░░░░░░░░░░░░░░░░░░░]   0%
+  CONF  [███████░░░░░░░░░░░░░]  37%
+  FIT   [────────────────────] N/A
+  RISK  [██████████░░░░░░░░░░]  50%  
+  OPP   [░░░░░░░░░░░░░░░░░░░░]   2%  (Low)
+
+  ┌─ Lead Score ─────────────────────────────────────────┐
+  │  [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 0  │
+  └─────────────────────────────────────────────────────┘
+
+  Explanation: Weak Contact · High Risk · news
+
+  Top Positive Signals:
+    ✅ QUAL: Passed — Qualified: Industry "manufacturing" matches ICP; Geography "india" matches ICP; Company size "medium" meets ICP minimum
+    📋 PROC: 2% — Weak procurement signal — insufficient evidence to assess
+    📞 CONT: 0% — Very low contactability — minimal contact evidence
+    🔍 CONF: 37% — Low confidence — weak or stale source
+    🎯 FIT: 0% — FIT not computable — this source type does not produce requirement tags (neutral)
+    🔴 RISK: 50% — Elevated risk — 2 flag(s) raised
+    💡 OPP: Low (2%) — Opportunity strength: Low (2%) — Procurement likelihood: 2%
+
+  Missing Evidence:
+    • tender_count_trailing_12mo
+    • avg_tender_value
+    • procurement_role_hiring_flag
+    • expansion_announcement_flag / project_type
+    • import_shipment_count_trailing_12mo
+    • procurement_stage
+    • ...and 16 more
+
+────────────────────────────────────────────────────────────────────────
+  Rank #23  Lead 21 - Old News Article
+  Source: news  (key: general_news)
+────────────────────────────────────────────────────────────────────────
+  ✅ QUALIFIED: Qualified: Industry "construction" matches ICP; Geography "india" matches ICP; Company size "small" meets ICP minimum
+
+  PROC  [██░░░░░░░░░░░░░░░░░░]  11%
+  CONT  [░░░░░░░░░░░░░░░░░░░░]   0%
+  CONF  [██████░░░░░░░░░░░░░░]  32%
+  FIT   [────────────────────] N/A
+  RISK  [██████████░░░░░░░░░░]  50%  
+  OPP   [██░░░░░░░░░░░░░░░░░░]  11%  (Low)
+
+  ┌─ Lead Score ─────────────────────────────────────────┐
+  │  [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 0  │
+  └─────────────────────────────────────────────────────┘
+
+  Explanation: Weak Contact · High Risk · news
+
+  Top Positive Signals:
+    ✅ QUAL: Passed — Qualified: Industry "construction" matches ICP; Geography "india" matches ICP; Company size "small" meets ICP minimum
+    📋 PROC: 11% — Weak procurement signal — insufficient evidence to assess
+    📞 CONT: 0% — Very low contactability — minimal contact evidence
+    🔍 CONF: 32% — Low confidence — weak or stale source
+    🎯 FIT: 0% — FIT not computable — this source type does not produce requirement tags (neutral)
+    🔴 RISK: 50% — High risk — 1 severe flag(s): stale_data
+    💡 OPP: Low (11%) — Opportunity strength: Low (11%) — Procurement likelihood: 11%
+
+  Missing Evidence:
+    • last_tender_date (no recent tender record)
+    • tender_count_trailing_12mo
+    • avg_tender_value
+    • procurement_role_hiring_flag
+    • expansion_announcement_flag / project_type
+    • import_shipment_count_trailing_12mo
+    • ...and 18 more
+
+────────────────────────────────────────────────────────────────────────
+  Rank #24  Lead 2 - Binary Lead (Project exists, no contact info)
+  Source: google_maps  (key: unknown)
+────────────────────────────────────────────────────────────────────────
+  ✅ QUALIFIED: Qualified: Industry "construction" matches ICP; Geography "india" matches ICP; Company size "small" meets ICP minimum
+
+  PROC  [░░░░░░░░░░░░░░░░░░░░]   1%
+  CONT  [░░░░░░░░░░░░░░░░░░░░]   0%
+  CONF  [█████░░░░░░░░░░░░░░░]  25%
+  FIT   [────────────────────] N/A
+  RISK  [██████████░░░░░░░░░░]  50%  
+  OPP   [░░░░░░░░░░░░░░░░░░░░]   1%  (Low)
+
+  ┌─ Lead Score ─────────────────────────────────────────┐
+  │  [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 0  │
+  └─────────────────────────────────────────────────────┘
+
+  Explanation: Weak Contact · Low Confidence · High Risk · google_maps
+
+  Top Positive Signals:
+    ✅ QUAL: Passed — Qualified: Industry "construction" matches ICP; Geography "india" matches ICP; Company size "small" meets ICP minimum
+    📋 PROC: 1% — Weak procurement signal — insufficient evidence to assess
+    📞 CONT: 0% — Very low contactability — minimal contact evidence
+    🔍 CONF: 25% — Low confidence — weak or stale source
+    🎯 FIT: 0% — FIT not computable — this source type does not produce requirement tags (neutral)
+    🔴 RISK: 50% — High risk — 1 severe flag(s): stale_data
+    💡 OPP: Low (1%) — Opportunity strength: Low (1%) — Procurement likelihood: 1%
+
+  Missing Evidence:
+    • tender_count_trailing_12mo
+    • avg_tender_value
+    • procurement_role_hiring_flag
+    • expansion_announcement_flag / project_type
+    • import_shipment_count_trailing_12mo
+    • project_status
+    • ...and 17 more
+
+────────────────────────────────────────────────────────────────────────
+  Rank #25  Lead 12 - Verified Decision Maker
+  Source: linkedin  (key: social_media)
+────────────────────────────────────────────────────────────────────────
+  ❌ NOT QUALIFIED: Failed gates: Industry "it_software" is outside the ICP qualifying industries
+
+────────────────────────────────────────────────────────────────────────
+  Rank #26  Lead 23 - Healthcare Procurement
+  Source: rfq  (key: rfq_private)
+────────────────────────────────────────────────────────────────────────
+  ❌ NOT QUALIFIED: Failed gates: Industry "healthcare" is outside the ICP qualifying industries
+
+────────────────────────────────────────────────────────────────────────
+  Rank #27  Lead 18 - Ayurvedic Manufacturer (FIT Check)
+  Source: business_directory  (key: business_directory)
+────────────────────────────────────────────────────────────────────────
+  ❌ NOT QUALIFIED: Failed gates: Industry "healthcare" is outside the ICP qualifying industries
+
+────────────────────────────────────────────────────────────────────────
+  Rank #28  Lead 19 - Homeopathy Distributor
+  Source: business_directory  (key: business_directory)
+────────────────────────────────────────────────────────────────────────
+  ❌ NOT QUALIFIED: Failed gates: Industry "healthcare" is outside the ICP qualifying industries
+
+────────────────────────────────────────────────────────────────────────
+  Rank #29  Lead 6 - Dormant Company
+  Source: trade_data  (key: unknown)
+────────────────────────────────────────────────────────────────────────
+  ❌ NOT QUALIFIED: Failed gates: Company size "micro" is below ICP minimum "small"
+
+────────────────────────────────────────────────────────────────────────
+  Rank #30  Lead 7 - Cancelled Tender
+  Source: government_tender  (key: unknown)
+────────────────────────────────────────────────────────────────────────
+  ✅ QUALIFIED: Qualified: Industry "infrastructure" matches ICP; Geography "rajasthan" matches ICP; Company size "large" meets ICP minimum
+
+  PROC  [░░░░░░░░░░░░░░░░░░░░]   1%
+  CONT  [░░░░░░░░░░░░░░░░░░░░]   0%
+  CONF  [████████████░░░░░░░░]  62%
+  FIT   [────────────────────] N/A
+  RISK  [███████████████░░░░░]  75%  ⚠ HIGH RISK
+  OPP   [░░░░░░░░░░░░░░░░░░░░]   1%  (Low)
+
+  ┌─ Lead Score ─────────────────────────────────────────┐
+  │  [░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 0  │
+  └─────────────────────────────────────────────────────┘
+  ⛔ SUPPRESSED from ranking (high risk)
+
+  Explanation: Weak Contact · High Risk · government_tender
+
+  Top Positive Signals:
+    ✅ QUAL: Passed — Qualified: Industry "infrastructure" matches ICP; Geography "rajasthan" matches ICP; Company size "large" meets ICP minimum
+    📋 PROC: 1% — Weak procurement signal — insufficient evidence to assess
+    📞 CONT: 0% — Very low contactability — minimal contact evidence
+    🔍 CONF: 62% — Medium-high confidence — source is moderately reliable
+    🎯 FIT: 0% — FIT not computable — this source type does not produce requirement tags (neutral)
+    🔴 RISK: 75% — High risk — 1 severe flag(s): project_cancelled
+    💡 OPP: Low (1%) — Opportunity strength: Low (1%) — Procurement likelihood: 1%
+    ⛔ SUPPRESSED: Risk score 75% exceeds threshold — excluded from ranking
+
+  Missing Evidence:
+    • last_tender_date (no recent tender record)
+    • tender_count_trailing_12mo
+    • avg_tender_value
+    • procurement_role_hiring_flag
+    • expansion_announcement_flag / project_type
+    • import_shipment_count_trailing_12mo
+    • ...and 18 more
+
+════════════════════════════════════════════════════════════════════════
+  RANKED LEAD LIST (Qualified, by Lead Score)
+════════════════════════════════════════════════════════════════════════
+
+  Rank  Score  Company                          OPP     Suppressed  Source
+  ────  ─────  ───────────────────────────────  ──────  ──────────  ───────────────
+     1     72  Lead 24 - Complete vs Missing F  Low     No          manual
+     2     29  Lead 30 - Mixed Contact Channel  Low     No          linkedin
+     3     29  Lead 17 - Dead Website           Low     No          google_maps
+     4     27  Lead 5 - Generic Email Only      Low     No          business_directory
+     5      6  Lead 1 - Perfect Lead (Fresh Te  Low     No          government_tender
+     6      0  Lead 13 - Multiple Independent   Low     No          mixed
+     7      0  Lead 20 - Roof Sheet Requiremen  High    No          rfq
+     8      0  Lead 4 - Factory Expansion       Low     No          company_website
+     9      0  Lead 11 - Warehouse Expansion    Low     No          news
+    10      0  Lead 8 - Funding Announcement    Low     No          news
+    11      0  Lead 22 - PEB Company            Low     No          company_website
+    12      0  Lead 14 - Single Low-Confidence  Low     No          scraped
+    13      0  Lead 10 - Low Budget Project     Low     No          government_tender
+    14      0  Lead 28 - Urgent Deadline        Low     No          government_tender
+    15      0  Lead 29 - Far Deadline           Low     No          government_tender
+    16      0  Lead 9 - High Budget Project     Medium  No          government_tender
+    17      0  Lead 15 - Recent Hiring Signal   Low     No          linkedin
+    18      0  Lead 16 - Import/Export Company  Low     No          trade_data
+    19      0  Lead 26 - High Spam Rate Source  Low     No          scraped
+    20      0  Lead 27 - Internal Complaints    Low     No          crm
+    21      0  Lead 25 - Sparse Lead (No field  Low     No          unknown
+    22      0  Lead 3 - Completed Project (Sho  Low     No          news
+    23      0  Lead 21 - Old News Article       Low     No          news
+    24      0  Lead 2 - Binary Lead (Project e  Low     No          google_maps
+    25      0  Lead 7 - Cancelled Tender        Low     ⛔ Yes     government_tender

@@ -1,0 +1,35 @@
+{
+  "opportunity_id": "00000000-0000-0000-0000-000000000001",
+  "client_id": "00000000-0000-0000-0000-000000000002",
+  "metadata": {
+    "model_version": "v1",
+    "rule_version": "v1",
+    "scored_at": "2026-09-13T10:00:00Z"
+  },
+  "qualification_status": "ELIGIBLE_FOR_SCORING",
+  "aggregates": {
+    "opportunity_quality": 0.85,
+    "evidence_confidence": 0.40
+  },
+  "priorities": {
+    "sales_priority": 0.50,
+    "research_priority": 0.90,
+    "outreach_readiness": 0.30
+  },
+  "operating_status": "INVESTIGATE_NOW",
+  "explainability": {
+    "positive_drivers": [],
+    "negative_drivers": [],
+    "unknowns": []
+  },
+  "research_tasks": [
+    {
+      "id": "00000000-0000-0000-0000-000000000003",
+      "client_id": "00000000-0000-0000-0000-000000000002",
+      "opportunity_id": "00000000-0000-0000-0000-000000000001",
+      "missing_fact": "Procurement Route",
+      "created_at": "2026-09-13T10:00:00Z",
+      "status": "PENDING"
+    }
+  ]
+}

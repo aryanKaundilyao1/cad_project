@@ -1,0 +1,31 @@
+{
+  "client": {
+    "client_id": "00000000-0000-0000-0000-000000000001",
+    "configuration_version": "v1.0"
+  },
+  "entity": {
+    "canonical_entity_id": "00000000-0000-0000-0000-000000000002",
+    "canonical_name": "Multi ICP Corp"
+  },
+  "lead_dna": {},
+  "icp_assignments": [
+    {
+      "icp_id": "00000000-0000-0000-0000-000000000011",
+      "is_primary": true,
+      "classifier_version": "v1",
+      "assigned_at": "2026-09-13T10:00:00Z"
+    },
+    {
+      "icp_id": "00000000-0000-0000-0000-000000000012",
+      "is_primary": false,
+      "classifier_version": "v1",
+      "assigned_at": "2026-09-13T10:00:00Z"
+    },
+    {
+      "icp_id": "00000000-0000-0000-0000-000000000013",
+      "is_primary": false,
+      "classifier_version": "v1",
+      "assigned_at": "2026-09-13T10:00:00Z"
+    }
+  ]
+}

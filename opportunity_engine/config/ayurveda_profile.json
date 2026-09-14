@@ -1,0 +1,30 @@
+{
+  "profile_name": "Ayurveda Export/Distribution",
+  "weights": {
+    "legitimacy": 5,
+    "market_fit": 5,
+    "product_fit": 10,
+    "operations": 5,
+    "buying_intent": 25,
+    "trade": 30,
+    "relationship": 20
+  },
+  "product_compatibility": {
+    "Ashwagandha": 1.0,
+    "Turmeric": 1.0,
+    "Rice": 0.5,
+    "Carpets": 0.0,
+    "Blankets": 0.0,
+    "Quilts": 0.0
+  },
+  "penalties": {
+    "active_competitor_contract": 0.40,
+    "hiring_freeze": 0.25,
+    "financial_distress": 0.20,
+    "no_engagement_180_days": 0.15
+  },
+  "decay": {
+    "digital_intent_lambda": 0.05,
+    "trigger_event_lambda": 0.01
+  }
+}

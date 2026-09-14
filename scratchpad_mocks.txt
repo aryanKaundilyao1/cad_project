@@ -1,0 +1,261 @@
+src/services/copilot/context/ContextPrioritizationEngine.ts:16:    // For this mock, we just truncate the array.
+src/services/copilot/context/ContextPackagingPipeline.ts:33:        total_tokens: JSON.stringify(finalPayload).length / 4 // mock count
+src/services/copilot/certification/HallucinationDetectionSuite.ts:9:    // MOCK: In a real system, we would prompt the LLM asking for the "CEO's name"
+src/services/copilot/certification/BriefingValidationSuite.ts:11:    // MOCK: In a real system, we would query the database to ensure no brief lacks citations.
+src/services/copilot/certification/ContextValidationSuite.ts:8:    // MOCK: Verify that the output of ContextPrioritizationEngine still contains 'source_id'
+src/services/copilot/certification/ConversationValidationSuite.ts:7:    // Mocking the validation
+src/services/copilot/certification/GroundingCertificationSuite.ts:11:    const mockContext = { data: { Forecast: "$100,000" } };
+src/services/copilot/certification/GroundingCertificationSuite.ts:14:    const fakeResponse = "The forecast is $900,000.";
+src/services/copilot/certification/GroundingCertificationSuite.ts:15:    const result = GroundingService.validateResponse(fakeResponse, mockContext);
+src/services/copilot/conversation/ConversationEngine.ts:30:    // (MOCK) 6. Execute LLM Call (Streaming handled separately, mocking full response here)
+src/services/copilot/conversation/ConversationEngine.ts:31:    const mockLlmResponse = "Based on the data, this opportunity is high risk due to pending approvals. [Source: ACTION_INTELLIGENCE]";
+src/services/copilot/conversation/ConversationEngine.ts:34:    ConversationValidationPipeline.validate(mockLlmResponse, contextSnapshot);
+src/services/copilot/conversation/ConversationEngine.ts:41:      content: mockLlmResponse,
+src/services/copilot/conversation/ConversationEngine.ts:47:      await CitationAwareResponseEngine.processCitations(aiMsg.id, packageId, mockLlmResponse);
+src/services/copilot/conversation/ConversationEngine.ts:50:    return mockLlmResponse;
+src/services/copilot/executive/MeetingPrepEngine.ts:9:    // 1. We mock creating a session id for this brief generation
+src/services/copilot/executive/MeetingPrepEngine.ts:10:    const mockSessionId = '00000000-0000-0000-0000-000000000001'; 
+src/services/copilot/executive/MeetingPrepEngine.ts:14:    const packageId = await ContextPackagingPipeline.buildContextPackage(opportunityId, mockSessionId, 'MEETING_PREP');
+src/services/copilot/executive/ExecutiveInsightEngine.ts:8:    // For this mock, we just filter for high priority or risk elements.
+src/services/copilot/executive/OpportunityBriefEngine.ts:8:    const mockSessionId = '00000000-0000-0000-0000-000000000002'; 
+src/services/copilot/executive/OpportunityBriefEngine.ts:9:    const packageId = await ContextPackagingPipeline.buildContextPackage(opportunityId, mockSessionId, 'GENERAL_SUMMARY');
+src/services/copilot/executive/ExecutiveBriefGenerator.ts:29:    // (MOCK) 4. Execute LLM
+src/services/copilot/executive/ExecutiveBriefGenerator.ts:30:    const mockBriefText = `# ${briefType} for ${targetAudience}
+src/services/copilot/executive/ExecutiveBriefGenerator.ts:38:    ConversationValidationPipeline.validate(mockBriefText, contextSnapshot);
+src/services/copilot/executive/ExecutiveBriefGenerator.ts:45:      payload: { markdown: mockBriefText }
+src/services/copilot/executive/ExecutiveBriefGenerator.ts:52:      await CitationAwareResponseEngine.processCitations(briefRecord.id, packageId, mockBriefText);
+src/services/intelligence/predictive/ModelDriftDetectionService.ts:6:        // Mock drift logic
+src/services/intelligence/predictive/LogisticRegressionProbabilityEngine.ts:7:        // Mocking an output for architecture validation
+src/services/intelligence/predictive/GradientBoostingProbabilityEngine.ts:7:        // Mocking an output for architecture validation
+src/services/intelligence/evidence/SignalImportanceService.ts:10:        // 1. Fetch total system baseline counts (Mocked for now, normally queries crm_outcomes)
+src/services/intelligence/evidence/SignalImportanceService.ts:44:                sample_size: m.total_occurrences,
+src/services/intelligence/evidence/OutcomeSignalLinker.ts:10:        // Mocked implementation for Phase 5C
+src/services/intelligence/calibration/CalibrationDatasetBuilder.ts:10:        // Returns a mock dataset of [RawProbability, ActualOutcome(1=Won, 0=Lost)]
+src/services/intelligence/calibration/PlattScalingService.ts:16:     * Mock training function. In production, this uses an optimization solver (like L-BFGS) 
+src/services/intelligence/calibration/PlattScalingService.ts:20:        // Return mock optimal parameters
+src/services/intelligence/calibration/CalibrationEligibilityService.ts:9:        // Mock query - in production this counts terminal records in crm_outcomes
+src/services/intelligence/calibration/IsotonicCalibrationService.ts:7:        // Find nearest breakpoint (Mock logic)
+src/services/intelligence/calibration/IsotonicCalibrationService.ts:8:        return rawScore * 0.9; // Just applying a generic 10% penalty for mock purposes
+src/services/intelligence/providers/ConnectorManager.ts:2:import { MockGovernmentTenderConnector } from "./MockGovernmentTenderConnector";
+src/services/intelligence/providers/ConnectorManager.ts:13:      case 'mock_government_tender':
+src/services/intelligence/providers/ConnectorManager.ts:14:        return new MockGovernmentTenderConnector(provider.id, provider.configuration, provider.rate_limits);
+src/services/intelligence/providers/MockGovernmentTenderConnector.ts:3:export class MockGovernmentTenderConnector extends BaseConnector {
+src/services/intelligence/providers/MockGovernmentTenderConnector.ts:7:    console.log(`[MockGovernmentTenderConnector] Authenticated with API key: ${this.config.api_key ? '***' : 'none'}`);
+src/services/intelligence/providers/MockGovernmentTenderConnector.ts:11:    // Return mock government tender data
+src/services/intelligence/providers/EventNormalizer.ts:18:      case 'mock_government_tender':
+src/services/intelligence/providers/EventNormalizer.ts:19:        return this.normalizeMockTender(rawEventId, payload, providerId);
+src/services/intelligence/providers/EventNormalizer.ts:26:  private static normalizeMockTender(eventId: string, payload: any, providerId: string): StandardExternalEvent {
+src/services/intelligence/providers/EntityResolver.ts:20:        // Send to Review Queue and create a temporary placeholder company for now
+src/services/intelligence/providers/EntityResolver.ts:21:        const tempId = await this.createNewCompany(companyName, 50); // Low confidence placeholder
+src/services/intelligence/signals/SignalDetectionEngine.ts:32:      // If the event is a known core milestone but missing a DB definition, construct a hardcoded one.
+src/services/intelligence/signals/CriticalSignalService.ts:38:      const mockMasterScore = 50; 
+src/services/intelligence/signals/CriticalSignalService.ts:40:      const priority = SignalPriorityEngine.calculatePriority(signal, mockMasterScore);
+src/services/intelligence/admin/WeightManagerService.ts:22:      // Table doesn't exist yet, return mocks
+src/services/intelligence/admin/WeightManagerService.ts:23:      return this.getMockProfiles();
+src/services/intelligence/admin/WeightManagerService.ts:46:        console.warn('DB not migrated, fake update completed.');
+src/services/intelligence/admin/WeightManagerService.ts:53:  private static getMockProfiles(): WeightProfile[] {
+src/services/intelligence/decisions/DecisionRecalculationService.ts:14:    // 1. Fetch all underlying data (mocked for blueprint)
+src/services/intelligence/decisions/validation/DecisionCertificationService.ts:11:    // 1. Fetch data (mocked for architecture blueprint)
+src/services/intelligence/decisions/validation/DecisionCertificationService.ts:28:      approval_intelligence: "CERTIFIED", // Placeholder for actual run
+src/services/intelligence/scoring/timing/TimingScoreService.ts:30:    // Extract Triggers (Placeholder mappings)
+src/services/intelligence/scoring/engagement/EngagementFeatureExtractionService.ts:11:    // For this blueprint, we simulate extraction via a mocked query or using signal_events.
+src/services/intelligence/scoring/intent/IntentScoreService.ts:23:    // We mock the aggregation for now since the tables are sparse.
+src/services/intelligence/scoring/intent/IntentScoreService.ts:33:    // Simulate extraction from activities (Placeholder for actual signal mapping logic)
+src/services/intelligence/scoring/master/VerticalWeightEngine.ts:39:    // Hardcoded fallbacks if DB isn't seeded or available
+src/services/intelligence/scoring/master/MasterOpportunityScoreEngine.ts:60:    const daysSinceLastActivity = 5; // Placeholder logic based on activities
+src/services/intelligence/scoring/IntelligenceInfrastructureService.ts:16:      // Since this is infrastructure, we mock the joins that will be implemented in Phase 3B
+src/services/intelligence/scoring/IntelligenceInfrastructureService.ts:17:      Promise.resolve({ data: {} }), // Mock Account
+src/services/intelligence/scoring/IntelligenceInfrastructureService.ts:18:      supabase.from('contacts').select('*').eq('account_id', 'mock_account_id'), // Mock Contacts
+src/services/intelligence/scoring/FeatureExtractionService.ts:16:    // 1. Fit Features (Placeholder)
+src/services/intelligence/scoring/FeatureExtractionService.ts:17:    // 2. Intent Features (Placeholder)
+src/services/intelligence/scoring/FeatureExtractionService.ts:18:    // 3. Timing Features (Placeholder)
+src/services/intelligence/scoring/FeatureExtractionService.ts:19:    // 4. Engagement Features (Placeholder)
+src/services/intelligence/decision/products/ProductScoringEngine.ts:15:     * Weights are configurable (hardcoded for this phase per requirements format, but could be fetched).
+src/services/intelligence/decision/products/ProductRecommendationEngine.ts:47:                if (signalScore > 75) reasonCodes.push('FACILITY_EXPANSION'); // Mock mapping
+src/services/intelligence/decision/products/ProductMatchEngine.ts:10:     * Hardcoded mapping for demo purposes. In production this would be loaded from a DB table.
+src/services/intelligence/approvals/ApprovalRecalculationService.ts:15:    // 1. Fetch underlying data (Mocked for architecture blueprint)
+src/services/intelligence/champions/StakeholderIntelligenceRecalculationService.ts:22:    // For this blueprint, we mock the path check. In reality, we'd query relationship_insights
+src/services/intelligence/validation/CommitteeValidationService.ts:12:    // A mock validation for blueprint execution:
+src/services/intelligence/validation/PerformanceValidationService.ts:11:    // We mock the successful validation of the graph cache architecture here.
+src/services/api.ts:20:    // Placeholder fetching logic until RPC is fully built
+src/services/execution/ExecutionWorkerFramework.ts:16:        // MOCK: Execute the task logic here based on task.task_type
+src/services/execution/HumanApprovalService.ts:23:      // MOCK: Generate the execution_tasks record here
+src/services/execution/ExecutionPermissionService.ts:6:    // MOCK: Check RBAC tables for execution authorization
+src/services/execution/ExecutionQueueService.ts:20:    // MOCK: Add retry logic, dead letter queue
+src/services/execution/governance/ExecutionRiskEngine.ts:8:    // MOCK: Evaluate risk score based on payload properties (e.g. monetary value, region change)
+src/services/execution/governance/ExecutionExplainabilityEngine.ts:6:    // MOCK: Walk up the graph: execution -> task/draft -> proposal -> action -> certified intelligence
+src/services/execution/governance/ExecutionPolicyEngine.ts:8:    // MOCK: Fetch all active policies and evaluate them against the proposal payload
+src/services/execution/governance/ExecutionPolicyEngine.ts:11:    // MOCK: If any policy is violated, record it
+src/services/execution/governance/ExecutionPolicyEngine.ts:12:    const isCompliant = true; // Hardcoded mock
+src/services/execution/governance/ExecutionPolicyEngine.ts:16:      policy_id: policies.data?.[0]?.id || 'mock-policy-id',
+src/services/execution/governance/ExecutionPolicyEngine.ts:18:      violation_details: isCompliant ? null : { reason: "Policy violation mock" }
+src/services/execution/communication/CommunicationDraftingService.ts:9:    // MOCK: Call LLM to generate text
+src/services/execution/communication/CommunicationTraceabilityEngine.ts:6:    // MOCK: Trace the action intelligence back to the signal/stakeholder nodes
+src/services/execution/operational/OperationalTraceabilityEngine.ts:6:    // MOCK: Trace the action intelligence back to the decision nodes
+src/services/execution/operational/OperationalExecutionEngine.ts:23:    // MOCK: Apply the payload to CRM state
+src/services/execution/operational/OperationalAssignmentService.ts:8:    // MOCK: assignment logic based on owner id
+src/services/execution/operational/OperationalAssignmentService.ts:9:    const assigneeId = payload.ownerId || 'mock-assignee-uuid'; 
+src/services/execution/certification/TraceabilityCertificationService.ts:10:    // MOCK: Assert graph traversal
+src/services/execution/certification/ExecutionAdversarialTestingSuite.ts:10:    // MOCK: Test queue injection
+src/services/execution/certification/GovernanceCertificationService.ts:10:    // MOCK: Test policy block
+src/services/execution/certification/HumanControlValidationService.ts:10:    // MOCK: Test approver ID spoofing
+src/services/execution/certification/ExecutionSafetyCertificationSuite.ts:10:    // MOCK: Test payload injection bypass
+src/services/execution/certification/ComplianceCertificationService.ts:10:    // MOCK: Check logs
+src/services/execution/certification/TenantIsolationCertificationService.ts:10:    // MOCK: Test cross-tenant RLS
+src/services/execution/certification/ExecutionPerformanceCertificationSuite.ts:10:    // MOCK: Test latency
+src/services/portfolio-copilot/context/ContextLinkResolver.ts:6:    // MOCK: Validates that all edges point to valid nodes
+src/services/portfolio-copilot/context/GraphContextBuilder.ts:6:    // MOCK: filter the graph based on permissions
+src/services/portfolio-copilot/context/CrossDomainPrioritizationEngine.ts:6:    // MOCK: sort by edge_weight
+src/services/portfolio-copilot/context/RelationshipTraversalService.ts:6:    // MOCK: find path from Signal -> Opportunity -> Revenue
+src/services/portfolio-copilot/context/CrossDomainCompressionEngine.ts:6:    // MOCK: Compress the graph to fit token limits
+src/services/portfolio-copilot/navigation/CrossDomainExplorer.ts:6:    // MOCK: Query portfolio_graph_edges where source = graphNodeId or target = graphNodeId
+src/services/portfolio-copilot/navigation/PortfolioNavigationWorkspace.ts:6:    // MOCK: return UI state
+src/services/portfolio-copilot/navigation/EvidenceExplorer.ts:6:    // MOCK: Resolves to the source table (e.g. signal_messages) and fetches the raw text
+src/services/portfolio-copilot/navigation/NavigationAuditService.ts:6:    // MOCK: Insert into portfolio_audit_logs
+src/services/portfolio-copilot/navigation/RelationshipExplorer.ts:6:    // MOCK: get edges specific to dependency/influence
+src/services/portfolio-copilot/certification/PortfolioCopilotCertificationService.ts:16:    // MOCK: Running all test suites
+src/services/portfolio-copilot/certification/CrossDomainHallucinationSuite.ts:6:    // MOCK: Test that LLM does not hallucinate an edge between an unrelated Action and Forecast
+src/services/portfolio-copilot/conversation/GraphNavigationEngine.ts:6:    // MOCK: returns the specific nodes/edges that the user can click to explore
+src/services/portfolio-copilot/conversation/PortfolioMemoryEngine.ts:6:    // MOCK: fetch memory for thread
+src/services/portfolio-copilot/conversation/PortfolioConversationEngine.ts:13:    // 2. Mock: stream generation
+src/services/portfolio-copilot/conversation/PortfolioConversationEngine.ts:14:    const mockResponseStream = ["Forecast confidence ", "has decreased ", "due to ", "approval delays [1]."];
+src/services/portfolio-copilot/conversation/PortfolioConversationEngine.ts:17:    PortfolioStreamingEngine.stream(mockResponseStream, packageId, PortfolioResponseValidator.validateChunk);
+src/services/portfolio-copilot/conversation/PortfolioResponseValidator.ts:7:    // MOCK: Ensure the text doesn't contain a hallucinated number
+src/services/revenue-copilot/context/PortfolioContextPrioritizationEngine.ts:7:    // MOCK: In reality, we'd sort based on severity scores.
+src/services/revenue-copilot/context/PortfolioSnapshotGenerator.ts:13:      token_usage: JSON.stringify(payload).length // Very rough mock for tokens
+src/services/revenue-copilot/certification/ExecutiveConfidenceService.ts:9:    // MOCK: Calculate a final 0-100 score
+src/services/revenue-copilot/certification/PortfolioHallucinationSuite.ts:19:      // MOCK: In reality, we'd fire the prompt into the Conversation Engine
+src/services/revenue-copilot/conversation/RevenueConversationEngine.ts:26:    // 5. MOCK: Execute LLM & Stream (with Validator implicitly inside)
+src/services/revenue-copilot/conversation/RevenueStreamingEngine.ts:7:    // MOCK: Stream logic
+src/services/revenue-copilot/conversation/RevenueStreamingEngine.ts:8:    const mockChunks = ["Forecast confidence has declined ", "because of delayed approvals."];
+src/services/revenue-copilot/conversation/RevenueStreamingEngine.ts:10:    for (const chunk of mockChunks) {
+src/services/revenue-copilot/conversation/ExecutiveResponseValidator.ts:7:    // MOCK: In reality, we'd use regex to find numbers like $5.2M and verify 
+src/services/revenue-copilot/executive/ExecutiveMonitoringService.ts:8:    const thresholdTriggered = false; // MOCK logic
+src/services/revenue-copilot/executive/ExecutiveNarrativeEngine.ts:6:    // MOCK: LLM call to build narrative based on insights
+src/services/certification/ActionIntelligenceCertificationService.ts:56:    // Playbook intelligence defaults to certified for this mock if others pass
+src/pages/Settings.tsx:261:                                <SelectValue placeholder="Select Industry" />
+src/pages/Settings.tsx:282:                                <SelectValue placeholder="Select Subcategory" />
+src/pages/Settings.tsx:300:                              placeholder="e.g. PEB Structures, SEO Agency, Hospitals & Clinics"
+src/pages/Settings.tsx:446:                                placeholder="e.g. PEB Contractor"
+src/pages/Auth.tsx:276:                              <Input type="email" placeholder="your@email.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
+src/pages/Auth.tsx:284:                                <Input type={showPassword ? "text" : "password"} placeholder="••••••••" value={password} onChange={(e) => setPassword(e.target.value)} required />
+src/pages/Auth.tsx:312:                                  <Input type="email" placeholder="your@email.com" value={otpEmail} onChange={(e) => setOtpEmail(e.target.value)} required />
+src/pages/Auth.tsx:324:                                    placeholder="123456"
+src/pages/Auth.tsx:356:                            <Input type="email" placeholder="your@email.com" value={otpEmail} onChange={(e) => setOtpEmail(e.target.value)} required />
+src/pages/Auth.tsx:364:                            <Input placeholder="123456" maxLength={6} value={otp} onChange={(e) => setOtp(e.target.value)} required className="text-center text-lg tracking-[0.5em] font-mono" />
+src/pages/Auth.tsx:387:                          placeholder={userType === "client" ? "John Doe" : "ABC Manufacturing"}
+src/pages/Auth.tsx:395:                        <Input type="email" placeholder="your@email.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
+src/pages/Auth.tsx:399:                        <Input type="tel" placeholder="+91 1234567890" value={phone} onChange={(e) => setPhone(e.target.value)} />
+src/pages/Auth.tsx:414:                          <Input placeholder="22AAAAA0000A1Z5" value={gstNumber} onChange={(e) => setGstNumber(e.target.value)} />
+src/pages/Auth.tsx:426:                            <Input placeholder="22AAAAA0000A1Z5" value={gstNumber} onChange={(e) => setGstNumber(e.target.value)} required />
+src/pages/Auth.tsx:430:                            <Input placeholder="ABCDE1234F" value={panNumber} onChange={(e) => setPanNumber(e.target.value)} required />
+src/pages/Auth.tsx:434:                            <Input placeholder="Full registered address" value={companyAddress} onChange={(e) => setCompanyAddress(e.target.value)} required />
+src/pages/Auth.tsx:438:                            <Input placeholder="e.g., Digital Marketing Agency" value={businessType} onChange={(e) => setBusinessType(e.target.value)} required />
+src/pages/Auth.tsx:442:                            <Input type="number" placeholder="5" value={yearsOperation} onChange={(e) => setYearsOperation(e.target.value)} />
+src/pages/Auth.tsx:457:                            placeholder="123456"
+src/pages/CRM.tsx:58:        // A placeholder for Export Center. Can be expanded later.
+src/pages/BookDemo.tsx:134:                    <Input id="full_name" placeholder="Aryan Sharma" value={form.full_name} onChange={handleChange} />
+src/pages/BookDemo.tsx:138:                    <Input id="company_name" placeholder="Acme Corp" value={form.company_name} onChange={handleChange} />
+src/pages/BookDemo.tsx:145:                    <Input id="email" type="email" placeholder="you@company.com" value={form.email} onChange={handleChange} />
+src/pages/BookDemo.tsx:149:                    <Input id="phone" type="tel" placeholder="+91 9999999999" value={form.phone} onChange={handleChange} />
+src/pages/BookDemo.tsx:155:                  <Input id="location" placeholder="Delhi, Mumbai, etc." value={form.location} onChange={handleChange} />
+src/pages/BookDemo.tsx:160:                  <Input id="gst_number" placeholder="22AAAAA0000A1Z5" value={form.gst_number} onChange={handleChange} />
+src/pages/BookDemo.tsx:166:                    <Input id="portfolio_url" placeholder="https://yourcompany.com" value={form.portfolio_url} onChange={handleChange} />
+src/pages/BookDemo.tsx:176:                    placeholder={role === "client" ? "e.g. We manage civil infra projects in North India..." : "e.g. We are a fit-out contractor specialising in commercial interiors..."}
+src/pages/Terms.tsx:28:                <li>Fake, misleading, or spam requirements are strictly prohibited and will result in account termination.</li>
+src/pages/tasks/TasksPage.tsx:27:                placeholder="Search tasks..." 
+src/pages/Tenders.tsx:249:                      placeholder="Search leads..." 
+src/pages/Tenders.tsx:260:                      placeholder="Location..." 
+src/pages/Tenders.tsx:268:                    <SelectTrigger className="w-[130px] h-9"><SelectValue placeholder="Budget" /></SelectTrigger>
+src/pages/Tenders.tsx:282:                    <SelectTrigger className="w-[130px] h-9"><SelectValue placeholder="Per page" /></SelectTrigger>
+src/pages/AdminEvidenceExplorer.tsx:37:                            <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Sample Size</th>
+src/pages/opportunities/OpportunitiesPage.tsx:126:                placeholder="Search..." 
+src/pages/opportunities/PipelineListPage.tsx:86:                placeholder="Search pipeline..." 
+src/pages/Dashboard.tsx:871:                placeholder="Share any details about your experience with this lead..."
+src/pages/AdminArchetypeRegistry.tsx:88:                    placeholder="e.g. Warehouse Developer" 
+src/pages/AdminArchetypeRegistry.tsx:96:                    placeholder="e.g. Logistics, Manufacturing" 
+src/pages/projects/Projects.tsx:204:                        <Input type="email" value={newProject.contractorEmail} onChange={e => setNewProject({...newProject, contractorEmail: e.target.value})} placeholder="Invite via email..." className="bg-white/5 border-white/10" />
+src/pages/projects/ProjectRoom.tsx:386:                              placeholder="e.g. 50000" 
+src/pages/projects/ProjectRoom.tsx:396:                              placeholder="e.g. Advance Payment for Steel" 
+src/pages/Contact.tsx:46:                          <Input id="firstName" placeholder="John" className="bg-white/[0.03] border-white/[0.08]" />
+src/pages/Contact.tsx:50:                          <Input id="lastName" placeholder="Doe" className="bg-white/[0.03] border-white/[0.08]" />
+src/pages/Contact.tsx:55:                        <Input id="email" type="email" placeholder="john@example.com" className="bg-white/[0.03] border-white/[0.08]" />
+src/pages/Contact.tsx:59:                        <Input id="phone" type="tel" placeholder="+91 1234567890" className="bg-white/[0.03] border-white/[0.08]" />
+src/pages/Contact.tsx:63:                        <Input id="subject" placeholder="How can we help?" className="bg-white/[0.03] border-white/[0.08]" />
+src/pages/Contact.tsx:69:                          placeholder="Tell us more about your inquiry..."
+src/pages/contacts/ContactListPage.tsx:28:                placeholder="Search contacts..." 
+src/pages/AdminTimingExplorer.tsx:100:              <SelectTrigger className="w-[250px]"><SelectValue placeholder="Select Company" /></SelectTrigger>
+src/pages/AdminTimingExplorer.tsx:104:              <SelectTrigger className="w-[250px]"><SelectValue placeholder="Select Product" /></SelectTrigger>
+src/pages/AdminDataAcquisition.tsx:740:                      placeholder="Paste your API key here" 
+src/pages/AdminDataAcquisition.tsx:748:                      <Input placeholder="e.g. Warehouses" value={searchParams.keyword} onChange={(e) => setSearchParams({...searchParams, keyword: e.target.value})} />
+src/pages/AdminDataAcquisition.tsx:752:                      <Input placeholder="e.g. Delhi NCR" value={searchParams.location} onChange={(e) => setSearchParams({...searchParams, location: e.target.value})} />
+src/pages/AdminDataAcquisition.tsx:758:                      <Input type="number" placeholder="20" value={searchParams.limit} onChange={(e) => setSearchParams({...searchParams, limit: e.target.value})} />
+src/pages/AdminDataAcquisition.tsx:762:                      <Input placeholder="e.g. Logistics" value={searchParams.industry} onChange={(e) => setSearchParams({...searchParams, industry: e.target.value})} />
+src/pages/AdminDataAcquisition.tsx:784:                    (Currently using mock data for safe testing).
+src/pages/AdminRecommendationExplainabilityViewer.tsx:7:    // This dashboard acts as a placeholder/viewer for those text blobs.
+src/pages/AdminCalibrationDashboard.tsx:45:                            <p className="text-sm text-gray-500">Sample Size Trained</p>
+src/pages/AdminCalibrationDashboard.tsx:46:                            <p className="font-medium text-gray-900">{activeModel.sample_size.toLocaleString()}</p>
+src/pages/AutomationAnalytics.tsx:12:      // Mock data since we can't do complex aggregation safely without a view or rpc
+src/pages/SavedLeads.tsx:108:                placeholder="Search saved companies..." 
+src/pages/SignalExplorer.tsx:72:                placeholder="Search signals by type, source, or title..."
+src/pages/VendorPortfolio.tsx:87:                placeholder="Project Title"
+src/pages/VendorPortfolio.tsx:94:                placeholder="Project Description"
+src/pages/VendorPortfolio.tsx:100:                placeholder="Project Value (₹)"
+src/pages/VendorPortfolio.tsx:107:                placeholder="Project Location"
+src/pages/accounts/AccountListPage.tsx:28:                placeholder="Search accounts..." 
+src/pages/accounts/AccountDetail.tsx:41:        console.warn("Could not fetch company, proceeding with mock for Intelligence Demo");
+src/pages/accounts/AccountDetail.tsx:42:        setCompany({ id: 'mock', company_name: 'ABC Manufacturing', industry: 'Industrial', location: 'New York, NY' });
+src/pages/profile.tsx:77:                placeholder="Company Name"
+src/pages/profile.tsx:82:                placeholder="Contact Person Name"
+src/pages/profile.tsx:87:                placeholder="Phone Number"
+src/pages/profile.tsx:92:                placeholder="Company Description"
+src/pages/profile.tsx:101:                  placeholder="https://yourcompany.com"
+src/pages/AdminAliasManager.tsx:113:                    placeholder="e.g. ABC Metalworks" 
+src/pages/AdminAliasManager.tsx:121:                    placeholder="UUID of canonical company" 
+src/pages/AdminAliasManager.tsx:147:                      placeholder="Search aliases..." 
+src/pages/AdminProductRegistry.tsx:93:                    placeholder="e.g. PEB Warehouse" 
+src/pages/AdminProductRegistry.tsx:101:                    placeholder="e.g. Construction, Software" 
+src/pages/AdminProductRegistry.tsx:109:                    placeholder="e.g. Manufacturing" 
+src/pages/Onboarding.tsx:176:                    placeholder="e.g. Acme Industries Pvt. Ltd."
+src/pages/Onboarding.tsx:299:                    placeholder="Describe the services or products your company provides...&#10;&#10;e.g. We provide PEB steel structures for warehouse construction, industrial sheds, and factory buildings across India."
+src/pages/AdminSignalExplorer.tsx:86:                placeholder="Filter by industry..." 
+src/pages/AdminSignalExplorer.tsx:94:                placeholder="Filter by category..." 
+src/pages/AdminFitExplorer.tsx:100:              <SelectTrigger className="w-[250px]"><SelectValue placeholder="Select Company" /></SelectTrigger>
+src/pages/AdminFitExplorer.tsx:104:              <SelectTrigger className="w-[250px]"><SelectValue placeholder="Select Product" /></SelectTrigger>
+src/pages/AdminProviderRegistry.tsx:60:  const handleCreateMockProvider = async () => {
+src/pages/AdminProviderRegistry.tsx:64:        provider_type: 'mock_government_tender',
+src/pages/AdminProviderRegistry.tsx:71:      toast({ title: "Success", description: "Mock Provider created." });
+src/pages/AdminProviderRegistry.tsx:94:            <Button onClick={handleCreateMockProvider}>
+src/pages/AdminProviderRegistry.tsx:95:              <Plus className="mr-2 h-4 w-4" /> Add Mock Provider
+src/pages/AdminProviderRegistry.tsx:124:                      No providers registered. Click "Add Mock Provider" to begin.
+src/pages/CompanyProfile.tsx:114:                      src={project.image_url || "/placeholder.jpg"}
+src/pages/Messages.tsx:606:                placeholder="Search chats or members..."
+src/pages/Messages.tsx:814:                                <span>Voice Note Mock (Audio Playback Ready)</span>
+src/pages/Messages.tsx:918:                        placeholder={attachedFile ? `File Selected: ${attachedFile.name}` : "Type a message..."}
+src/pages/Messages.tsx:1025:                placeholder="E.g., John, Salesforce, SaaS, Health Niche..."
+src/pages/Messages.tsx:1070:              <Input placeholder="E.g., Q3 Sales Pipeline" value={groupName} onChange={(e) => setGroupName(e.target.value)} className="bg-white/5 border-white/10" />
+src/pages/Messages.tsx:1121:      {/* ── CALLING STATUS MOCK OVERLAY ── */}
+src/pages/AdminDealExplainabilityDashboard.tsx:5:    // Similar to other explainability viewers, this serves as a placeholder 
+src/pages/PostProject.tsx:278:                    <Input id="title" value={title} onChange={e => setTitle(e.target.value)} placeholder="e.g., SaaS Platform Development Lead" required />
+src/pages/PostProject.tsx:282:                    <Textarea id="description" value={description} onChange={e => setDescription(e.target.value)} placeholder="Detailed requirements or opportunity description..." rows={4} />
+src/pages/PostProject.tsx:287:                      <Input id="location" value={location} onChange={e => setLocation(e.target.value)} placeholder="City, State or Remote" required />
+src/pages/PostProject.tsx:292:                        <SelectTrigger><SelectValue placeholder="Select industry" /></SelectTrigger>
+src/pages/PostProject.tsx:305:                      <Input id="customCategory" value={customCategory} onChange={e => setCustomCategory(e.target.value)} placeholder="Enter industry" required />
+src/pages/PostProject.tsx:312:                        <SelectValue placeholder="Select lead type" />
+src/pages/PostProject.tsx:329:                        <SelectTrigger><SelectValue placeholder="Select urgency" /></SelectTrigger>
+src/pages/PostProject.tsx:340:                      <Input id="timeline" value={timeline} onChange={e => setTimeline(e.target.value)} placeholder="e.g., Q3 2026" />
+src/pages/PostProject.tsx:346:                      <Input id="budgetMin" type="text" value={budgetMin} onChange={e => setBudgetMin(e.target.value)} placeholder="e.g., 50 Lakh" />
+src/pages/PostProject.tsx:350:                      <Input id="budgetMax" type="text" value={budgetMax} onChange={e => setBudgetMax(e.target.value)} placeholder="e.g., 2 Cr" />
+src/pages/PostProject.tsx:367:                        <SelectTrigger><SelectValue placeholder="Select company size" /></SelectTrigger>
+src/pages/PostProject.tsx:378:                        <SelectTrigger><SelectValue placeholder="How did you find this lead?" /></SelectTrigger>
+src/pages/PostProject.tsx:390:                    <Input id="website" type="text" value={website} onChange={e => setWebsite(e.target.value)} placeholder="e.g. www.example.com" />
+src/pages/PostProject.tsx:396:                      <Input id="decisionMakerName" value={decisionMakerName} onChange={e => setDecisionMakerName(e.target.value)} placeholder="e.g., John Smith" />
+src/pages/PostProject.tsx:400:                      <Input id="decisionMakerTitle" value={decisionMakerTitle} onChange={e => setDecisionMakerTitle(e.target.value)} placeholder="e.g., VP of Sales" />
+src/pages/PostProject.tsx:406:                    <Textarea id="technicalNotes" value={technicalNotes} onChange={e => setTechnicalNotes(e.target.value)} placeholder="Any additional context, requirements, or specifications..." rows={3} />
+src/pages/AdminSignalMapping.tsx:138:                      <SelectValue placeholder="Select a signal..." />
+src/pages/AdminIntentExplorer.tsx:100:              <SelectTrigger className="w-[250px]"><SelectValue placeholder="Select Company" /></SelectTrigger>
+src/pages/AdminIntentExplorer.tsx:104:              <SelectTrigger className="w-[250px]"><SelectValue placeholder="Select Product" /></SelectTrigger>
+src/pages/AdminEngagementExplorer.tsx:100:              <SelectTrigger className="w-[250px]"><SelectValue placeholder="Select Company" /></SelectTrigger>
+src/pages/AdminEngagementExplorer.tsx:104:              <SelectTrigger className="w-[250px]"><SelectValue placeholder="Select Product" /></SelectTrigger>
+src/pages/IntelligenceDashboard.tsx:46:    // Mock signal volume mapping for demo
+src/pages/IntelligenceDashboard.tsx:57:      counts[ind] = (counts[ind] || 0) + Math.floor(Math.random() * 5) + 1; // mock signal density

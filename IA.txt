@@ -1,0 +1,212 @@
+
+JAS CONNECT
+Website Content & Information Architecture
+Delivery 1 of 2 — Home Page, About Page, Site Structure
+Prepared for internal review and frontend implementation.
+Remaining pages (Features, Marketplace, Opportunity Intelligence, Growth Services, FAQ, Microcopy) and the closing audit/checklist sections to follow as Delivery 2.
+
+Contents
+1.  Home Page — Full Content
+2.  About Page — Full Content
+3.  Site Structure — Page Hierarchy, Navigation, Footer
+RATIONALE — A working table of contents (auto-updating field) can be inserted once headings are finalized in the live draft; this static list is provided for review purposes.
+
+Part 1 — Home Page
+Hero
+HEADLINE
+Businesses spend more time searching for opportunities than pursuing them.
+SUBHEADING
+JAS CONNECT organizes fragmented business information into researched, qualified opportunities — so your team spends its time selling, not searching.
+PRIMARY CTA
+Talk to us →
+SECONDARY CTA
+See how it works →
+RATIONALE — The hero leads with the problem, not the product, because the problem is more defensible than any product adjective. This mirrors how Stripe and Linear open — a plain, specific statement of pain rather than a claim about the company.
+The Problem
+Most businesses don't lack opportunities. They lack organized access to them.
+Opportunities exist across government tenders, company websites, trade directories, professional networks, and dozens of other public sources. They are scattered, inconsistently formatted, and time-consuming to verify. Sales and business development teams end up doing research work instead of business development work.
+This isn't a data problem. It's an organization problem.
+The Solution
+JAS CONNECT doesn't sell you access to secret data. The data you need already exists publicly — the difficulty has always been finding it, verifying it, and knowing which of it is actually worth pursuing.
+We research, structure, and qualify business opportunities across industries, then deliver them into a workspace built around one question: is this worth your team's time?
+How It Works
+1. You tell us what you're looking for.
+Your industry, your products, your target market. This defines what "relevant" means for your business specifically.
+2. We research and structure opportunities.
+Using industry-specific templates, we collect and organize company and opportunity information from multiple public sources.
+3. Opportunities are qualified, not just listed.
+Each opportunity is evaluated on evidence — company quality, fit, and signals of buying intent — not included simply because it exists.
+4. You work from your own opportunity workspace.
+A dashboard built for your business, with the opportunities relevant to your products, organized and ready to act on.
+RATIONALE — This section deliberately avoids the phrase "scoring formula" and does not expose the evidence-weighting model, consistent with the platform's evidence-hierarchy architecture. It communicates rigor without disclosing methodology — the same restraint 6sense and Gartner use when describing their qualification process publicly.
+Opportunity Intelligence
+At the center of JAS CONNECT is Opportunity Intelligence — the discipline of turning raw, public business information into something a sales team can act on with confidence.
+	•	Research — companies and opportunities are identified across multiple public sources.
+	•	Structuring — information is organized against industry-specific templates, so every record follows a consistent, verifiable format.
+	•	Qualification — opportunities are evaluated on evidence: company quality, market fit, product fit, and signals of intent.
+	•	Delivery — qualified opportunities appear directly in your workspace, organized by relevance to your business.
+Learn more on the Opportunity Intelligence page →
+Marketplace
+Beyond opportunity research, JAS CONNECT is building toward a marketplace where verified businesses can be discovered, not just discover others.
+	•	Verified business profiles
+	•	Product and service listings
+	•	Buyer-side discovery and visibility
+	•	Premium placement for qualifying businesses
+The Marketplace is part of our long-term ecosystem and is detailed on its own page →
+Growth Services
+Opportunities are only useful if a business can act on them. Alongside the platform, JAS CONNECT offers complementary growth services for businesses that want execution support, not just intelligence.
+	•	Content and branding
+	•	SEO and visibility
+	•	Dream100 outreach and lead research
+	•	Appointment setting and marketing execution
+	•	Automation and AI-assisted workflows
+These are complementary services, offered separately from the core platform. Details on the Growth Services page →
+Industries
+JAS CONNECT is built on one platform architecture with industry-specific modules — meaning the platform adapts to how your industry actually works, without becoming a different product per client.
+	•	Ayurveda & Wellness
+	•	Construction & Infrastructure
+	•	Procurement & Government Contracts
+	•	Import / Export & Trade
+	•	Manufacturing
+	•	[Additional industries — placeholder, confirm final public list before launch]
+RATIONALE — Only industries with production-ready templates should be listed publicly at launch. Listing a module before its template and validation rules are complete risks a mismatch between marketing and product — flag for review before go-live.
+Future Vision
+JAS CONNECT is designed to grow. Opportunity Intelligence is the foundation. The Marketplace and Growth Services extend it. Over time, AI-assisted recommendations will help clients act on opportunities faster — built on the same evidence-based approach from day one, not bolted on afterward.
+FAQs (Home Page Preview)
+Is this a lead database?
+No. A lead database gives you access to raw records. JAS CONNECT researches, structures, and qualifies opportunities specifically for your business before they reach you.
+Where does the data come from?
+Public sources — company websites, government procurement records, trade directories, professional networks, and similar channels. Our value is in the research, verification, and qualification, not in owning exclusive data.
+Does the source of a lead affect its ranking?
+No. Two companies found through different sources are evaluated on the same evidence — company quality, fit, and intent — not on where they were found.
+Full FAQ available on the FAQ page →
+Footer CTA
+Ready to spend less time searching?
+Talk to us →
+
+Part 2 — About Page
+Why JAS CONNECT Exists
+We spent time inside businesses that were good at what they made or sold, but slow at finding who to sell it to. Not because the opportunities didn't exist — they did, publicly, in plain sight — but because finding, verifying, and prioritizing them took more time than most teams could justify spending.
+JAS CONNECT exists to close that gap.
+The Problem We Observed
+Every industry we looked at had the same pattern. Opportunities were out there — in tenders, directories, company records, industry networks — but scattered across sources that didn't talk to each other, in formats that didn't match, at a volume no small team could manually review.
+The result wasn't a shortage of opportunity. It was a shortage of usable structure around it.
+Our Philosophy
+Our value is not owning data. Our value is transforming fragmented business information into organized, qualified, and actionable business opportunities.
+We don't claim exclusive access to anything. The information we work with is publicly available to anyone willing to spend the time finding it. What we've built is the discipline to do that research consistently, structure it against a shared standard, and evaluate it on evidence rather than convenience.
+How We Think Differently
+	•	We separate research from ranking. Research is about completeness. Ranking is about evidence. Keeping them separate keeps both honest.
+	•	We don't let source determine value. A company found on Google Maps and a company found through a government procurement record are judged on the same criteria — not on where they came from.
+	•	We build one platform, not one platform per client. Different industries activate different modules on a shared data model, so the platform stays consistent as it scales.
+	•	We don't score without evidence. If we can't support a ranking with something observable — company quality, fit, intent signals, verification — we don't manufacture confidence we don't have.
+Why We Built Opportunity Intelligence
+Most tools in this space are one of two things: a database that hands you raw records, or a CRM that organizes records you already have. Neither does the work in between — deciding which records are worth your time in the first place.
+Opportunity Intelligence is that middle layer. It's the research, structuring, and qualification work that turns a list of companies into a ranked set of opportunities worth pursuing.
+Why Public Data Is Still Valuable When Researched Properly
+It's a fair question: if the data is public, why does structuring it matter?
+Because public availability and usability are not the same thing. A tender notice, a company website, and a directory listing are each formatted differently, updated on different schedules, and require different verification steps. Turning that into something a sales team can trust and act on is real work — and it's the work most businesses don't have time to do themselves.
+Marketplace Vision
+Opportunity Intelligence helps businesses find opportunities. The Marketplace is the other half — helping verified businesses be found. Over time, this becomes a two-sided system: businesses discovering opportunities on one side, and businesses building visible, verified profiles on the other.
+Growth Ecosystem Vision
+Finding the right opportunity is necessary but not sufficient — a business still has to act on it well. Our growth services (content, SEO, outreach, appointment setting, automation) exist to support that execution, as complementary services alongside the core platform, not as a replacement for it.
+Company Values
+Evidence over assumption
+We rank on what we can observe and verify, not on what's convenient to claim.
+Structure over volume
+A smaller set of well-qualified opportunities is worth more than a large set of unverified ones.
+Honesty over exaggeration
+We don't inflate numbers, fabricate testimonials, or claim exclusivity we don't have.
+Consistency over customization-for-its-own-sake
+One architecture, extended by modules — not a different system rebuilt for every client.
+Long-Term Roadmap
+	•	Foundation — upload workflow, template system, mapping engine, structured intelligence storage (current stage).
+	•	Qualification — evidence-based scoring built on the structured data foundation.
+	•	Marketplace — verified business profiles and buyer-side discovery.
+	•	Growth Services — expansion of complementary execution services.
+	•	AI-Assisted Recommendations — built on the same evidence approach established from day one.
+RATIONALE — The roadmap is written in capability order, not date order, deliberately. Committing to public dates before scoring is complete risks a credibility gap if timelines slip — sequence communicates seriousness without over-promising.
+Founder Message
+[Placeholder — to be written by founder directly. Should be short, specific, and grounded in a real observation from building the company, not a generic "we're passionate about helping businesses grow" statement. Recommend 150–250 words, first person, one concrete anecdote.]
+Our Principles
+	•	We say what we are, and we say what we are not.
+	•	We don't use a number we can't stand behind.
+	•	We build one system that extends, not many systems that duplicate.
+	•	If we can't defend a claim, we don't make it.
+
+Part 3 — Site Structure
+Page Hierarchy
+Level
+Page
+Notes
+1
+Home
+Primary entry point; summarizes all pillars
+1
+About
+Philosophy, roadmap, founder message
+1
+Opportunity Intelligence
+Flagship product page
+1
+Marketplace
+Second pillar; long-term vision
+1
+Growth Services
+Complementary services
+1
+Industries
+Hub page linking to module-specific detail
+2
+Industries / [Module]
+One page per active industry module
+1
+Features
+Outcome-based feature summary
+1
+Pricing / Subscriptions
+To be finalized — see Delivery 2 gap notes
+1
+FAQ
+Full FAQ across all topics
+1
+Contact / Talk to us
+Lead-in to sales conversation
+2
+Legal / Privacy Policy
+Footer-linked
+2
+Legal / Terms of Service
+Footer-linked
+RATIONALE — Pricing/Subscriptions is listed but intentionally left unresolved here — it depends on commercial packaging decisions not covered in the architecture document. Flagged for Delivery 2.
+Navigation Structure (Primary Nav)
+Home   |   Opportunity Intelligence   |   Marketplace   |   Growth Services   |   Industries   |   About   |   [Talk to us — button, right-aligned]
+Rationale: Opportunity Intelligence is placed first among product items because it is the flagship offering per the source document; Marketplace and Growth Services follow as the second and third pillars of the ecosystem in the order they mature commercially.
+Footer Structure
+Column
+Links
+Platform
+Opportunity Intelligence · Marketplace · Features · Industries
+Company
+About · Founder Message · Careers [if applicable] · Contact
+Services
+Growth Services · Content & SEO · Outreach · Automation
+Resources
+FAQ · [Blog/Insights — future] · [Case Studies — future, real only]
+Legal
+Privacy Policy · Terms of Service · [Data Sourcing Statement — recommended addition]
+RATIONALE — A 'Data Sourcing Statement' link is recommended in the footer given how central the public-data-not-exclusive-data position is to the company's credibility. Making it a standing, linkable page (not just FAQ copy) signals confidence rather than defensiveness.
+SEO Page Hierarchy
+	•	/  — Home (primary keyword target: opportunity intelligence platform)
+	•	/opportunity-intelligence — flagship page, highest content investment
+	•	/marketplace — secondary pillar page
+	•	/growth-services — tertiary pillar page
+	•	/industries — hub page, internal links to all module pages
+	•	/industries/[module-name] — one indexable page per active module (e.g. /industries/construction)
+	•	/about — brand and trust signals; strong candidate for "about [company]" and branded search
+	•	/features — supports mid-funnel comparison search intent
+	•	/faq — supports long-tail question-based search intent
+RATIONALE — Industry module pages are the highest-leverage SEO surface area available to the platform, since they can target industry-plus-intent search terms directly (e.g. "construction tender opportunities platform"). Recommend prioritizing template completion for modules in this order when planning public launch, matched to which modules have production-ready scoring inputs first.
+
+End of Delivery 1
+This covers Home Page content, About Page content, and full site structure (hierarchy, navigation, footer, SEO hierarchy).
+Delivery 2 will cover: Features, Marketplace, Opportunity Intelligence (detail page), Growth Services, FAQ, and full website microcopy — followed by the closing sections: future pages needed before public launch, missing sections currently absent from the site, positioning inconsistencies identified, and the frontend implementation checklist.

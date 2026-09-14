@@ -1,0 +1,700 @@
+JAS CONNECT
+Opportunity Intelligence Engine
+Technical Specification & Scientific Validation Whitepaper
+Prepared as an independent multidisciplinary technical review
+Version 1.0 — Pre-Data Phase (No Historical Outcomes Logged)
+Document status: Rule-based specification, pending empirical validation
+
+Evidence Hierarchy — Reading Key
+Every claim, metric, and weight in this document is tagged with one of four confidence levels. This tagging is load-bearing: it is what makes the document scientifically honest rather than aspirational.
+Tag
+Meaning
+Bar for use
+[PROVEN]
+Established in peer-reviewed statistics, ML theory, or decision science literature; not industry-specific opinion.
+Can be cited to a named method (e.g. logistic regression, Bayesian updating, precision/recall).
+[INDUSTRY BEST PRACTICE]
+Widely adopted across enterprise RevOps / sales intelligence platforms (Gartner-tracked category norms), but not a law of statistics.
+Multiple independent commercial platforms (Section 12) implement a materially similar approach.
+[EXPERT HEURISTIC]
+A reasonable starting rule from procurement/sales-ops experience, not derived from data or literature.
+Defensible as a prior, not defensible as a fact. Must be replaced once data exists.
+[HYPOTHESIS]
+A structural assumption this engine currently depends on that has no supporting evidence yet.
+Must never be presented to a client as fact. Tracked explicitly for future testing.
+Governing rule (per project instruction): no formula, coefficient, or weight in this document is invented. Where a specific numeric value would normally appear and cannot be scientifically justified today, the text explicitly states: "Requires empirical validation using historical outcome data."
+
+Table of Contents
+
+
+ 
+1. Prediction Target Definition
+Before any scoring metric can be justified, the engine must state — in falsifiable terms — what it is trying to predict. Every subsequent formula in this document exists to serve this definition.
+1.1 Why a prediction target must be defined first
+[PROVEN]  In supervised learning and decision science, a scoring function is only meaningful relative to a labeled outcome it is trained or evaluated against (Domingos, "A Few Useful Things to Know About Machine Learning", 2012). A score with no defined target is not a prediction — it is an opinion encoded as a number.
+1.2 Candidate targets for JAS CONNECT
+Candidate target Y
+Definition
+Time horizon
+Suitability
+Reply obtained
+Contact responds to outreach (any sentiment)
+0–14 days
+Weak signal — easy to achieve, low commercial value
+Meeting booked
+A qualified call/meeting is scheduled
+0–30 days
+Recommended primary label — see 1.3
+Quote requested
+Prospect requests pricing/quotation
+0–60 days
+Strong signal, lower frequency, good secondary label
+Deal closed / order placed
+Revenue-generating transaction occurs
+30–180+ days
+Ultimate business objective, but sparse and slow — poor training label alone
+1.3 Recommended target definition
+[EXPERT HEURISTIC]  Define the primary label Y as a binary outcome: Y = 1 if a qualified meeting is booked within 30 days of first outreach touch, else Y = 0. Use "quote requested" and "deal closed" as secondary labels for a later multi-stage model (Section 9).
+Rationale: "meeting booked" is (a) frequent enough to accumulate a usable sample size faster than closed deals, (b) unambiguous to log (binary event with a timestamp), and (c) a reasonable proxy for buying intent in B2B sales-cycles that often run 30–180+ days. This mirrors the standard RevOps practice of using Marketing/Sales-Qualified-Lead conversion as an intermediate label when final revenue outcomes are too sparse for early-stage modelling.
+[HYPOTHESIS]  That "meeting booked within 30 days" is sufficiently correlated with eventual deal closure to be a useful proxy label for THIS specific business (industrial B2B, long cycles, relationship-driven). This must be tested once enough closed-deal data exists — see Section 6.4.
+1.4 Formal specification
+Let:   i = an opportunity (a company/contact/RFQ record)   X_i = feature vector for opportunity i (see Section 2)   Y_i ∈ {0,1} = qualified-meeting-booked-within-30-days indicator   f(X_i) = score assigned by the engine, f: X → [0,1] or [0,100]  Goal: f(X_i) should be monotonically associated with P(Y_i = 1 | X_i) i.e. higher-scored opportunities should convert at a higher observed rate than lower-scored opportunities, when measured historically.
+[PROVEN]  This is the standard formal definition of a 'ranking model' calibration goal in information retrieval and lead-scoring literature — the score need not equal the true probability, but must preserve rank-order of true conversion likelihood (this is precisely what tools like AUC-ROC and lift/gain charts measure — Section 6).
+1.5 What the target definition rules out
+	•	The score is NOT a prediction of company size, financial health, or general "quality" — those are inputs, not the target.
+	•	The score is NOT a probability in the strict Bayesian sense until calibrated against real outcomes (Section 8). Until then, it is only a ranking, not a probability.
+	•	The score does NOT claim causal knowledge of why a company will buy — only correlational association between observable signals and past conversion, once data exists.
+
+2. Mathematical Definition of Scoring Metrics
+Each metric below follows the required structure: Definition → Required inputs → Mathematical formulation → Required data → Validation method → Limitations.
+2.1 Composite Opportunity Score (COS) — top-level structure
+[INDUSTRY BEST PRACTICE]  Weighted linear combination of sub-scores is the dominant architecture in commercial lead-scoring platforms (Salesforce Einstein, HubSpot, 6sense — see Section 12 benchmark) prior to those platforms layering in ML. It is chosen for interpretability, not because it is statistically optimal.
+COS_i = Σ (w_k · S_k,i)   for k = 1..K sub-scores  subject to: Σ w_k = 1,  0 ≤ w_k ≤ 1,  0 ≤ S_k,i ≤ 100  where:   S_k,i = normalized score of sub-metric k for opportunity i   w_k   = weight of sub-metric k
+	•	Required inputs: a set of normalized sub-scores S_k (Sections 2.2–2.7) and weights w_k (Section 4).
+	•	Required data: none beyond what each sub-score independently requires.
+	•	Validation method: Section 6 — rank-correlation of COS against realized Y outcomes (Spearman's ρ, AUC, lift).
+[HYPOTHESIS]  That a LINEAR combination is adequate. Linear models assume sub-scores contribute independently and additively. If interactions exist (e.g. 'high budget signal' only matters when 'active tender' is also true), a linear model will systematically underperform an interaction-aware model such as a decision tree or gradient-boosted model (Section 13). This cannot be confirmed or refuted without outcome data.
+2.2 Firmographic Fit Score (S_fit)
+[EXPERT HEURISTIC]  Measures how closely a company's observable attributes match the client's stated Ideal Customer Profile (ICP).
+Definition: degree of match between opportunity attributes (industry code, employee count band, revenue band, geography, import/export activity) and client-defined ICP criteria.
+S_fit,i = (1/N) · Σ_j  match(attr_j,i, ICP_j) · imp_j  where:   attr_j,i = attribute j of opportunity i (e.g. NAICS/HS code, geography)   ICP_j    = client-specified acceptable range/value for attribute j   match()  = 1 if within range, 0 if not (or partial match, see limitation)   imp_j    = client-assigned importance of attribute j (elicited, not invented)   N        = normalizing constant so S_fit ∈ [0,100]
+	•	Required inputs: client ICP definition (elicited directly from client during onboarding, NOT invented by the engine).
+	•	Required data: firmographic attributes per opportunity — industry classification, employee/revenue band, geography, trade-activity flags.
+	•	Validation method: correlate S_fit with realized Y within a single client's outcome history once ≥30–50 outcomes exist (see Section 6.2 for minimum sample size justification).
+	•	Limitations: binary match() is a simplification — a company "200 employees" vs an ICP of "50–500" is a full match, but distance-to-boundary information is discarded. A continuous distance-based function would be more information-preserving but requires calibration data to avoid arbitrary curve shapes.
+2.3 Intent / Trigger-Event Score (S_intent)
+[INDUSTRY BEST PRACTICE]  "Trigger event" or "intent signal" scoring is standard in commercial sales intelligence (Gartner's 2023–2024 Sales Intelligence Market Guide identifies intent data as a primary differentiator among vendors like 6sense, ZoomInfo, Bombora).
+Definition: strength of evidence that a company has an active, time-bound need (e.g. published tender, expansion announcement, hiring surge in relevant function, active RFQ).
+S_intent,i = max_m ( strength_m · recency_decay(t_m) )   over all detected trigger events m  recency_decay(t) = exp(−λ · t)     [PROVEN functional form — exponential decay]  where:   strength_m = base severity of trigger type m (e.g. active tender > hiring post)   t          = days since the event was observed   λ          = decay rate constant
+[PROVEN]  Exponential decay is the standard, well-justified functional form for "information value decays over time" in survival analysis and information-retrieval recency weighting — the FORM of the curve is defensible.
+[HYPOTHESIS]  The specific value of λ (how fast a signal decays) and the specific strength_m values per trigger type. Requires empirical validation using historical outcome data — specifically, survival-analysis of time-to-conversion conditioned on trigger type, once sufficient closed/lost outcomes exist.
+	•	Required inputs: catalog of trigger-event types relevant to the client's industry (built manually per vertical, e.g. "Ashwagandha export ban" is irrelevant to PEB, "factory groundbreaking" is irrelevant to SaaS).
+	•	Required data: timestamped detection of trigger events per opportunity, sourced per the Evidence Hierarchy (Section 3).
+	•	Validation: time-to-event / survival analysis once outcome data exists; A/B comparison of scored vs unscored outreach prioritization.
+	•	Limitations: multiple simultaneous trigger events are currently handled by max() (strongest signal wins) rather than combined — an untested simplification. Combining them (e.g. via a log-sum or additive model) requires justification that would itself need outcome data.
+2.4 Data Reliability / Evidence Confidence Score (S_conf)
+[EXPERT HEURISTIC]  Distinct from all other sub-scores: this measures confidence IN the data, not desirability of the opportunity. It functions as a multiplicative gate, not an additive contributor — see Section 5.
+S_conf,i = (1/M) · Σ_s  reliability(s) · verification_bonus(s)  where:   s = each evidence source contributing to opportunity i   reliability(s) = source-level reliability rating (Section 3 table)   verification_bonus(s) = additional weight if independently cross-verified   M = number of contributing sources
+	•	Required inputs: source-reliability ratings (Section 3), cross-source verification logic.
+	•	Required data: provenance metadata per data point — which source, when collected, whether cross-verified.
+	•	Validation: compare false-positive rate (opportunities that turned out to be inaccurate/stale) across confidence bands, once outcome + data-quality audit logs exist.
+[HYPOTHESIS]  That reliability ratings assigned in Section 3 (currently based on source-type reasoning, not measured error rates) reflect actual empirical accuracy. Requires a manual audit sample (e.g. randomly sampling 50–100 records per source and verifying against ground truth) before these ratings can be upgraded from heuristic to proven.
+2.5 Engagement / Reachability Score (S_reach)
+Definition: likelihood that a valid, responsive point of contact exists (verified email/phone, correct decision-maker title, active LinkedIn profile, etc.) — a pure data-quality gate on execution feasibility, independent of buying intent.
+S_reach,i = w_1·verified_contact + w_2·title_match + w_3·channel_availability  (weights w_1..w_3: EXPERT HEURISTIC starting point — e.g. equal weighting 1/3 each —  Requires empirical validation using historical outcome data)
+	•	Required inputs: contact verification status, title-to-decision-maker mapping (per Dream100 ABS templates already in use), available outreach channels.
+	•	Required data: contact record completeness and verification timestamps.
+	•	Validation: correlate with actual reply rate (a leading indicator available almost immediately, unlike Y itself) — this is the fastest sub-score to validate because feedback arrives in days, not months.
+	•	Limitations: verified today ≠ reachable tomorrow — contact data decays (job changes, churn). No current decay model exists for this sub-score specifically (distinct from S_intent's decay, which models event relevance, not contact staleness).
+2.6 Regulatory / Feasibility Risk Score (S_risk)
+Definition: a DOWNWARD adjustment for opportunities carrying material feasibility risk that outreach effort alone cannot solve — e.g. a product-category import ban in the target market (Ashwagandha in Denmark/Sweden, per client-specific research already on file), sanctions exposure, or licensing gaps.
+S_risk,i = 100 − Σ_r  penalty(r)   [floored at 0]  where r ranges over identified risk flags applicable to opportunity i
+[EXPERT HEURISTIC]  Penalty values per risk flag are not derivable from first principles — they require either (a) legal/regulatory expert judgment calibrated per market, or (b) empirical evidence of how often flagged opportunities failed to convert for that reason specifically.
+	•	Required inputs: a maintained, industry-specific risk-flag registry (e.g. product-specific import restrictions, sanctions lists, licensing requirements) — this must be manually curated per vertical, not automatically inferred.
+	•	Required data: regulatory status per product/market pair, refreshed on a defined cadence given regulations change (e.g. EU novel-food and herbal-supplement rulings).
+	•	Validation: compare conversion rates of flagged vs unflagged opportunities within the same ICP band, once sufficient sample exists.
+	•	Limitations: regulatory status can change faster than manual curation cycles — stale risk flags are a real failure mode; a refresh SLA must be defined and monitored.
+2.7 Summary table — all sub-scores
+Sub-score
+What it measures
+Formula status
+Weight status
+S_fit
+ICP match
+EXPERT HEURISTIC (binary match fn)
+HYPOTHESIS
+S_intent
+Active buying trigger
+PROVEN decay form / HYPOTHESIS params
+HYPOTHESIS
+S_conf
+Data trustworthiness (gate)
+EXPERT HEURISTIC
+N/A — multiplicative, Section 5
+S_reach
+Contactability
+EXPERT HEURISTIC
+HYPOTHESIS
+S_risk
+Feasibility penalty
+EXPERT HEURISTIC
+N/A — subtractive/gating
+
+3. Evidence Hierarchy
+Every opportunity is built from evidence of heterogeneous quality. Treating a Google Maps listing the same as a government tender record is the single most common failure mode in DIY lead-scoring systems — and matches the documented root cause of the earlier COIF/OIE engine failure (single-source data producing no scoring variance).
+3.1 Source reliability, freshness, and risk table
+Ratings below (High/Med/Low) are qualitative, expert-assigned classifications pending empirical audit — they are directional, not measured error rates, until a sampling audit (Section 2.4) is run.
+Source
+Reliability
+Freshness
+Predictive strength
+False-positive risk
+Weight derivation
+Govt procurement portals (GeM, CPPP, TED/EU)
+High
+High (real-time filings)
+High — active budget + intent confirmed
+Low
+INDUSTRY BEST PRACTICE: treat as top-tier trigger event
+Public tenders (non-govt, industry boards)
+Med-High
+Medium
+High for active procurement
+Low-Med
+EXPERT HEURISTIC
+Company website (careers/expansion pages)
+Medium
+Variable (unstructured refresh)
+Medium — indirect signal
+Medium
+EXPERT HEURISTIC
+Expansion/press announcements
+Medium
+Medium (event-based)
+Medium-High, decays fast
+Medium
+EXPERT HEURISTIC + decay function (2.3)
+Business directories (Kompass, WLW, Europages)
+Medium
+Low-Medium (self-reported, stale)
+Low-Medium — supplier bias, not buyer intent (per prior finding: these are supplier-listing platforms)
+Medium-High
+EXPERT HEURISTIC; weight down vs primary sources
+Google Maps / search operators
+Low-Medium
+Low (no intent signal, static)
+Low alone; useful only for firmographic discovery
+High if used as sole source
+PROVEN root-cause finding: single-source over-reliance caused prior scoring failure — must not dominate weighting
+Import/export trade databases
+High for factual trade activity
+Medium (reporting lag)
+High for volume/pattern signals
+Low-Med
+INDUSTRY BEST PRACTICE in trade-intelligence platforms
+LinkedIn Sales Navigator / firmographic tools
+Medium-High
+Medium
+Medium — role/title accuracy varies
+Medium
+EXPERT HEURISTIC
+Manual research (analyst-verified)
+High (verified at source)
+As current as last manual check
+High — human judgment applied
+Low, but not scalable
+INDUSTRY BEST PRACTICE: use as verification layer, not primary discovery
+3.2 Why source diversity is structurally required, not optional
+[PROVEN]  In measurement theory, a scoring variable with a single, non-independent data source cannot produce informative variance if that source itself has low discriminative power — this is a direct restatement of the documented root-cause finding from the original COIF/OIE engine (all leads from Google Maps → no ability to differentiate priorities).
+This is also consistent with the general principle of "feature diversity" in machine learning: models trained on collinear, single-origin features tend to overfit to that source's idiosyncrasies (e.g. Google Maps' business-category taxonomy) rather than learning transferable signal.
+3.3 Cross-verification logic
+verification_bonus(opportunity_i) =    HIGH  if attribute confirmed by ≥2 independent source TYPES   MED   if confirmed by 1 primary + 1 secondary source   LOW   if single-source only
+[EXPERT HEURISTIC]  The 2-independent-sources threshold is a common practice in OSINT (open-source intelligence) methodology and journalistic fact-checking ('two-source rule'), adapted here — not a statistically derived optimum for THIS engine specifically.
+
+4. Signal Weighting Methodology
+This section is the most important honesty checkpoint in the document: it must resist the temptation to assign confident numeric weights before data exists.
+4.1 The core problem
+[PROVEN]  In statistical learning theory, optimal weights for a linear (or any) scoring function are, by definition, those that minimize prediction error against a labeled outcome (e.g. via ordinary least squares, logistic regression, or a loss-minimizing algorithm). Without labeled outcomes (Y from Section 1), there is no mathematical procedure that can derive 'correct' weights — only priors.
+Any document claiming to hand you a specific set of weights (e.g. "S_intent = 35%, S_fit = 25%...") without outcome data is presenting a guess as a fact. This report deliberately does not do that.
+4.2 Three legitimate ways to set INITIAL weights (pre-data)
+Method
+Description
+Status
+When appropriate
+Equal weighting
+w_k = 1/K for all sub-scores
+EXPERT HEURISTIC (a common, defensible null baseline)
+Cold-start, before any calibration
+Expert elicitation (e.g. AHP)
+Structured pairwise comparison across sales/procurement experts to derive relative weights
+INDUSTRY BEST PRACTICE — Analytic Hierarchy Process (Saaty, 1980) is PROVEN as a formal method, though its INPUT judgments remain subjective
+When domain experts are available and time allows structured elicitation
+Client-stated priorities
+Ask the client directly to rank/weight what matters most for THEIR business (e.g. 'is speed-to-contact more important than company size?')
+EXPERT HEURISTIC, but grounded in the actual buyer's stated utility function rather than an invented universal
+Onboarding phase, per-client customization
+[EXPERT HEURISTIC]  Recommended cold-start approach: start with equal weighting across the sub-scores in Section 2 as the null baseline, optionally adjusted via a short client elicitation session (Method 3), and explicitly log this as a PRIOR subject to replacement — never present it to a client as validated.
+4.3 Formal weight-learning procedure once outcome data exists
+[PROVEN]  Once ≥30–50 labeled outcomes exist (Section 6.2 justifies this threshold), weights can be estimated via logistic regression, where the sub-scores S_k are regressed against the binary outcome Y:
+logit(P(Y=1 | S_1...S_K)) = β_0 + β_1·S_1 + β_2·S_2 + ... + β_K·S_K  The fitted coefficients β_k (rescaled to sum to 1 across positive coefficients) become the empirically-derived weights w_k, replacing the heuristic priors.
+	•	Required data: labeled historical outcomes (Y) paired with the sub-scores that were in effect at the time of scoring (not retroactively recomputed — see Section 6.5 on avoiding leakage).
+	•	Validation method: out-of-sample testing (train/test split or cross-validation) — PROVEN standard practice to avoid overfitting weights to noise, especially critical with small sample sizes.
+	•	Limitations: with small samples (30–100 outcomes), coefficient estimates will have wide confidence intervals; report those intervals, do not treat point estimates as precise truths. Regularization (e.g. ridge/L2 penalty) is PROVEN to stabilize small-sample coefficient estimates and is recommended over unregularized regression at this stage.
+4.4 Weight governance rules
+	•	Every weight in the live system must carry a version tag and the date/sample-size it was last (re)estimated.
+	•	Weights derived from <30 outcomes must be flagged in any client-facing output as "preliminary / low-confidence."
+	•	No weight may be silently hand-tuned by a human 'because it feels right' without logging that this reverts the weight to EXPERT HEURISTIC status — this prevents heuristic drift from masquerading as validated output.
+
+5. Aggregation Framework
+How sub-scores combine into the Composite Opportunity Score (COS), including which combinations are additive vs. multiplicative vs. gating.
+5.1 Additive vs. multiplicative vs. gating logic
+Sub-score
+Role in aggregation
+Justification
+S_fit, S_intent
+Additive (weighted sum, Section 2.1)
+INDUSTRY BEST PRACTICE — desirable attributes that trade off against each other
+S_conf (data confidence)
+Multiplicative gate
+EXPERT HEURISTIC — low-confidence data should suppress the entire score proportionally, not just subtract a fixed amount, because an unreliable HIGH score is more dangerous (false positive) than an unreliable LOW score
+S_reach (contactability)
+Multiplicative gate (soft)
+EXPERT HEURISTIC — an unreachable opportunity, however desirable, cannot be acted on; this should suppress actionability without erasing research value
+S_risk (regulatory)
+Subtractive / hard floor
+EXPERT HEURISTIC — legal/regulatory blockers are treated as near-disqualifying rather than merely 'less attractive'
+5.2 Full aggregation formula
+COS_i = [ (w_fit·S_fit,i + w_intent·S_intent,i) · g(S_conf,i) · g(S_reach,i) ] − penalty(S_risk,i)  where g(x) is a gating function, e.g. g(x) = x/100  (linear gate) or a stricter convex gate if low confidence should be punished more harshly (e.g. g(x) = (x/100)^2) — the CHOICE of gate steepness is unproven.
+[HYPOTHESIS]  Whether the gate should be linear, quadratic, or a step function (e.g. hard cutoff below a confidence threshold) cannot be determined without testing which gate shape best separates real converters from non-converters in historical data. Requires empirical validation using historical outcome data.
+5.3 Why gating (not pure additive) is used for confidence and reachability
+[PROVEN]  This mirrors a general principle in decision theory: a high expected-value estimate built on low-confidence information should be discounted proportionally to that uncertainty (related to the concept of 'expected utility under uncertainty', von Neumann–Morgenstern). The FORM of this principle is proven; the specific gate function is not.
+5.4 Score interpretation bands
+[EXPERT HEURISTIC]  Interpretation bands below are operational conveniences for triage, not statistically derived cutoffs.
+COS range
+Label
+Recommended action
+75–100
+Priority Tier 1
+Immediate outreach, senior rep assignment
+50–74
+Priority Tier 2
+Standard outreach sequence
+25–49
+Monitor
+Nurture / re-score on new trigger events
+0–24
+Deprioritize
+Exclude from active outreach unless risk/confidence issue resolves
+[HYPOTHESIS]  That these specific band boundaries (75, 50, 25) correspond to meaningfully different conversion rates. Once outcome data exists, bands should be re-derived from the actual distribution of scores vs. conversion (e.g. quartile or decile analysis — Section 6.3), not kept at round numbers for their own sake.
+
+6. Statistical Validation Methodology
+This is the section that operationalizes "how do we know the engine works." It must be built BEFORE the engine is trusted, not after.
+6.1 Core validation questions
+	•	Discrimination: do higher-scored opportunities actually convert more often than lower-scored ones? (Rank quality)
+	•	Calibration: does a score of 80 actually correspond to roughly an 80% conversion likelihood, or just 'better than 40'? (Section 8 covers this in depth)
+	•	Stability: does the engine's ranking stay consistent across time periods and industries, or does it overfit to one client's pattern?
+6.2 Minimum sample size before ANY validation claim is made
+[PROVEN]  For a binary outcome with a rough conversion rate p, the standard rule-of-thumb for minimally stable logistic regression estimation is at least 10 events-per-variable (EPV) (Peduzzi et al., 1996, 'A simulation study of the number of events per variable in logistic regression analysis', Journal of Clinical Epidemiology — a widely cited methodological benchmark).
+Minimum outcomes needed ≈ 10 × (number of predictors in the model)  Example: 5 sub-scores as predictors → ≈50 positive outcomes (Y=1 events) needed before weight-fitting (Section 4.3) should be trusted over the heuristic prior.
+[EXPERT HEURISTIC]  Below this threshold, JAS CONNECT should still LOG outcomes (essential for eventually reaching the threshold) but must not present fitted weights as validated — continue using heuristic priors and clearly label them as such.
+6.3 Discrimination metrics
+Metric
+What it measures
+Status
+Data needed
+AUC-ROC
+Probability a random positive outranks a random negative
+PROVEN standard metric
+Binary Y outcomes + scores, ≥30-50 of each class ideally
+Spearman rank correlation (ρ)
+Monotonic association between score and outcome rate (via binning)
+PROVEN
+Same as above
+Decile / lift analysis
+Conversion rate by score decile — directly answers 'do top 10% convert more?'
+INDUSTRY BEST PRACTICE in marketing analytics
+Same as above, benefits from larger N
+Precision@K
+Of the top K scored opportunities, how many actually converted
+PROVEN, directly commercially interpretable
+Same as above
+6.4 Testing the proxy-target hypothesis (Section 1.3)
+Once enough deal-closure data accumulates (likely much later than meeting-booked data), test whether "meeting booked" was actually predictive of "deal closed":
+Test: compare P(Deal Closed | Meeting Booked) vs P(Deal Closed | No Meeting Booked) If these are not meaningfully different, the proxy label choice (1.3) must be revisited.
+[HYPOTHESIS]  Currently untested. This is flagged explicitly as a future validation task, not assumed true.
+6.5 Avoiding data leakage — a critical methodological trap
+[PROVEN]  A well-documented failure mode in applied ML is training/validating a model using features that were not actually available at prediction time (e.g. using a company's eventual deal size to help predict whether they'd convert) — this inflates apparent accuracy in a way that will not replicate in production (Kaufman et al., 2012, 'Leakage in Data Mining').
+	•	Implementation requirement: log the score AND the sub-score values AS THEY WERE AT THE TIME OF SCORING, not recomputed retroactively with information learned afterward.
+	•	This requires a simple but essential piece of infrastructure: a scoring snapshot table, timestamped, immutable once written.
+6.6 Cross-industry stability check
+[HYPOTHESIS]  That a single scoring architecture generalizes across Ayurvedic export, PEB, and other verticals with only sub-score INPUT differences (not structural differences). This should be tested once outcome data exists in ≥2 distinct verticals, by checking whether weights fitted on one vertical transfer acceptably to another, or whether industry-specific re-weighting is required (see Section 10).
+
+7. Commercial Validation Methodology
+Statistical validity (Section 6) is necessary but not sufficient — the engine must also be shown to change commercial outcomes for a paying client, which is a distinct question.
+7.1 Why statistical and commercial validation are different questions
+[PROVEN]  A model can be statistically well-calibrated yet commercially useless if, for example, it correctly identifies good opportunities that a human sales rep would have found anyway with no effort — the relevant test is INCREMENTAL value over the counterfactual (existing manual process), not accuracy in isolation. This mirrors the standard 'uplift modelling' distinction in marketing science (Radcliffe & Surry, uplift modelling literature) — predicting response is not the same as predicting INCREMENTAL response caused by prioritization.
+7.2 Recommended commercial test design
+[INDUSTRY BEST PRACTICE]  A/B holdout test: split a comparable pool of opportunities into (A) scored & prioritized by the engine and (B) worked in the client's prior default order (e.g. chronological or alphabetical), holding outreach effort (touches, rep quality, script) constant across both groups.
+Commercial lift = (Conversion rate_A − Conversion rate_B) / Conversion rate_B  Minimum sample size guidance for detecting a meaningful lift: use a standard two-proportion power calculation (PROVEN statistical method), not a fixed number — depends on baseline conversion rate and desired significance/power. A statistician or online sample-size calculator should be used per client/vertical rather than a single fixed number applied universally.
+	•	Required data: two comparable opportunity pools, consistent outreach execution across both, tracked outcomes.
+	•	Validation output: a confidence interval on the lift, not a single point estimate — small pilot sizes will have wide intervals; report them honestly.
+	•	Limitations: true randomized holdouts are commercially uncomfortable for a client (withholding effort from some real opportunities) — a common compromise is a staggered rollout (score everything, but compare period-over-period before/after adoption), which is weaker evidence (confounded by seasonality, market conditions) but more palatable. This trade-off should be discussed explicitly with each client.
+7.3 Business-level KPIs to track regardless of formal A/B testing
+KPI
+Formula
+Why it matters
+Time-to-first-response
+Median days from first touch to any reply
+Leading indicator, available within days
+Meeting conversion rate
+Meetings booked / opportunities contacted
+Primary target Y (Section 1.3), medium-term
+Cost per qualified meeting
+Total research + outreach cost / meetings booked
+Direct commercial ROI metric for the client
+Pipeline value influenced
+Sum of deal value for opportunities the engine surfaced
+Longer-term, ties to closed revenue (Section 1.2)
+
+8. Calibration Methods
+Calibration answers a narrower question than discrimination (Section 6.3): not "does the model rank well" but "does a score of X actually mean an X% chance of conversion." JAS CONNECT does not currently need probability-grade calibration to be USEFUL (ranking is enough for triage), but calibration becomes important if scores are ever shown to clients as implied probabilities.
+8.1 Reliability diagrams / calibration curves
+[PROVEN]  Standard method: bin predicted scores (e.g. into deciles), compute observed conversion rate within each bin, and plot predicted vs. observed. A perfectly calibrated model falls on the 45° line (Niculescu-Mizil & Caruana, 'Predicting Good Probabilities With Supervised Learning', ICML 2005).
+For each bin b:   predicted_b = mean(COS_i / 100) for i in bin b   observed_b  = mean(Y_i) for i in bin b  Calibration error = mean |predicted_b − observed_b| across bins (this is a simplified description of the Expected Calibration Error, ECE)
+	•	Required data: sufficient volume per bin — with small N, bins will be noisy; this again depends on reaching the sample thresholds in Section 6.2.
+	•	Validation: report calibration error alongside any client-facing probability claim; do not present a raw score as "X% chance" until this has been measured.
+8.2 Calibration correction methods (once data exists)
+Method
+Description
+Status
+When to use
+Platt scaling
+Fit a logistic function mapping raw scores to calibrated probabilities
+PROVEN, well-established
+Small-to-medium data, monotonic miscalibration
+Isotonic regression
+Fit a non-parametric monotonic mapping
+PROVEN
+Larger data, non-linear miscalibration patterns
+[HYPOTHESIS]  Neither method can be applied meaningfully with fewer than several dozen labeled outcomes — with current zero historical data, this section is a forward blueprint, not a current capability.
+8.3 Interim honesty rule while uncalibrated
+[EXPERT HEURISTIC]  Until formal calibration is performed, all client-facing materials should describe COS as a RANKING/PRIORITIZATION score ("this opportunity ranks higher than that one"), never as a probability ("this opportunity has an 80% chance of converting"). This avoids overclaiming precision the engine does not yet have — directly consistent with the project's standing 'honest labeling over invented precision' principle.
+
+9. Continuous Learning Architecture
+How the engine is supposed to improve over time — the infrastructure and cadence, not a specific algorithm choice yet (that's Section 13's roadmap).
+9.1 The feedback loop — structural diagram (described)
+[1] Opportunity discovered     -> sourced from Section 3 evidence sources, tagged with provenance          | [2] Structured into evidence record     -> normalized fields, source metadata, timestamp          | [3] Scored by engine (COS, Section 2 & 5)     -> SNAPSHOT of score + all sub-scores stored immutably (6.5)          | [4] Prioritized & actioned     -> outreach sequence executed (Dream100 playbook or equivalent)          | [5] Outcome logged     -> reply / meeting / quote / deal, each with timestamp          | [6] Outcome joined back to the ORIGINAL scoring snapshot (not re-scored)          | [7] Periodic batch validation (Section 6) run against accumulated snapshots          | [8] Weights / thresholds updated ONLY through the governed process (4.4)          |     -> back to [1] for newly discovered opportunities
+9.2 Why outcome logging is the single highest-priority infrastructure item
+[PROVEN]  This is a direct restatement of a foundational principle in applied statistics and ML: a model cannot be validated, improved, or trusted without a labeled outcome dataset — no amount of formula sophistication substitutes for this (this matches the project's own standing principle that CRM/outcome logging is the prerequisite for everything).
+Practically, this means: before any further formula refinement, JAS CONNECT needs a minimal outcome-logging schema — even a simple structured spreadsheet or lightweight database table recording opportunity ID, score-at-time-of-contact, outreach date, and outcome date/type is sufficient to start. It does not need to be a full CRM (consistent with the explicit project stance that JAS CONNECT is not a CRM) — only enough structured logging to support Sections 4, 6, 7, and 8.
+9.3 Update cadence recommendation
+[EXPERT HEURISTIC]  Recommended cadence: batch re-validation monthly or upon reaching the next meaningful sample-size milestone (Section 6.2), whichever is later — NOT real-time weight updates. Real-time updating on small samples risks fitting to noise (directly related to the small-sample instability discussed in Sections 4.3 and 6.2).
+9.4 Model versioning requirements
+	•	Every deployed scoring configuration (weights, gate functions, thresholds) must carry a version ID.
+	•	Every scored opportunity snapshot must record which version scored it — required for honest backtesting and for detecting when a version underperforms.
+	•	Rollback capability: if a new version underperforms the previous one on a validation batch, revert — this requires keeping prior versions live/comparable, not just archived.
+
+10. Industry-Specific Adaptations
+JAS CONNECT is explicitly multi-industry (software services, healthcare, manufacturing, PEB, construction, and others). The scoring ARCHITECTURE (Sections 2, 5) should stay constant; the INPUTS should not.
+10.1 What stays constant vs. what changes per industry
+Element
+Constant across industries?
+Rationale
+Sub-score categories (fit, intent, confidence, reach, risk)
+Yes
+These are structurally universal — every B2B opportunity has some notion of fit, urgency, data trust, reachability, and risk
+Trigger-event catalog (S_intent inputs)
+No — industry-specific
+A tender notice matters for PEB/construction/procurement; a hiring surge in DevOps matters for SaaS; an EU herbal-supplement ruling matters only for Ayurvedic export
+Risk-flag registry (S_risk inputs)
+No — industry-specific
+Regulatory risk in Ayurvedic export (novel food/herbal bans) is structurally unlike financial/compliance risk in FinTech or safety-code risk in construction
+ICP attribute set (S_fit inputs)
+Partially — some attributes (geography, size) generalize; others (specific certifications, product-category codes) do not
+Firmographic base fields reusable; industry classification schemes (HS codes for trade vs. NAICS vs. CPC for services) differ
+Weights (w_k)
+No — hypothesis, testable per Section 6.6
+Different industries plausibly weight urgency vs. fit differently (e.g. long-cycle industrial procurement vs. faster SaaS buying cycles) — untested until per-vertical data accumulates
+10.2 Illustrative trigger-event catalogs (examples, not exhaustive)
+Vertical
+Example high-value triggers
+Example risk flags
+Ayurvedic / herbal export
+New market entry announcement, distributor RFQ, trade-fair exhibitor listing
+EU herbal-supplement/novel-food restrictions (e.g. Ashwagandha bans in Denmark/Sweden — root-only formulations remain exportable per prior client research), import license lapses
+PEB / construction
+Published tender (GeM/CPPP/TED), groundbreaking/expansion announcement, EPC contractor award
+Safety/code non-compliance history, unresolved litigation, financial distress signals
+Software / SaaS / IT services
+Funding round announcement, relevant job postings (e.g. hiring for a role your client's product supports), tech-stack signals
+Existing long-term contract with a competitor (switching-cost risk), data residency/compliance mismatches
+Healthcare
+Facility expansion/licensing filings, equipment tender, accreditation renewal cycles
+Regulatory non-compliance history, pending litigation, reimbursement-policy exposure
+General manufacturing / industrial procurement
+Capacity expansion announcement, new facility permits, supplier-diversification RFQs
+Trade sanctions exposure, single-customer revenue concentration (financial fragility signal)
+[EXPERT HEURISTIC]  All trigger and risk catalogs above are illustrative starting points requiring manual curation and expert review per vertical before production use — none are validated against outcome data yet.
+10.3 Practical implementation guidance
+	•	Maintain the trigger-event and risk-flag catalogs as versioned, editable configuration data (not hardcoded in scoring logic) so new verticals can be onboarded without re-architecting the engine.
+	•	When onboarding a new vertical, run the client-elicitation weighting step (Section 4.2, Method 3) fresh — do not assume weights from an existing vertical transfer without testing (Section 6.6).
+
+11. Bias and Risk Analysis
+A scoring engine that influences which real companies get contacted first carries real risk of systematic bias, not just statistical error. This section is required, not optional, for a commercially deployed prioritization system.
+11.1 Sources of bias to actively monitor
+Bias type
+Mechanism
+Mitigation
+Source coverage bias
+Sources like LinkedIn Sales Navigator, English-language directories, or Google Maps systematically under-represent certain geographies/company sizes/languages
+Explicitly track source mix per opportunity pool; monitor whether certain segments are structurally invisible to the engine
+Feedback / self-fulfilling prophecy bias
+If only high-scored opportunities are ever contacted, the model can never learn whether low-scored ones would have converted — outcome data becomes conditioned on the model's own past decisions
+Periodically contact a small random sample of low/medium-scored opportunities (an EXPLORATION set) purely to generate unbiased validation data — a direct application of the exploration/exploitation trade-off in decision theory
+Survivorship bias in manual research
+Analysts may unconsciously prioritize researching companies that 'look promising,' contaminating what counts as 'discovered' before scoring even happens
+Standardize discovery criteria (Section 3) separately from scoring criteria; document discovery methodology per batch
+Confirmation bias in weight tuning
+A human noticing the model 'missed' a deal and manually bumping a weight up based on one anecdote
+Governed weight-update process (Section 4.4) — no ad hoc single-anecdote weight changes
+Regulatory/risk-flag staleness bias
+Outdated risk flags (Section 2.6) can systematically and unfairly deprioritize opportunities in a category after the actual regulatory situation has changed
+Defined refresh SLA per risk-flag registry, especially for fast-moving regulatory areas
+[PROVEN]  The exploration/exploitation trade-off is a well-established concept in decision theory and reinforcement learning (multi-armed bandit literature, e.g. Sutton & Barto, Reinforcement Learning: An Introduction) — always exploiting the current best-known score without any exploration systematically prevents the model from learning about regions of the input space it currently scores low.
+11.2 Fairness considerations specific to B2B opportunity scoring
+Unlike consumer credit or hiring scoring, B2B opportunity scoring does not typically raise protected-class fairness concerns in the same legal sense — but it can still create commercially unfair outcomes worth monitoring:
+	•	Small/new companies may be systematically under-scored simply because they generate less public data (less press, thinner LinkedIn presence) — not because they are worse prospects.
+	•	Non-English-market companies may be under-scored due to source language coverage gaps, not genuine lower opportunity quality.
+[HYPOTHESIS]  Whether these under-scoring patterns are commercially significant enough to warrant a structural correction (e.g. a 'data-sparsity adjustment') is untested and should be examined once enough opportunity-pool composition data exists.
+11.3 Risk register — operational risks beyond statistical bias
+Risk
+Impact
+Likelihood (qualitative)
+Mitigation
+Client presented with unvalidated score as if it were proven
+Reputational / trust damage if a 'high score' opportunity fails to convert and client learns the weight was a guess
+Medium, without process discipline
+Enforce Section 8.3 interim honesty rule; label everything per evidence hierarchy in client deliverables
+Stale/incorrect regulatory risk flag causes missed valid opportunity or, worse, a compliance issue for the client
+High if it occurs
+Low-Medium
+Refresh SLA (11.1); legal review for sensitive categories
+Overfitting weights to small early sample
+Weights that look 'validated' are actually noise, degrading real prioritization quality
+Medium-High if governance (4.4) is skipped
+Enforce sample-size gates (Section 6.2) before trusting fitted weights
+ToS violations from scraping restricted sources at scale
+Legal/platform-access risk (flagged previously re: GeM/CPPP lacking public bulk APIs)
+Medium if automation scales without review
+Legal review before scaling any scraper against ToS-restricted platforms (standing project principle)
+
+12. Benchmark Against Major Commercial Platforms
+This section situates JAS CONNECT's architecture relative to established sales-intelligence category players, based on publicly available product positioning (not proprietary internals, which are not published by these vendors).
+12.1 Comparison table
+Platform
+Primary scoring approach (publicly described)
+Data source strategy
+Where JAS CONNECT differs
+6sense
+Predictive intent scoring using ML models on aggregated buyer-intent signals across the web
+Large third-party intent-data network, proprietary buyer-journey graph
+JAS CONNECT currently uses rule-based composite scoring (Section 2), not trained ML — a deliberate, honest starting point given no historical data yet (Section 13 is the roadmap to close this gap)
+ZoomInfo
+Firmographic/contact database plus intent signals (via Chorus.ai integration) and org-chart data
+Proprietary crawled + contributed contact database at large scale
+JAS CONNECT does not have a comparable proprietary contact database moat; relies more on structured multi-source research (Section 3) and manual verification per opportunity
+Salesforce Einstein (Lead/Opportunity Scoring)
+Model trained on the CLIENT'S OWN historical CRM data (per-org supervised model)
+Customer's own CRM history — inherently has the labeled-outcome data JAS CONNECT currently lacks
+This is the most structurally similar END-STATE target for JAS CONNECT (Section 9) — Einstein's core lesson is that per-org outcome data, not universal weights, is what makes scoring valid
+HubSpot Predictive Lead Scoring
+ML model trained on the customer's historical conversion data, blended with firmographic/behavioral features
+Customer's own portal activity + firmographic data
+Same lesson as Einstein — validates this document's central claim that outcome-data-driven weighting (Section 4.3) is the correct target architecture, not universal heuristic weights
+Clay
+Enrichment/orchestration layer combining many data providers with user-defined scoring formulas
+Aggregates many third-party data providers via integrations, user configures logic
+Architecturally closest analog to JAS CONNECT's current rule-based, multi-source composite approach — Clay does not claim proprietary predictive ML superiority either, supporting that starting rule-based is a legitimate approach, not merely a stopgap
+12.2 Key takeaway from the benchmark
+[INDUSTRY BEST PRACTICE]  The dominant pattern among mature commercial platforms (Einstein, HubSpot) is that scoring becomes genuinely predictive only once trained on the CLIENT'S OWN historical outcome data — not a universal industry formula. This directly validates the project's own standing principle that scoring weights are unvalidated priors until CRM/outcome data exists, and confirms Section 9's continuous-learning architecture as the correct long-term direction rather than an unusual choice.
+[EXPERT HEURISTIC]  JAS CONNECT's realistic competitive position at this stage is closer to Clay's model (multi-source aggregation + transparent, user-adjustable rule-based scoring) than to 6sense/ZoomInfo's proprietary-data-moat model — because JAS CONNECT does not currently own a comparable exclusive data asset. This is a positioning observation, not a criticism; it should inform go-to-market messaging separately from the scoring engine's technical validity.
+
+13. Technical Roadmap — Rule-Based Scoring to Machine Learning
+A phased, evidence-gated roadmap. Each phase has an explicit ENTRY CONDITION — the engine should not advance to the next phase just because time has passed; it advances when the data threshold is met.
+13.1 Phase overview
+Phase
+Architecture
+Entry condition
+Exit condition (what proves it's time for next phase)
+Phase 0 (current)
+Rule-based composite score, equal/elicited weights (Sections 2, 4.2)
+None — this is the starting state
+Outcome-logging infrastructure live (Section 9.2) and first 10-20 outcomes captured
+Phase 1
+Rule-based score + governed heuristic weight adjustments from client elicitation, continued outcome logging
+Logging infrastructure operational
+≥30-50 labeled outcomes accumulated (Section 6.2 EPV threshold) in at least one vertical
+Phase 2
+Weights empirically fitted via regularized logistic regression (Section 4.3); heuristic priors retired for that vertical
+Sample threshold met
+Demonstrated discrimination (AUC, Section 6.3) meaningfully above a random/heuristic baseline on held-out data
+Phase 3
+Calibration layer added (Platt scaling / isotonic regression, Section 8.2); scores can be responsibly shown as probabilities
+Phase 2 validated model exists with sufficient volume for calibration bins
+Calibration error acceptable AND commercial lift (Section 7.2) demonstrated
+Phase 4
+Non-linear / interaction-aware models (e.g. gradient-boosted trees) tested against the linear baseline; explore cross-vertical transfer (Section 6.6, Section 10)
+Sufficient volume across ≥2 verticals; linear model plateaued in performance
+Non-linear model shows statistically meaningful improvement over linear baseline on held-out data — otherwise, keep the simpler linear model (parsimony principle)
+13.2 Why NOT to jump straight to Phase 4
+[PROVEN]  This follows directly from the 'no free lunch' and parsimony principles in statistical learning: a more complex model (e.g. gradient boosting) requires substantially more data to estimate reliably than a linear model, and without that data will simply overfit — it will not magically outperform a simple model just because it is more sophisticated (Hastie, Tibshirani & Friedman, The Elements of Statistical Learning, is the standard reference for this trade-off).
+Given JAS CONNECT is currently at zero historical outcome data, jumping to ML now would not be "more advanced" — it would be statistically meaningless. The correct engineering discipline is to earn each phase transition with evidence.
+13.3 Immediate next actions (independent of long-term ML roadmap)
+	•	Stand up minimal outcome-logging schema (opportunity ID, score snapshot, sub-scores, version ID, outreach date, outcome type + date) — this unblocks every validation method in Sections 6, 7, and 8.
+	•	Formally elicit client ICP and weight priorities (Section 4.2, Method 3) rather than defaulting silently to equal weighting.
+	•	Build the industry-specific trigger-event and risk-flag catalogs (Section 10) for the verticals currently active, as structured/versioned configuration data, not hardcoded logic.
+	•	Introduce a small, deliberate exploration sample (Section 11.1) — contact a random slice of medium/low-scored opportunities purely to generate unbiased future validation data.
+	•	Version-tag the current scoring configuration as v0.1-heuristic so future comparisons have an honest baseline.
+
+14. End-to-End Architecture, Data Flow, and Formula Flow
+This section consolidates the architecture, data flow, formula flow, and validation pipeline into one place, per the deliverable requirements — cross-referencing rather than repeating the detailed derivations already given in Sections 2–9.
+14.1 System architecture (layers)
+LAYER 1 -- DISCOVERY   Govt portals, tenders, directories, maps, trade DBs, manual   research  (Section 3)         |         v LAYER 2 -- STRUCTURING & PROVENANCE   Normalize fields; attach source metadata, timestamp,   reliability rating  (Section 3.1)         |         v LAYER 3 -- SCORING ENGINE   Compute S_fit, S_intent, S_conf, S_reach, S_risk (Section 2)   Aggregate -> COS via gating/additive logic (Section 5)   Write immutable scoring SNAPSHOT (Section 6.5)         |         v LAYER 4 -- PRIORITIZATION & ACTION   Tier assignment (5.4); outreach sequencing (Dream100-style   playbooks); exploration sampling (11.1)         |         v LAYER 5 -- OUTCOME LOGGING   Reply / meeting / quote / deal events, timestamped, joined   back to original snapshot, NOT re-scored (Section 6.5)         |         v LAYER 6 -- VALIDATION & LEARNING   Discrimination (6.3); calibration (8); commercial lift (7)   -> governed weight updates (4.4) -> new versioned config         |         +----------------> feeds back into LAYER 3
+14.2 Data flow — minimum required fields per opportunity
+Field
+Set by layer
+Required for
+opportunity_id
+1 (Discovery)
+Unique join key across all downstream layers
+source_type, source_url/ref, collected_at
+2 (Structuring)
+Evidence hierarchy reliability lookup (Section 3.1)
+firmographic attributes (industry, size, geography)
+2
+S_fit (Section 2.2)
+trigger_event_type, event_detected_at
+2
+S_intent (Section 2.3)
+cross_verification_count
+2
+S_conf (Section 2.4)
+contact_verification_status, title
+2
+S_reach (Section 2.5)
+risk_flags[]
+2
+S_risk (Section 2.6)
+COS, sub-scores, scoring_version_id, scored_at
+3 (Scoring)
+Snapshot — Section 6.5 leakage prevention
+outreach_date, sequence_used
+4 (Action)
+Commercial KPI tracking (Section 7.3)
+outcome_type (reply/meeting/quote/deal), outcome_at
+5 (Outcome logging)
+Label Y for all validation (Sections 6, 7, 8)
+14.3 Formula flow (single-opportunity walk-through, symbolic)
+raw evidence   -> S_fit, S_intent, S_conf, S_reach, S_risk   (Section 2)          |          v   COS = [(w_fit.S_fit + w_intent.S_intent) . g(S_conf) . g(S_reach)]         - penalty(S_risk)                              (Section 5.2)          |          v   Tier assignment via score bands (Section 5.4)          |          v   Outcome Y observed   -> used in validation (Section 6) and weight re-estimation via      logistic regression (Section 4.3)
+14.4 Validation pipeline (operational sequence)
+	•	Step 1 — Confirm sample-size gate met (Section 6.2, EPV rule) before treating any fitted weight as more than a heuristic prior.
+	•	Step 2 — Run discrimination tests (AUC, Spearman ρ, decile lift, Precision@K — Section 6.3) on held-out data.
+	•	Step 3 — If discrimination is acceptable, run calibration diagnostics (Section 8.1) before showing any probability-style claim to a client.
+	•	Step 4 — Run or approximate a commercial lift test (Section 7.2) — ideally a true A/B holdout, practically often a staggered before/after comparison.
+	•	Step 5 — If all three gates pass, promote the new scoring version through the governance process (Section 4.4, 9.4); otherwise keep the prior version live and log the failed attempt for future reference.
+
+15. Worked Numeric Example (Illustrative Only)
+[HYPOTHESIS]  All numbers in this section are illustrative placeholders to demonstrate HOW the formulas operate mechanically. They are explicitly NOT recommended production weights and must not be deployed as-is — they exist only so an engineer or analyst can verify their own implementation against a known worked case.
+15.1 Example opportunity record
+Field
+Example value
+Industry
+Pre-engineered buildings (PEB) — illustrative vertical
+Sources contributing
+GeM tender listing + company website + LinkedIn contact
+Trigger event
+Active tender published 6 days ago
+ICP match
+Geography ✓, size band ✓, sector ✓ (3 of 3 client-defined attributes matched)
+Contact status
+Verified email, correct title (Procurement Head)
+Risk flags
+None identified
+15.2 Mechanical walk-through using placeholder inputs
+Step 1 — Sub-scores (illustrative, on 0-100 scale):   S_fit    = 100   (3 of 3 ICP attributes matched — using the simple                      match-fraction form from Section 2.2)   S_intent = 90    (using recency_decay(t=6 days) with an ILLUSTRATIVE                      λ — the actual λ requires empirical validation,                      Section 2.3)   S_conf   = 85    (2 independent source types → 'MED' verification                      bonus per Section 3.3, illustrative scaling)   S_reach  = 100   (verified contact + correct title match)   S_risk   = 0     (no flags → no penalty, Section 2.6)  Step 2 — Weights (ILLUSTRATIVE equal-weighting baseline, Section 4.2):   w_fit = w_intent = 0.5   (only 2 additive sub-scores in this                             simplified walk-through)  Step 3 — Aggregation (Section 5.2), using a linear gate g(x) = x/100:   additive_part = (0.5 × 100) + (0.5 × 90) = 95   gated = 95 × (85/100) × (100/100) = 80.75   COS = 80.75 − 0 = 80.75  Step 4 — Tier assignment (Section 5.4 illustrative bands):   80.75 falls in 75-100 → 'Priority Tier 1'
+This walk-through demonstrates mechanical correctness only. It does not demonstrate that 80.75 corresponds to any particular real conversion probability — that claim would require the calibration process in Section 8, which in turn requires outcome data that does not yet exist.
+15.3 Sensitivity note
+[EXPERT HEURISTIC]  Because S_conf and S_reach act as multiplicative gates (Section 5.1), a low value in either one materially suppresses the final score even when S_fit and S_intent are both maximal — e.g. if S_conf had been 40 instead of 85, the same opportunity would score COS ≈ 38, moving it from Tier 1 to 'Monitor'. This is a deliberate design property (untrustworthy data should not produce a high final score) but its STEEPNESS (linear vs. a harsher gate) is, per Section 5.2, unproven and worth testing once data exists.
+
+Executive Verdict — Review Board Summary
+Answering the original charge directly: is the JAS CONNECT scoring engine, as currently specified, scientifically valid, statistically defensible, commercially useful, and capable of predicting real buying opportunities?
+Scientifically valid?
+The ARCHITECTURE is scientifically sound — sub-score decomposition, evidence-weighted aggregation, and a defined prediction target are all standard, defensible design choices consistent with both academic decision-science literature and mature commercial platforms (Section 12). However, the current NUMERIC WEIGHTS are explicitly unvalidated priors, not scientific findings — this document does not, and should not, claim otherwise.
+Statistically defensible?
+Not yet, and cannot be, until historical outcome data exists (Section 6.2's sample-size thresholds are not currently met — zero historical outcome data was confirmed for this engine). The document specifies exactly what would make it statistically defensible (Sections 4.3, 6, 8) — this is a currently-unmet bar with a clear, evidence-based path to meeting it, not a permanent limitation.
+Commercially useful?
+[EXPERT HEURISTIC]  Even a heuristic-weighted, unvalidated rule-based score is likely more useful than no prioritization at all (working an unranked list, or a single-source list per the documented COIF/OIE failure) — PROVIDED it is used for triage/ranking only, and never presented to clients as a validated probability (Section 8.3). This is a reasonable operating assumption, not a proven commercial fact, and should itself be tested via the A/B or staggered-rollout methodology in Section 7.2.
+Capable of predicting real buying opportunities?
+Capable of RANKING opportunities by a defensible, multi-source, evidence-weighted heuristic today. Not yet capable of a scientifically validated PREDICTION in the strict statistical sense — that capability is earned through the phased roadmap in Section 13, gated on outcome data that does not yet exist.
+Single most important recommendation
+[PROVEN]  Every other recommendation in this document is downstream of one dependency: build outcome logging now. Nothing in Sections 4, 6, 7, 8, or 13 can progress past its current heuristic/hypothesis status without it. This is not a nice-to-have — it is the critical path.
+
+Appendix A — Open Questions Register
+A consolidated list of every HYPOTHESIS-tagged item in this document, for tracking as the empirical validation backlog. Nothing here should be treated as resolved until explicitly tested.
+#
+Open question
+Where discussed
+What resolves it
+1
+Is linear aggregation adequate, or are there interaction effects between sub-scores?
+Section 2.1
+Compare linear model performance against a decision-tree/GBM model once sufficient data exists (Section 13, Phase 4)
+2
+What is the correct decay rate λ and per-trigger-type strength for S_intent?
+Section 2.3
+Survival analysis / time-to-conversion modelling once outcome data exists
+3
+Do current source-reliability ratings reflect actual empirical accuracy?
+Section 2.4, 3.1
+Manual audit sample (50-100 records per source) against ground truth
+4
+Is 'meeting booked within 30 days' a valid proxy for eventual deal closure?
+Section 1.3, 6.4
+Compare P(deal closed | meeting booked) vs P(deal closed | no meeting) once deal-closure data accumulates
+5
+What is the correct steepness of the confidence/reachability gating function?
+Section 5.2, 15.3
+Compare linear vs convex gate performance on held-out validation data
+6
+Do fitted weights transfer across industries, or is per-vertical re-weighting required?
+Section 6.6, 10.1
+Fit weights on one vertical, test transfer performance on a second vertical
+7
+Are small/new companies or non-English-market companies systematically under-scored due to data sparsity rather than true opportunity quality?
+Section 11.2
+Analyze opportunity-pool composition vs. score distribution once sufficient volume exists
+8
+Does the engine produce measurable commercial lift over the client's prior manual process?
+Section 7
+A/B holdout or staggered rollout comparison
+
+Appendix B — Glossary of Statistical Terms Used
+Term
+Plain-language meaning
+AUC-ROC
+A single number (0.5-1.0) summarizing how well a score separates eventual converters from non-converters; 0.5 = random guessing, 1.0 = perfect separation
+Calibration
+Whether a score of 'X' actually corresponds to roughly an X% real-world conversion rate
+Discrimination
+Whether higher scores actually correspond to higher real conversion rates, regardless of exact probability accuracy
+Events-per-variable (EPV)
+A rule of thumb for how many positive outcomes you need before trusting a fitted statistical model with a given number of input variables
+Logistic regression
+A standard statistical method for estimating the relationship between input variables and a yes/no outcome
+Overfitting
+A model that fits noise in a small sample so closely that it fails to generalize to new, unseen data
+Regularization (L2/ridge)
+A mathematical technique that shrinks coefficient estimates toward zero to reduce overfitting, especially useful with small samples
+Spearman rank correlation
+A statistic measuring whether two variables move in the same relative order, without requiring a straight-line relationship
+
