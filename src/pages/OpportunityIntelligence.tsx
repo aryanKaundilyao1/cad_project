@@ -11,6 +11,7 @@ import {
   BrainCircuit,
   Filter
 } from "lucide-react";
+import AdminTemplateUpload from "@/components/AdminTemplateUpload";
 
 export default function OpportunityIntelligence() {
   return (
@@ -36,6 +37,13 @@ export default function OpportunityIntelligence() {
                 </p>
               </ScrollReveal>
             </div>
+          </div>
+        </section>
+
+        {/* ── TEMPLATE UPLOAD SECTION ── */}
+        <section className="py-12" style={{ background: 'hsl(222 47% 6%)' }}>
+          <div className="container mx-auto px-4 max-w-5xl">
+            <AdminTemplateUpload />
           </div>
         </section>
 
