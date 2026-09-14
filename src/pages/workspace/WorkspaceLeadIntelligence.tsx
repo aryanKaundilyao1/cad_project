@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
 import validationLeads from '@/data/validation_leads.json';
+import AdminTemplateUpload from '@/components/AdminTemplateUpload';
 
 const WorkspaceLeadIntelligence = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -41,6 +42,10 @@ const WorkspaceLeadIntelligence = () => {
 
   return (
     <div className="space-y-8 animate-fade-in p-8 max-w-[1600px] mx-auto">
+      <div className="mb-8">
+        <AdminTemplateUpload />
+      </div>
+
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <div className="flex items-center gap-2">
