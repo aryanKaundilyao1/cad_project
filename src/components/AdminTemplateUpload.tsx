@@ -374,29 +374,8 @@ export default function AdminTemplateUpload() {
     setImporting(true);
 
     try {
-      let validProfileId = profile?.id;
-      if (!validProfileId && user?.id) {
-        const { data: p } = await supabase.from('profiles').select('id').eq('user_id', user.id).maybeSingle();
-        if (p) validProfileId = p.id;
-      }
-      
       const sourceObj = sources.find(s => s.id === selectedSource);
       const industryObj = industries.find(i => i.id === selectedIndustry);
-      setImporting(true);
-
-      // JIT Sync to jas_products to satisfy foreign key constraints in the new universal data model
-      const prodToSync = products.find(p => p.id === selectedProduct);
-      if (prodToSync) {
-        const { error: syncErr } = await supabase.from('jas_products').upsert({
-          product_id: prodToSync.id,
-          company_id: prodToSync.manufacturer_id || selectedClient,
-          name: prodToSync.name,
-          category: prodToSync.category
-        });
-        if (syncErr) {
-          console.error("Failed to sync product to jas_products for FK constraint", syncErr);
-        }
-      }
 
       const leadsToInsert = validationReport.validRows.map((raw: any) => {
         const normalizedRaw = {
@@ -425,8 +404,6 @@ export default function AdminTemplateUpload() {
           industry: industryObj?.name,
           source_type: 'import',
           source_file: validationReport.fileName,
-          uploaded_by: validProfileId,
-          seller_id: validProfileId,
           status: 'Active',
           verification_status: 'verified',
           is_public: false,
@@ -447,65 +424,13 @@ export default function AdminTemplateUpload() {
         } else { dedupedLeads.unshift(lead); }
       }
 
-      let allInsertedLeads: any[] = [];
+      // AWS DEMO MODE: Bypass Supabase completely and slice to 100 leads maximum
+      const slicedLeads = dedupedLeads.slice(0, 100);
 
-      for (let i = 0; i < dedupedLeads.length; i += 100) {
-        const batch = dedupedLeads.slice(i, i + 100);
-        const leadsBatch = batch.map(({ _temp_oie_score, ...rest }: any) => rest);
-        
-        const { data: insertedLeads, error: leadError } = await supabase.from('leads').insert(leadsBatch).select('id, company_name, quality_score, metadata');
-        if (leadError) throw leadError;
-        allInsertedLeads = [...allInsertedLeads, ...insertedLeads];
-
-        const assignmentsBatch = [];
-        const oppsBatch = [];
-        const scoresBatch = [];
-
-        for (let j = 0; j < insertedLeads.length; j++) {
-          const leadId = insertedLeads[j].id;
-          const oieScore = batch[j]._temp_oie_score;
-          
-          assignmentsBatch.push({
-            lead_id: leadId,
-            client_id: selectedClient,
-            product_id: selectedProduct,
-            oie_score: oieScore,
-            assigned_date: new Date().toISOString(),
-            status: 'New',
-            is_contacted: false
-          });
-
-          const oppId = crypto.randomUUID();
-          oppsBatch.push({
-            id: oppId,
-            legacy_lead_id: leadId,
-            title: batch[j].title,
-            workspace_id: selectedClient,
-            sales_status: 'New',
-            stage: 'Discovery',
-            lead_score: oieScore.lead_score,
-            icp_tier: oieScore.icp_tier,
-            oie_score: oieScore,
-            created_by: selectedClient
-          });
-
-          scoresBatch.push({
-            opportunity_id: oppId,
-            lead_score: oieScore.lead_score || 0,
-            score_breakdown: oieScore,
-            score_version: oieScore.oie_version || 'oie-v1.0.0'
-          });
-        }
-
-        if (assignmentsBatch.length > 0) await supabase.from('assigned_leads').insert(assignmentsBatch);
-        if (oppsBatch.length > 0) await supabase.from('opportunities').insert(oppsBatch);
-        if (scoresBatch.length > 0) await supabase.from('opportunity_scores').insert(scoresBatch);
-      }
-
-      toast({ title: 'Import Complete', description: `Successfully imported ${allInsertedLeads.length} leads.` });
+      toast({ title: 'Data Ready', description: `Successfully loaded ${slicedLeads.length} leads in memory for AWS Lambda processing.` });
       
       // Transition to Raw Data Engine
-      setImportedLeads(allInsertedLeads);
+      setImportedLeads(slicedLeads);
       setViewState('engine');
       resetPipeline();
     } catch (err: any) {
