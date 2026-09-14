@@ -324,6 +324,46 @@ export default function AdminTemplateUpload() {
     });
   };
 
+  const handleDemoData = () => {
+    const demoData = [
+      { Company: "Tech Innovators Inc", "Target Keyword": "Software", "Contact Name": "Jane Doe", "Phone Number": "555-0100" },
+      { Company: "Global Logistics Ltd", "Target Keyword": "Shipping", "Contact Name": "John Smith", "Phone Number": "555-0200" },
+      { Company: "Green Energy Corp", "Target Keyword": "Solar", "Contact Name": "Alice Johnson", "Phone Number": "555-0300" }
+    ];
+    setParsedData(demoData);
+    setValidationReport({
+      total: 3,
+      valid: 3,
+      errors: 0,
+      validRows: demoData,
+      invalidRows: [],
+      missingStats: {},
+      fileName: "demo_data.csv"
+    });
+    setIsMappingConfirmed(true);
+    toast({ title: 'Demo Data Loaded', description: 'Hardcoded test data is ready to import.', variant: 'default' });
+  };
+
+  const handleExportData = () => {
+    if (importedLeads.length === 0) {
+      toast({ title: 'No Data', description: 'No scored data available to export.', variant: 'destructive' });
+      return;
+    }
+    
+    // Create CSV content from importedLeads
+    const headers = Object.keys(importedLeads[0]).join(',');
+    const rows = importedLeads.map(lead => Object.values(lead).map(v => `"${v}"`).join(','));
+    const csvContent = [headers, ...rows].join('\n');
+    
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'scored_intelligence_export.csv';
+    link.click();
+    
+    toast({ title: 'Export Complete', description: 'Scored leads exported to CSV.', variant: 'default' });
+  };
+
   const handleImport = async () => {
     if (!validationReport || validationReport.valid === 0) return;
     if (!selectedClient || !selectedProduct || !selectedIndustry || !selectedSource) {
@@ -510,7 +550,7 @@ export default function AdminTemplateUpload() {
     <div className="grid grid-cols-1 md:grid-cols-12 gap-6 pb-12">
       {/* LEFT COLUMN: Configurations */}
       <div className="md:col-span-4 space-y-6">
-        <Card className="border-white/10 bg-black/40">
+        <Card className="border-slate-200 bg-white">
           <CardHeader>
             <CardTitle className="flex items-center gap-2"><Target className="w-5 h-5 text-indigo-400" /> Client Workflow Target</CardTitle>
             <CardDescription>Select the client and product for this dataset.</CardDescription>
@@ -519,7 +559,7 @@ export default function AdminTemplateUpload() {
             <div className="space-y-2">
               <label className="text-sm font-semibold flex items-center gap-2"><Building2 className="w-4 h-4" /> Client Workspace</label>
               <Select value={selectedClient} onValueChange={setSelectedClient}>
-                <SelectTrigger className="bg-white/5 border-white/10"><SelectValue placeholder="Select Client..." /></SelectTrigger>
+                <SelectTrigger className="bg-slate-50 border-slate-200"><SelectValue placeholder="Select Client..." /></SelectTrigger>
                 <SelectContent>
                   {clients.map(c => <SelectItem key={c.id} value={c.id}>{c.company_name}</SelectItem>)}
                 </SelectContent>
@@ -535,7 +575,7 @@ export default function AdminTemplateUpload() {
                 </div>
               ) : (
                 <Select value={selectedProduct} onValueChange={handleProductChange} disabled={!selectedClient || products.length === 0}>
-                  <SelectTrigger className="bg-white/5 border-white/10"><SelectValue placeholder="Select Product..." /></SelectTrigger>
+                  <SelectTrigger className="bg-slate-50 border-slate-200"><SelectValue placeholder="Select Product..." /></SelectTrigger>
                   <SelectContent>
                     {products.map(p => <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>)}
                   </SelectContent>
@@ -546,7 +586,7 @@ export default function AdminTemplateUpload() {
             <div className="space-y-2">
               <label className="text-sm font-semibold flex items-center gap-2"><Server className="w-4 h-4" /> Industry (Inferred)</label>
               <Select value={selectedIndustry} onValueChange={setSelectedIndustry}>
-                <SelectTrigger className="bg-white/5 border-white/10"><SelectValue placeholder="Select Industry..." /></SelectTrigger>
+                <SelectTrigger className="bg-slate-50 border-slate-200"><SelectValue placeholder="Select Industry..." /></SelectTrigger>
                 <SelectContent>
                   {industries.map(ind => <SelectItem key={ind.id} value={ind.id}>{ind.name}</SelectItem>)}
                 </SelectContent>
@@ -556,7 +596,7 @@ export default function AdminTemplateUpload() {
             <div className="space-y-2">
               <label className="text-sm font-semibold flex items-center gap-2"><Server className="w-4 h-4" /> Source</label>
               <Select value={selectedSource} onValueChange={setSelectedSource}>
-                <SelectTrigger className="bg-white/5 border-white/10"><SelectValue placeholder="Select Source..." /></SelectTrigger>
+                <SelectTrigger className="bg-slate-50 border-slate-200"><SelectValue placeholder="Select Source..." /></SelectTrigger>
                 <SelectContent>
                   {sources.map(src => <SelectItem key={src.id} value={src.id}>{src.name}</SelectItem>)}
                 </SelectContent>
@@ -566,7 +606,7 @@ export default function AdminTemplateUpload() {
         </Card>
 
         {selectedTemplate && (
-          <Card className="border-white/10 bg-black/40 border-indigo-500/30">
+          <Card className="border-slate-200 bg-white border-indigo-500/30">
             <CardHeader className="bg-indigo-500/10 border-b border-indigo-500/20 pb-3">
               <CardTitle className="text-base text-indigo-100 flex items-center gap-2">
                 <CheckCircle2 className="w-5 h-5 text-indigo-400" /> Template Auto-Loaded
@@ -574,15 +614,15 @@ export default function AdminTemplateUpload() {
             </CardHeader>
             <CardContent className="pt-4 space-y-4">
               <div>
-                <h4 className="text-sm font-bold text-white mb-1">{selectedTemplate.template_name}</h4>
+                <h4 className="text-sm font-bold text-slate-900 mb-1">{selectedTemplate.template_name}</h4>
                 <p className="text-xs text-muted-foreground">{selectedTemplate.description || 'Standard import schema'}</p>
               </div>
 
-              <div className="space-y-2 pt-2 border-t border-white/10">
+              <div className="space-y-2 pt-2 border-t border-slate-200">
                 <h5 className="text-xs font-semibold text-muted-foreground uppercase">Configure Modules</h5>
                 <div className="space-y-2">
                   {modules.map(mod => (
-                    <div key={mod.id} className="flex items-center justify-between p-2 rounded bg-white/5 hover:bg-white/10 transition-colors cursor-pointer" onClick={() => toggleModule(mod.id)}>
+                    <div key={mod.id} className="flex items-center justify-between p-2 rounded bg-slate-50 hover:bg-white/10 transition-colors cursor-pointer" onClick={() => toggleModule(mod.id)}>
                       <div className="flex items-center gap-2 text-sm text-blue-100">
                         <Activity className="w-4 h-4 text-blue-400" /> {mod.name}
                       </div>
@@ -598,13 +638,13 @@ export default function AdminTemplateUpload() {
 
       {/* RIGHT COLUMN: Pipeline */}
       <div className="md:col-span-8 space-y-6">
-        <Card className={`border-white/10 bg-black/40 ${!selectedTemplate ? 'opacity-50 pointer-events-none' : ''}`}>
+        <Card className={`border-slate-200 bg-white ${!selectedTemplate ? 'opacity-50 pointer-events-none' : ''}`}>
           <CardHeader>
             <CardTitle>Dataset Validation</CardTitle>
             <CardDescription>Upload CSV to validate against the master schema.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="border-2 border-dashed border-white/10 rounded-xl p-8 text-center hover:bg-white/[0.02] transition-colors relative">
+            <div className="border-2 border-dashed border-slate-200 rounded-xl p-8 text-center hover:bg-slate-50 transition-colors relative">
               <input 
                 type="file" 
                 accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
@@ -616,14 +656,21 @@ export default function AdminTemplateUpload() {
               <p className="text-sm text-muted-foreground">Validates against selected schema immediately</p>
             </div>
 
+            <div className="text-center mt-4">
+              <p className="text-sm text-muted-foreground mb-2">Or, bypass upload for demo purposes:</p>
+              <Button onClick={handleDemoData} variant="outline" className="w-full md:w-auto">
+                <Database className="w-4 h-4 mr-2" /> Use Hardcoded Demo Data
+              </Button>
+            </div>
+
             {!isMappingConfirmed && csvHeaders.length > 0 && (
               <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500 mt-6">
-                <div className="bg-white/5 border border-white/10 rounded-lg p-4">
+                <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
                   <div className="flex justify-between items-start mb-4">
                     <div>
-                      <h4 className="text-lg font-semibold text-white">Map CSV Columns to Template Fields</h4>
+                      <h4 className="text-lg font-semibold text-slate-900">Map CSV Columns to Template Fields</h4>
                       <div className="text-sm text-muted-foreground mt-1 flex flex-wrap gap-4">
-                        <span>Total Columns: <span className="font-semibold text-white">{csvHeaders.length}</span></span>
+                        <span>Total Columns: <span className="font-semibold text-slate-900">{csvHeaders.length}</span></span>
                         <span className="text-emerald-400">Mapped: {Object.keys(columnMapping).filter(k => columnMapping[k]).length}</span>
                         <span className="text-yellow-400">Needs Review: {(selectedTemplate?.fields_json?.length || 0) - Object.keys(columnMapping).filter(k => columnMapping[k]).length}</span>
                         <span className="text-muted-foreground">Ignored: {csvHeaders.length - Object.keys(columnMapping).filter(k => columnMapping[k]).length}</span>
@@ -633,8 +680,8 @@ export default function AdminTemplateUpload() {
                   
                   <div className="space-y-3">
                     {selectedTemplate?.fields_json?.map((tf: any) => (
-                      <div key={tf.key} className="grid grid-cols-12 gap-4 items-center p-2 rounded bg-black/40 border border-white/5">
-                        <div className="col-span-4 text-sm font-medium text-white break-words">
+                      <div key={tf.key} className="grid grid-cols-12 gap-4 items-center p-2 rounded bg-white border border-slate-200">
+                        <div className="col-span-4 text-sm font-medium text-slate-900 break-words">
                           {tf.name} {tf.required && <span className="text-red-400">*</span>}
                         </div>
                         <div className="col-span-6">
@@ -642,7 +689,7 @@ export default function AdminTemplateUpload() {
                             value={columnMapping[tf.key] || "unmapped"} 
                             onValueChange={(val) => setColumnMapping(prev => ({ ...prev, [tf.key]: val === "unmapped" ? "" : val }))}
                           >
-                            <SelectTrigger className="bg-white/5 border-white/10 text-sm">
+                            <SelectTrigger className="bg-slate-50 border-slate-200 text-sm">
                               <SelectValue placeholder="Ignore (Unmapped)" />
                             </SelectTrigger>
                             <SelectContent>
@@ -660,7 +707,7 @@ export default function AdminTemplateUpload() {
                               <span className="text-[10px] text-emerald-500/70 mt-1">98% Match</span>
                             </div>
                           ) : (
-                            <Badge variant="outline" className={tf.required ? "text-yellow-400 border-yellow-500/30" : "text-muted-foreground border-white/10"}>
+                            <Badge variant="outline" className={tf.required ? "text-yellow-400 border-yellow-500/30" : "text-muted-foreground border-slate-200"}>
                               {tf.required ? 'Required' : 'Ignored'}
                             </Badge>
                           )}
@@ -680,7 +727,7 @@ export default function AdminTemplateUpload() {
             {isMappingConfirmed && validationReport && validationReport.validRows && (
               <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <div className="bg-white/5 p-4 rounded-lg border border-white/5 text-center">
+                  <div className="bg-slate-50 p-4 rounded-lg border border-slate-200 text-center">
                     <div className="text-2xl font-bold">{validationReport.total}</div>
                     <div className="text-[10px] uppercase text-muted-foreground mt-1">Total Rows</div>
                   </div>
@@ -711,15 +758,15 @@ export default function AdminTemplateUpload() {
                   </div>
                 )}
 
-                <div className="bg-black/40 border border-white/10 rounded-lg p-5 mt-6">
-                  <h4 className="text-lg font-semibold text-white mb-4">Configuration Checklist</h4>
+                <div className="bg-white border border-slate-200 rounded-lg p-5 mt-6">
+                  <h4 className="text-lg font-semibold text-slate-900 mb-4">Configuration Checklist</h4>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-3">
                       <div className="flex items-center gap-3">
                         {selectedClient ? <CheckCircle2 className="text-emerald-400 w-5 h-5 flex-shrink-0" /> : <AlertCircle className="text-red-400 w-5 h-5 flex-shrink-0" />}
                         <div>
-                          <p className="text-sm font-medium text-white">Client Workspace</p>
+                          <p className="text-sm font-medium text-slate-900">Client Workspace</p>
                           <p className="text-xs text-muted-foreground">{selectedClient ? clients.find(c => c.id === selectedClient)?.company_name : 'Not Selected'}</p>
                         </div>
                       </div>
@@ -727,7 +774,7 @@ export default function AdminTemplateUpload() {
                       <div className="flex items-center gap-3">
                         {selectedSource ? <CheckCircle2 className="text-emerald-400 w-5 h-5 flex-shrink-0" /> : <AlertCircle className="text-red-400 w-5 h-5 flex-shrink-0" />}
                         <div>
-                          <p className="text-sm font-medium text-white">Source</p>
+                          <p className="text-sm font-medium text-slate-900">Source</p>
                           <p className="text-xs text-muted-foreground">{selectedSource ? sources.find(s => s.id === selectedSource)?.name : 'Not Selected'}</p>
                         </div>
                       </div>
@@ -735,7 +782,7 @@ export default function AdminTemplateUpload() {
                       <div className="flex items-center gap-3">
                         {selectedTemplate ? <CheckCircle2 className="text-emerald-400 w-5 h-5 flex-shrink-0" /> : <AlertCircle className="text-red-400 w-5 h-5 flex-shrink-0" />}
                         <div>
-                          <p className="text-sm font-medium text-white">Template</p>
+                          <p className="text-sm font-medium text-slate-900">Template</p>
                           <p className="text-xs text-muted-foreground">{selectedTemplate?.template_name || 'Not Loaded'}</p>
                         </div>
                       </div>
@@ -745,7 +792,7 @@ export default function AdminTemplateUpload() {
                       <div className="flex items-center gap-3">
                         <CheckCircle2 className="text-emerald-400 w-5 h-5 flex-shrink-0" />
                         <div>
-                          <p className="text-sm font-medium text-white">CSV Uploaded</p>
+                          <p className="text-sm font-medium text-slate-900">CSV Uploaded</p>
                           <p className="text-xs text-muted-foreground">{validationReport.total} rows</p>
                         </div>
                       </div>
@@ -753,7 +800,7 @@ export default function AdminTemplateUpload() {
                       <div className="flex items-center gap-3">
                         {validationReport.valid > 0 ? <CheckCircle2 className="text-emerald-400 w-5 h-5 flex-shrink-0" /> : <AlertCircle className="text-red-400 w-5 h-5 flex-shrink-0" />}
                         <div>
-                          <p className="text-sm font-medium text-white">Validation</p>
+                          <p className="text-sm font-medium text-slate-900">Validation</p>
                           <p className="text-xs text-muted-foreground">{validationReport.valid > 0 ? 'Passed' : 'Failed'}</p>
                         </div>
                       </div>
@@ -761,7 +808,7 @@ export default function AdminTemplateUpload() {
                       <div className="flex items-center gap-3">
                         {selectedProduct ? <CheckCircle2 className="text-emerald-400 w-5 h-5 flex-shrink-0" /> : <AlertCircle className="text-red-400 w-5 h-5 flex-shrink-0" />}
                         <div>
-                          <p className="text-sm font-medium text-white">Product</p>
+                          <p className="text-sm font-medium text-slate-900">Product</p>
                           <p className="text-xs text-muted-foreground">
                             {selectedProduct ? products.find(p => p.id === selectedProduct)?.name : 'Not Selected. Leads must belong to a product.'}
                           </p>
@@ -770,7 +817,7 @@ export default function AdminTemplateUpload() {
                     </div>
                   </div>
                   
-                  <div className="mt-6 flex flex-col md:flex-row gap-4 items-center justify-between border-t border-white/10 pt-4">
+                  <div className="mt-6 flex flex-col md:flex-row gap-4 items-center justify-between border-t border-slate-200 pt-4">
                     <div>
                       <h4 className="text-sm font-semibold text-indigo-100">Ready for Raw Data Engine</h4>
                       <p className="text-xs text-indigo-200/70">Will create {validationReport.valid} Raw Leads and generate Base Scores.</p>
@@ -786,7 +833,7 @@ export default function AdminTemplateUpload() {
                       </Button>
                       
                       {(!selectedProduct || validationReport.valid === 0 || !selectedClient || !selectedSource) && (
-                        <div className="absolute bottom-[110%] right-0 mb-2 w-max max-w-xs bg-red-950 text-white text-xs p-3 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none border border-red-500/30">
+                        <div className="absolute bottom-[110%] right-0 mb-2 w-max max-w-xs bg-red-950 text-slate-900 text-xs p-3 rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity z-10 pointer-events-none border border-red-500/30">
                           <span className="font-bold text-red-400 block mb-1">Cannot Import</span>
                           <span className="text-red-200 block">Missing: {!selectedClient ? 'Client Workspace' : !selectedSource ? 'Source' : !selectedProduct ? 'Product Selection' : 'Valid Rows'}</span>
                         </div>
@@ -806,29 +853,38 @@ export default function AdminTemplateUpload() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+          <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
             <Activity className="w-6 h-6 text-indigo-400" /> Raw Data Engine
           </h2>
           <p className="text-muted-foreground text-sm">Command centre for opportunity intelligence generation.</p>
         </div>
-        <div className="flex gap-4">
-          <Button variant="outline" onClick={() => setViewState('config')} className="bg-white/5 border-white/10">
+        <div className="flex flex-wrap gap-4">
+          <Button variant="outline" onClick={() => setViewState('config')} className="bg-slate-50 border-slate-200">
             Upload More
+          </Button>
+          <Button 
+            variant="outline" 
+            onClick={handleExportData} 
+            disabled={importedLeads.length === 0}
+            className="bg-indigo-50 text-indigo-700 border-indigo-200 hover:bg-indigo-100"
+          >
+            <Download className="w-4 h-4 mr-2" />
+            Export Scored Data
           </Button>
           <Button 
             onClick={handleExecuteModules} 
             disabled={executingModules || importedLeads.length === 0}
-            className="bg-emerald-600 hover:bg-emerald-700"
+            className="bg-emerald-600 hover:bg-emerald-700 text-white"
           >
             {executingModules ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Play className="w-4 h-4 mr-2" />}
-            Execute Enabled Modules
+            Execute Enabled Modules (AWS)
           </Button>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Card className="bg-black/40 border-white/10 p-4 flex flex-col justify-center items-center text-center">
-          <div className="text-3xl font-bold text-white mb-1">{importedLeads.length}</div>
+        <Card className="bg-white border-slate-200 p-4 flex flex-col justify-center items-center text-center">
+          <div className="text-3xl font-bold text-slate-900 mb-1">{importedLeads.length}</div>
           <div className="text-xs uppercase text-muted-foreground">Raw Leads Created</div>
         </Card>
         <Card className="bg-indigo-500/10 border-indigo-500/20 p-4 flex flex-col justify-center items-center text-center">
@@ -845,20 +901,20 @@ export default function AdminTemplateUpload() {
         </Card>
       </div>
 
-      <Card className="bg-black/40 border-white/10">
+      <Card className="bg-white border-slate-200">
         <Table>
-          <TableHeader className="bg-white/5">
-            <TableRow className="border-white/10 hover:bg-transparent">
-              <TableHead className="text-white">Company</TableHead>
-              <TableHead className="text-white text-center">Base Score</TableHead>
-              <TableHead className="text-white text-center">Research Status</TableHead>
-              <TableHead className="text-white text-right">Modules Completed</TableHead>
+          <TableHeader className="bg-slate-50">
+            <TableRow className="border-slate-200 hover:bg-transparent">
+              <TableHead className="text-slate-900">Company</TableHead>
+              <TableHead className="text-slate-900 text-center">Base Score</TableHead>
+              <TableHead className="text-slate-900 text-center">Research Status</TableHead>
+              <TableHead className="text-slate-900 text-right">Modules Completed</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {importedLeads.map((lead, idx) => (
-              <TableRow key={lead.id || idx} className="border-white/5 hover:bg-white/5">
-                <TableCell className="font-medium text-white">{lead.company_name}</TableCell>
+              <TableRow key={lead.id || idx} className="border-slate-200 hover:bg-slate-50">
+                <TableCell className="font-medium text-slate-900">{lead.company_name}</TableCell>
                 <TableCell className="text-center">
                   <Badge className="bg-indigo-500/20 text-indigo-300 border-indigo-500/30">
                     {lead.quality_score || lead.metadata?.oie_score?.lead_score || 0}
