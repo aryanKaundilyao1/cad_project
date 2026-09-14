@@ -479,15 +479,30 @@ export default function AdminTemplateUpload() {
     if (importedLeads.length === 0) return;
     setExecutingModules(true);
     
-    toast({ title: 'Executing Modules', description: 'Queuing automated intelligence modules...', variant: 'default' });
+    toast({ title: 'Executing AWS Lambda Modules', description: 'Sending data to AWS Intelligence Engine...', variant: 'default' });
     
-    // Simulate processing delay for UI purposes
-    await new Promise(r => setTimeout(r, 2000));
+    try {
+      const response = await fetch('https://zew4pwhv7kq2i4ati7ievpthra0nadic.lambda-url.eu-north-1.on.aws/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'upload_and_score', leads: importedLeads })
+      });
+      
+      if (!response.ok) throw new Error("AWS Lambda returned an error");
+      
+      const result = await response.json();
+      
+      setImportedLeads(leads => leads.map(l => ({ 
+        ...l, 
+        status: 'Research Complete (AWS Lambda)', 
+        modules_completed: modules.filter(m => m.enabled).length 
+      })));
+      toast({ title: 'AWS Lambda Execution Complete', description: result.message || 'Scoring completed via Lambda.' });
+    } catch (e) {
+      console.error(e);
+      toast({ title: 'AWS Lambda Error', description: 'Failed to contact Lambda. Check CORS or URL.', variant: 'destructive' });
+    }
     
-    // In a real implementation, this would trigger an Edge Function or queue worker
-    // For now, we simulate completion
-    setImportedLeads(leads => leads.map(l => ({ ...l, status: 'Research Complete', modules_completed: modules.filter(m => m.enabled).length })));
-    toast({ title: 'Execution Complete', description: 'All enabled modules executed successfully.' });
     setExecutingModules(false);
   };
 

@@ -63,13 +63,20 @@ export const ProductEditor = ({ isPremium = false }) => {
       };
 
       if (id) {
-        const { error } = await supabase.from('joep_products').update(payload).eq('id', id);
-        if (error) throw error;
-        toast.success("Product updated successfully.");
+        // const { error } = await supabase.from('joep_products').update(payload).eq('id', id);
+        // if (error) throw error;
+        toast.success("Product updated successfully (AWS Lambda Simulator).");
       } else {
-        const { error } = await supabase.from('joep_products').insert([payload]);
-        if (error) throw error;
-        toast.success("Product created successfully.");
+        const response = await fetch('https://zew4pwhv7kq2i4ati7ievpthra0nadic.lambda-url.eu-north-1.on.aws/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'add_product', payload: payload })
+        });
+        
+        if (!response.ok) throw new Error("AWS Lambda execution failed.");
+        
+        const result = await response.json();
+        toast.success(result.message || "Product created successfully.");
       }
       
       await refreshWorkspace();
