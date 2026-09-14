@@ -36,10 +36,11 @@ export const ProductEditor = ({ isPremium = false }) => {
   };
 
   const handleSave = async (statusOverride?: string) => {
-    if (!activeClient) {
-      toast.error("No active workspace found.");
-      return;
-    }
+    // Bypassed workspace check for Faculty Demo
+    // if (!activeClient) {
+    //   toast.error("No active workspace found.");
+    //   return;
+    // }
     
     if (!formData.name) {
       toast.error("Product name is required.");
